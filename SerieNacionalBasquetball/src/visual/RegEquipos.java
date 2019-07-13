@@ -18,8 +18,8 @@ public class RegEquipos extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNombre;
+	private JTextField txtCodigo;
 
 	public static void main(String[] args) {
 		try {
@@ -45,73 +45,73 @@ public class RegEquipos extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(101, 61, 135, 20);
-		panel.add(textField);
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(101, 61, 135, 20);
+		panel.add(txtNombre);
 		
-		JLabel label = new JLabel("Nombre:");
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		label.setBounds(0, 64, 91, 14);
-		panel.add(label);
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNombre.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNombre.setBounds(0, 64, 91, 14);
+		panel.add(lblNombre);
 		
-		JLabel label_1 = new JLabel("C\u00F3digo:");
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		label_1.setBounds(0, 33, 91, 14);
-		panel.add(label_1);
+		JLabel lblCodigo = new JLabel("C\u00F3digo:");
+		lblCodigo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCodigo.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblCodigo.setBounds(0, 33, 91, 14);
+		panel.add(lblCodigo);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(101, 30, 105, 20);
-		panel.add(textField_1);
+		txtCodigo = new JTextField();
+		txtCodigo.setEditable(false);
+		txtCodigo.setColumns(10);
+		txtCodigo.setBounds(101, 30, 105, 20);
+		panel.add(txtCodigo);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(256, 30, 230, 350);
-		panel.add(panel_1);
+		JPanel panel_JugadoresSinEquipo = new JPanel();
+		panel_JugadoresSinEquipo.setBounds(256, 30, 230, 350);
+		panel.add(panel_JugadoresSinEquipo);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(564, 11, 230, 369);
-		panel.add(panel_2);
+		JPanel panel_JugadoresSeleccionados = new JPanel();
+		panel_JugadoresSeleccionados.setBounds(564, 11, 230, 369);
+		panel.add(panel_JugadoresSeleccionados);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 96, 236, 230);
-		panel.add(panel_3);
+		JPanel panel_Logo = new JPanel();
+		panel_Logo.setBounds(10, 96, 236, 230);
+		panel.add(panel_Logo);
 		
-		JLabel lblNewLabel = new JLabel("Jugadores sin equipos");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(256, 0, 230, 29);
-		panel.add(lblNewLabel);
+		JLabel lblJugadoresSinEquipo = new JLabel("Jugadores sin equipos");
+		lblJugadoresSinEquipo.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		lblJugadoresSinEquipo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblJugadoresSinEquipo.setBounds(256, 0, 230, 29);
+		panel.add(lblJugadoresSinEquipo);
 		
-		JButton button = new JButton(">>>");
-		button.setBounds(496, 121, 58, 23);
-		panel.add(button);
+		JButton btnDerecha = new JButton(">>>");
+		btnDerecha.setBounds(496, 121, 58, 23);
+		panel.add(btnDerecha);
 		
-		JButton button_1 = new JButton("<<<");
-		button_1.setBounds(496, 259, 58, 23);
-		panel.add(button_1);
+		JButton btnIzquierda = new JButton("<<<");
+		btnIzquierda.setBounds(496, 259, 58, 23);
+		panel.add(btnIzquierda);
 		
-		JButton btnNewButton = new JButton("Seleccionar imagen");
-		btnNewButton.setBounds(10, 337, 130, 23);
-		panel.add(btnNewButton);
+		JButton btnSeleccionarImagen = new JButton("Seleccionar imagen");
+		btnSeleccionarImagen.setBounds(10, 337, 130, 23);
+		panel.add(btnSeleccionarImagen);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			JPanel Panel_Inferior = new JPanel();
+			Panel_Inferior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			Panel_Inferior.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(Panel_Inferior, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Registrar");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton btnRegistrar = new JButton("Registrar");
+				btnRegistrar.setActionCommand("OK");
+				Panel_Inferior.add(btnRegistrar);
+				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.setActionCommand("Cancel");
+				Panel_Inferior.add(btnCancelar);
 			}
 		}
 	}
