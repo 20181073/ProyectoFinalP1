@@ -1,6 +1,5 @@
 package visual;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -9,10 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 
 public class RegJugadores extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_2;
