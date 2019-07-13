@@ -44,11 +44,20 @@ public class Lesion {
 	public int getRecoveryTime() {
 		return RecoveryTime;
 	}
-	public void setRecoveryTime(int recoveryTime) {
+	public void setRecoveryTime(int recoveryTime) {//En Dias
 		RecoveryTime = recoveryTime;
 	}
 	
 	public void recuperacion () {
+		long aux = FechaLesion.getTime();
+		Date date =new Date();
+		long tiempoactual=date.getTime();
+		
+		if (tiempoactual-aux>=RecoveryTime*60*60*24) {
+			setEstado(false);
+		}
 	}
+	
+	
 	
 }

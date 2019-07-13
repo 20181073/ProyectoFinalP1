@@ -13,8 +13,6 @@ public class Equipo {
 	private int juegosperdidos;
 	private File logo;
 
-	
-
 	public Equipo(String codigo, String nombre, int cantjugador, int juegosganados,
 			int juegosperdidos, File logo) {
 		super();
