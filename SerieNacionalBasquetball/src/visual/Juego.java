@@ -1,6 +1,5 @@
 package visual;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,13 +16,11 @@ import javax.swing.JRadioButton;
 
 public class Juego extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tableJugadoresLocal;
 	private JTable tableJugadoresVisita;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,9 +34,6 @@ public class Juego extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Juego() {
 		setTitle("Simular Juego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
