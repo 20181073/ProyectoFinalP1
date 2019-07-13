@@ -9,13 +9,13 @@ public class SerieNacional {
 	private ArrayList<Juego> Juegos;
 	private int CantidadJuegos;
 	
-	public SerieNacional(String codigo, ArrayList<Equipo> equipos, int cantidadEquipos, ArrayList<Juego> juegos,
+	public SerieNacional(String codigo, int cantidadEquipos,
 			int cantidadJuegos) {
 		super();
 		Codigo = codigo;
-		Equipos = equipos;
+		Equipos = new ArrayList<Equipo>();
 		CantidadEquipos = cantidadEquipos;
-		Juegos = juegos;
+		Juegos = new ArrayList<Juego>();
 		CantidadJuegos = cantidadJuegos;
 	}
 

@@ -12,14 +12,14 @@ public class Juego {
 	private int PtsEquipo1;
 	private int PtsEquipo2;
 	
-	public Juego(Date fechaDelJuego, Date tiempoTranscurrido, ArrayList<Equipo> equipos, int periodo,
-			ArrayList<String> tipoJugada, int ptsEquipo1, int ptsEquipo2) {
+	public Juego(Date fechaDelJuego, Date tiempoTranscurrido, int periodo,
+			 int ptsEquipo1, int ptsEquipo2) {
 		super();
 		FechaDelJuego = fechaDelJuego;
 		TiempoTranscurrido = tiempoTranscurrido;
-		Equipos = equipos;
+		Equipos = new ArrayList<Equipo>();
 		Periodo = periodo;
-		TipoJugada = tipoJugada;
+		TipoJugada = new ArrayList<String>();
 		PtsEquipo1 = ptsEquipo1;
 		PtsEquipo2 = ptsEquipo2;
 	}
