@@ -32,12 +32,14 @@ public class RegEquipos extends JDialog {
 	}
 
 	public RegEquipos() {
+		setResizable(false);
 		setTitle("Registrar Equipo");
 		setBounds(100, 100, 840, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -69,14 +71,17 @@ public class RegEquipos extends JDialog {
 		panel.add(txtCodigo);
 		
 		JPanel panel_JugadoresSinEquipo = new JPanel();
+		panel_JugadoresSinEquipo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_JugadoresSinEquipo.setBounds(256, 30, 230, 350);
 		panel.add(panel_JugadoresSinEquipo);
 		
 		JPanel panel_JugadoresSeleccionados = new JPanel();
+		panel_JugadoresSeleccionados.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_JugadoresSeleccionados.setBounds(564, 11, 230, 369);
 		panel.add(panel_JugadoresSeleccionados);
 		
 		JPanel panel_Logo = new JPanel();
+		panel_Logo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_Logo.setBounds(10, 96, 236, 230);
 		panel.add(panel_Logo);
 		
@@ -95,7 +100,7 @@ public class RegEquipos extends JDialog {
 		panel.add(btnIzquierda);
 		
 		JButton btnSeleccionarImagen = new JButton("Seleccionar imagen");
-		btnSeleccionarImagen.setBounds(10, 337, 130, 23);
+		btnSeleccionarImagen.setBounds(10, 337, 236, 23);
 		panel.add(btnSeleccionarImagen);
 		{
 			JPanel Panel_Inferior = new JPanel();
