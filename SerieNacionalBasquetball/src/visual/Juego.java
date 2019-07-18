@@ -13,6 +13,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class Juego extends JFrame {
 
@@ -37,7 +42,7 @@ public class Juego extends JFrame {
 	public Juego() {
 		setTitle("Simular Juego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 748, 524);
+		setBounds(100, 100, 748, 622);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,13 +87,16 @@ public class Juego extends JFrame {
 		tableJugadoresLocal = new JTable();
 		tableJugadoresLocal.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null},
 			},
 			new String[] {
 				"Codigo", "Nombre", "Numero"
 			}
+			
 		));
 		tableJugadoresLocal.setFillsViewportHeight(true);
 		scrollPanelTablaLocal.setViewportView(tableJugadoresLocal);
+		
 		
 		JScrollPane scrollpanelTablaVisita = new JScrollPane();
 		scrollpanelTablaVisita.setBounds(443, 259, 279, 216);
@@ -97,6 +105,7 @@ public class Juego extends JFrame {
 		tableJugadoresVisita = new JTable();
 		tableJugadoresVisita.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null},
 			},
 			new String[] {
 				"Codigo", "Nombre", "Numero"
@@ -127,8 +136,61 @@ public class Juego extends JFrame {
 		contentPane.add(btnFalta);
 		
 		JButton btnLesion = new JButton("Lesion");
+		btnLesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LesionarJugador ventana = new LesionarJugador();
+				ventana.setVisible(true);
+			}
+		});
 		btnLesion.setBounds(322, 228, 89, 23);
 		contentPane.add(btnLesion);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jugadas complementarias", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(20, 486, 702, 87);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JButton btnAsistencia = new JButton("Asistencia");
+		btnAsistencia.setBounds(75, 32, 134, 23);
+		panel.add(btnAsistencia);
+		
+		JButton btnBloqueo = new JButton("Bloqueo");
+		btnBloqueo.setBounds(284, 32, 134, 23);
+		panel.add(btnBloqueo);
+		
+		JButton btnRoboDeBalon = new JButton("Robo de Balon");
+		btnRoboDeBalon.setBounds(493, 32, 134, 23);
+		panel.add(btnRoboDeBalon);
 //		tableJugadoresVisita.edit
+		
+		btnHacerJugada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnTiroLibre.setSelected(false);
+				rdbtnDoble.setSelected(false);
+				rdbtnTriple.setSelected(false);
+			}
+		});
+		
+		rdbtnTiroLibre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnDoble.setSelected(false);
+				rdbtnTriple.setSelected(false);
+			}
+		});
+		
+		rdbtnDoble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnTiroLibre.setSelected(false);
+				rdbtnTriple.setSelected(false);
+			}
+		});
+		
+		rdbtnTriple.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnDoble.setSelected(false);
+				rdbtnTiroLibre.setSelected(false);
+			}
+		});
 	}
 }
