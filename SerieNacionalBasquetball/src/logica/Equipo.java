@@ -80,6 +80,29 @@ public class Equipo {
 	public void setLogo(File logo) {
 		this.logo = logo;
 	}
+	
+	public int indiceDeJugador(String codigo) {
+		int aux=0;
+		
+		for(int i =0;i<cantjugador;i++) {
+			if(jugadores.get(i).getCodigo().equals(codigo)) {
+				aux=i;
+			}
+		}
+		
+		return aux;
+	}
+	public Jugador buscarjugadorByCode(String codigo) {
+		Jugador aux=null;
+		
+		for(int i =0;i<cantjugador;i++) {
+			if(jugadores.get(i).getCodigo().equals(codigo)) {
+				aux=jugadores.get(i);
+			}
+		}
+		
+		return aux;
+	}
 
 
 }

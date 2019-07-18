@@ -53,12 +53,10 @@ public class Lesion {
 		Date date =new Date();
 		long tiempoactual=date.getTime();
 		
-		//tiempoactual > aux
-		if (tiempoactual-aux>=RecoveryTime*60*60*24) {
+		//tiempoactual >= aux
+		if (tiempoactual-aux>=RecoveryTime*60*60*24*1000) {
 			setEstado(false);
 		}
 	}
-	
-	
 	
 }

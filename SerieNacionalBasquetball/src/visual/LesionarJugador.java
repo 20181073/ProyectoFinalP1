@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+
+import logica.Jugador;
+import logica.SerieNacional;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -24,11 +28,11 @@ import java.util.Calendar;
 public class LesionarJugador extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	private JTextField txtCodigo;
 
 	/**
 	 * Launch the application.
-	 */
+	 *
 	public static void main(String[] args) {
 		try {
 			LesionarJugador dialog = new LesionarJugador();
@@ -42,7 +46,8 @@ public class LesionarJugador extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public LesionarJugador() {
+	public LesionarJugador(Jugador jugador, SerieNacional serie) {
+		
 		setTitle("Lesiones");
 		setBounds(100, 100, 481, 280);
 		getContentPane().setLayout(new BorderLayout());
@@ -78,10 +83,11 @@ public class LesionarJugador extends JDialog {
 		lblCodigo.setBounds(25, 11, 46, 14);
 		panel.add(lblCodigo);
 		
-		textField = new JTextField();
-		textField.setBounds(25, 36, 119, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtCodigo = new JTextField();
+		txtCodigo.setEnabled(false);
+		txtCodigo.setBounds(25, 36, 119, 20);
+		panel.add(txtCodigo);
+		txtCodigo.setColumns(10);
 		
 		JLabel lblFehcaDeLesion = new JLabel("Fehca De Lesion");
 		lblFehcaDeLesion.setBounds(284, 11, 112, 14);

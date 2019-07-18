@@ -3,28 +3,24 @@ package logica;
 import java.util.ArrayList;
 
 public class SerieNacional {
-	private String Codigo;
+
 	private ArrayList<Equipo> Equipos;
 	private int CantidadEquipos;
 	private ArrayList<Juego> Juegos;
 	private int CantidadJuegos;
+	private ArrayList<Jugador> jugadores;
+	private int CantidadJugadores;
 	
-	public SerieNacional(String codigo, int cantidadEquipos,
-			int cantidadJuegos) {
+	public SerieNacional( int cantidadEquipos,
+			int cantidadJuegos,int CantidadJugadores) {
 		super();
-		Codigo = codigo;
 		Equipos = new ArrayList<Equipo>();
 		CantidadEquipos = cantidadEquipos;
 		Juegos = new ArrayList<Juego>();
 		CantidadJuegos = cantidadJuegos;
-	}
-
-	public String getCodigo() {
-		return Codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		Codigo = codigo;
+		jugadores= new ArrayList<Jugador>();
+		this.CantidadJugadores=CantidadJugadores;
+		
 	}
 
 	public ArrayList<Equipo> getEquipos() {
@@ -57,6 +53,70 @@ public class SerieNacional {
 
 	public void setCantidadJuegos(int cantidadJuegos) {
 		CantidadJuegos = cantidadJuegos;
+	}
+
+	public ArrayList<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(ArrayList<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+
+	public int getCantidadJugadores() {
+		return CantidadJugadores;
+	}
+
+	public void setCantidadJugadores(int cantidadJugadores) {
+		CantidadJugadores = cantidadJugadores;
+	}
+	
+	public Jugador buscarjugadorByCode(String codigo) {
+		Jugador aux=null;
+		
+		for(int i =0;i<CantidadJugadores;i++) {
+			if(jugadores.get(i).getCodigo().equals(codigo)) {
+				aux=jugadores.get(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public Equipo buscarequipoByCode(String codigo) {
+		Equipo aux=null;
+		
+		for(int i =0;i<CantidadEquipos;i++) {
+			if(Equipos.get(i).getCodigo().equals(codigo)) {
+				aux=Equipos.get(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public int indiceDeJugador(String codigo) {
+		int aux=0;
+		
+		for(int i =0;i<CantidadJugadores;i++) {
+			if(jugadores.get(i).getCodigo().equals(codigo)) {
+				aux=i;
+			}
+		}
+		
+		return aux;
+	}
+	
+	public int indiceDeEquipo(String codigo) {
+		int aux=0;
+		
+		for(int i =0;i<CantidadEquipos;i++) {
+			if(Equipos.get(i).getCodigo().equals(codigo)) {
+				aux=i;
+			}
+		}
+		
+		return aux;
 	}
 	
 	
