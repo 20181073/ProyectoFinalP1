@@ -37,6 +37,10 @@ public class Jugador {
 		this.peso=peso;
 	}
 
+	public Jugador(String nombreJugador, float peso2, float estatura, String posicion, int numero) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
