@@ -17,9 +17,10 @@ public class Jugador {
 	private float altura;
 	private int edad;
 	private float peso;
+	private int cantfaltas;
 
 	public Jugador(String codigo, String nombre, String desempeño, int numeroCamiseta,int cantlesiones, Equipo miEquipo,
-			int ptsTotalCarrera, int cantasistencias, int cantbloqueo, int cantrobodebalon,float altura,int edad, float peso) {
+			int ptsTotalCarrera, int cantasistencias, int cantbloqueo, int cantrobodebalon,float altura,int edad, float peso,int cantfaltas) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -35,6 +36,7 @@ public class Jugador {
 		this.altura = altura;
 		this.edad=edad;
 		this.peso=peso;
+		this.cantfaltas=cantfaltas;
 	}
 
 	public Jugador(String nombreJugador, float peso2, float estatura, String posicion, int numero) {
@@ -151,6 +153,14 @@ public class Jugador {
 
 	public void setPeso(float peso) {
 		this.peso = peso;
+	}
+
+	public int getCantfaltas() {
+		return cantfaltas;
+	}
+
+	public void setCantfaltas(int cantfaltas) {
+		this.cantfaltas = cantfaltas;
 	}
 	
 	

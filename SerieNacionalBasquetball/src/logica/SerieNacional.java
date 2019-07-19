@@ -119,5 +119,38 @@ public class SerieNacional {
 		return aux;
 	}
 	
+	public Juego buscarJuegoByCode(int codigo) {
+		Juego aux=null;
+		
+		for(int i =0;i<CantidadJuegos;i++) {
+			if(Juegos.get(i).getCodigo()==(codigo)) {
+				aux=Juegos.get(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public int indiceDeJuego(int codigo) {
+		int aux=0;
+		
+		for(int i =0;i<CantidadJuegos;i++) {
+			if(Juegos.get(i).getCodigo()==(codigo)) {
+				aux=i;
+			}
+		}
+		
+		return aux;
+	}
+	
+	public int cantidadDeJugadoresTotales() {
+		int aux=0;
+		aux=CantidadJugadores;
+		for(int i =0;i<CantidadEquipos;i++) {
+			aux=Equipos.get(i).getCantjugador()+aux;
+		}
+		
+		return aux;
+	}
 	
 }
