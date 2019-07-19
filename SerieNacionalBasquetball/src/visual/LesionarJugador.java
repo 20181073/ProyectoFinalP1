@@ -27,6 +27,7 @@ import java.util.Calendar;
 
 public class LesionarJugador extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;
 
@@ -69,8 +70,8 @@ public class LesionarJugador extends JDialog {
 		lblTiempoDeRecuperacion.setBounds(284, 97, 134, 14);
 		panel.add(lblTiempoDeRecuperacion);
 		
-		JComboBox cmbxTipoDeLesion = new JComboBox();
-		cmbxTipoDeLesion.setModel(new DefaultComboBoxModel(new String[] {"Ruptura", "Torcedura"}));
+		JComboBox<String> cmbxTipoDeLesion = new JComboBox<String>();
+		cmbxTipoDeLesion.setModel(new DefaultComboBoxModel<String>(new String[] {"Ruptura", "Torcedura"}));
 		cmbxTipoDeLesion.setBounds(25, 122, 112, 20);
 		panel.add(cmbxTipoDeLesion);
 		
