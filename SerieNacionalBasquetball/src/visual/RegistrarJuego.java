@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import logica.Equipo;
+import logica.Juego;
 import logica.Jugador;
 import logica.SerieNacional;
 
@@ -87,7 +88,37 @@ public class RegistrarJuego extends JFrame {
 		panelEquipoLocal.add(lblEquipoLocal);
 		
 		JComboBox cmbxLocal = new JComboBox();
-		cmbxLocal.setModel(new DefaultComboBoxModel(new String[] {"-"}));
+		Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador()][2];
+		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador();i++) {
+			
+			infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCodigo();
+			infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre();		
+			
+		}
+		cmbxLocal.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador()][2];
+				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador();i++) {
+					
+					infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCodigo();
+					infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre();		
+					
+				}
+				tableLocal.setModel(new DefaultTableModel(
+						infolocal,
+						new String[] {
+							"Codigo", "Nombre"
+						}
+				));
+				
+			}
+		});
+		Object[] helperlocal={serie.getEquipos().get(0).getCodigo()};
+		cmbxLocal.setModel(new DefaultComboBoxModel(helperlocal));
+		for (int i =1;i<serie.getCantidadEquipos();i++) {
+			cmbxLocal.addItem(serie.getEquipos().get(i).getCodigo());
+		}
 		cmbxLocal.setBounds(10, 32, 150, 20);
 		panelEquipoLocal.add(cmbxLocal);
 		
@@ -97,13 +128,7 @@ public class RegistrarJuego extends JFrame {
 		
 		tableLocal = new JTable();
 		tableLocal.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
+			infolocal,
 			new String[] {
 				"Codigo", "Nombre"
 			}
@@ -175,7 +200,7 @@ public class RegistrarJuego extends JFrame {
 						new String[] {
 							"Codigo", "Nombre"
 						}
-					));
+				));
 				
 			}
 		});
@@ -241,6 +266,7 @@ public class RegistrarJuego extends JFrame {
 		txtCodigo.setBounds(176, 36, 128, 20);
 		contentPane.add(txtCodigo);
 		txtCodigo.setColumns(10);
+		txtCodigo.setText(Integer.toString(serie.getJuegos().get(serie.getCantidadJuegos()-1).getCodigo()+1));
 		
 		JSpinner spnFechaDelJuego = new JSpinner();
 		spnFechaDelJuego.setModel(new SpinnerDateModel(new Date(1563508800000L), new Date(1563508800000L), new Date(1910923200000L), Calendar.DAY_OF_YEAR));
@@ -250,7 +276,7 @@ public class RegistrarJuego extends JFrame {
 		JLabel lblFechaDelJuego = new JLabel("Fecha del Juego");
 		lblFechaDelJuego.setBounds(480, 11, 128, 14);
 		contentPane.add(lblFechaDelJuego);
-		
+				
 		JButton btnConfiramarJuego = new JButton("Confiramar Juego");
 		btnConfiramarJuego.setEnabled(false);
 		btnConfiramarJuego.setBounds(320, 24, 150, 23);
@@ -286,16 +312,96 @@ public class RegistrarJuego extends JFrame {
 		
 		btnConfirmarEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+								
+				int auxrowcount=0;
+				boolean verif=true;
+				for(int i =0;i<auxrowcount;i++) {
+					for(int p=0;p<=i;p++) {
+						if(tableLocalJuego.getValueAt(i, 0).equals(tableLocalJuego.getValueAt(p, 0))) {
+							verif=false;
+						}
+					}
+					for(int p=0;p<local.getCantjugador();p++) {
+						if(tableLocalJuego.getValueAt(i, 0).equals(tableEquipoVisitaJuego.getValueAt(p, 0))) {
+							verif=false;
+						}
+					}
+				}
+				
+				if(visita.getCodigo().equals(local.getCodigo())) {
+					verif = false;
+				}
+				
+				if(verif==false) {
+
+					local.setJugadores(new ArrayList<Jugador>());
+					tableLocalJuego.setModel(new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
+							"Codigo", "Nombre"
+						}
+					));					
+					
+				}
+				else {
+					confirmarlocal=true;
+				}
 				if (confirmarlocal==true && confirmarvisita==true) {
 					btnConfiramarJuego.setEnabled(true);
+					btnConfirmarEquipo.setEnabled(false);
 				}
+				
+				
 			}
 		});
 		btnConfirmarVisita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+							
+				int auxrowcount=0;
+				boolean verif=true;
+				for(int i =0;i<auxrowcount;i++) {
+					for(int p=0;p<=i;p++) {
+						if(tableEquipoVisitaJuego.getValueAt(i, 0).equals(tableEquipoVisitaJuego.getValueAt(p, 0))) {
+							verif=false;
+						}
+					}
+					for(int p=0;p<local.getCantjugador();p++) {
+						if(tableEquipoVisitaJuego.getValueAt(i, 0).equals(tableLocalJuego.getValueAt(p, 0))) {
+							verif=false;
+						}
+					}
+				}
+				
+				if(visita.getCodigo().equals(local.getCodigo())) {
+					verif = false;
+				}
+				
+				if(verif==false) {
+//					for(int i=0;i<5;i++) {
+//						visita.getJugadores().add(serie.buscarjugadorByCode(tableEquipoVisitaJuego.getValueAt(i, 0).toString()));
+//					}
+					visita.setJugadores(new ArrayList<Jugador>());
+					tableEquipoVisitaJuego.setModel(new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
+							"Codigo", "Nombre"
+						}
+					));
+					
+					
+				}
+				else {
+					confirmarvisita=true;
+				}
+				
 				if (confirmarlocal==true && confirmarvisita==true) {
 					btnConfiramarJuego.setEnabled(true);
+					btnConfirmarVisita.setEnabled(false);
 				}
+				
+				
 			}
 		});
 		
@@ -321,6 +427,39 @@ public class RegistrarJuego extends JFrame {
 					
 				}
 				
+			}
+		});
+		
+		btnSeleccionarJugador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(local.getCantjugador()<5) {
+					local.getJugadores().add(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(Integer.parseInt(tableLocal.getValueAt(tableLocal.getSelectedRow(), 0).toString())));
+					local.setCantjugador(local.getCantjugador()+1);
+					Object[][] auxiliar= new Object[local.getCantjugador()][2];
+					for(int i =0; i < local.getCantjugador();i++) {
+						
+						auxiliar[i][0]=local.getJugadores().get(i).getCodigo();
+						auxiliar[i][1]=	local.getJugadores().get(i).getNombre();
+						
+					}
+					tableLocalJuego.setModel(new DefaultTableModel(
+						auxiliar,
+						new String[] {
+							"Codigo", "Nombre"
+						}
+					));
+					
+				}
+			
+			}
+		});
+		btnConfiramarJuego.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Juego juegonuevo =new Juego( (Date) spnFechaDelJuego.getValue(), 0, 0, "No Jugado", Integer.parseInt(txtCodigo.getText()));
+				juegonuevo.getEquipos().add(local);
+				juegonuevo.getEquipos().add(visita);
+				serie.getJuegos().add(juegonuevo);
+				dispose();
 			}
 		});
 		
