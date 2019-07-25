@@ -1,7 +1,5 @@
-package logica;
+	package logica;
 
-
-	
 	import java.io.File;
 	import java.io.FileNotFoundException;
 	import java.io.FileOutputStream;
@@ -116,6 +114,7 @@ package logica;
 		
 		//crear nuevo partido a partir de la fecha colocada y ya.
 		
+		/*
 		public void reiniciarTorneo() {
 			juegoRecord.clear();
 			int i =0;
@@ -140,7 +139,9 @@ package logica;
 			}
 			escribirDatos();
 		}
+		*/
 		
+		/*
 		public void crearPartido(ArrayList<Equipo> equipoTor, Date fechaInicio) {
 			int i=0;
 			int j=0;
@@ -178,10 +179,12 @@ package logica;
 			}
 			escribirDatos();
 		}
+		*/
 		
 		
 		//devolver equipo consiste en que se devolvera la puntuacion del equipo a su direccion de memoria
 		
+		/*
 		private Equipo devolverEquipo(Equipo aux) {
 			Equipo clone=null;
 			String nombre = aux.getNombre();
@@ -204,6 +207,7 @@ package logica;
 			}
 			return clone;
 		}
+		*/
 		
 		// retorna la nueva fecha para el siguiente partido 
 		// un equipo no juega dos veces el mismo dia 
@@ -300,6 +304,7 @@ package logica;
 		
 		// agregar punto de lesión 
 		
+		/*
 		public void asignarOtroDia() {
 			Juego aux = juegoRecord.get(cantJuegosTorneo);
 			for (int i = 0; i < juegoRecord.size(); i++) {
@@ -312,7 +317,9 @@ package logica;
 				}
 			}
 		}
+		*/
 		
+		/*
 		public void agregarLesion(String codeAux, String equipo, Lesion lesion) {
 			boolean found = false;
 			int i = 0;
@@ -326,6 +333,6 @@ package logica;
 			}
 			
 		}
+		*/
 	}
 
-}
