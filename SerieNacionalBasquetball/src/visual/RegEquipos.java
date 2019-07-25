@@ -67,13 +67,13 @@ public class RegEquipos extends JDialog {
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(101, 44, 135, 20);
+		txtNombre.setBounds(101, 30, 135, 20);
 		panel.add(txtNombre);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombre.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNombre.setBounds(0, 47, 91, 14);
+		lblNombre.setBounds(0, 33, 91, 14);
 		panel.add(lblNombre);
 		
 		JPanel panel_JugadoresSinEquipo = new JPanel();
@@ -170,6 +170,10 @@ public class RegEquipos extends JDialog {
 		btnSeleccionarImagen.setSelectedIcon(null);
 		btnSeleccionarImagen.setBounds(10, 337, 236, 23);
 		panel.add(btnSeleccionarImagen);
+		
+		JButton btnRegistrarJugador = new JButton("Registrar jugador");
+		btnRegistrarJugador.setBounds(62, 62, 135, 23);
+		panel.add(btnRegistrarJugador);
 		{
 			JPanel Panel_Inferior = new JPanel();
 			Panel_Inferior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
