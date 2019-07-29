@@ -76,9 +76,28 @@ public class CalendarioRegular extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
+		Object[][] info= new Object[serie.getCantidadJuegos()][8];
+		for(int i =0; i < serie.getCantidadJuegos();i++) {
+			
+			info[i][0]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getCodigo();
+		
+			info[i][1]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEstado();
+			
+			info[i][2]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getFechaDelJuego();
+			if(serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo1()>serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo2()) {
+				info[i][3]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getNombre();
+			}
+			if(serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo1()<serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo2()) {
+				info[i][3]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getNombre();
+			}
+			info[i][4]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getNombre();
+			info[i][5]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getCodigo();
+			info[i][6]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getNombre();
+			info[i][7]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getCodigo();
+			
+		}
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
+			info,
 			new String[] {
 				"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Codigo de la visita", "Equipo local", "Codigo del local"
 			}
@@ -89,9 +108,9 @@ public class CalendarioRegular extends JFrame {
 		JButton btnGenerarCalendarioPara = new JButton("Generar calendario para la temporada seleccionada");
 		btnGenerarCalendarioPara.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(true) {
+//				if(true) {
 					
-				}
+//				}
 				EquiposSerieRegular ventana = new EquiposSerieRegular(Integer.parseInt(spinner.getValue().toString()),serie);
 				ventana.setVisible(true);
 				dispose();
