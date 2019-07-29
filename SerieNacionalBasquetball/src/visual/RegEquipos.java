@@ -20,25 +20,29 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import logica.Jugador;
+import logica.SerieNacional;
 
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegEquipos extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
-	private JTable table;
-	private JTable table2;
-	private static DefaultTableModel model;
-	private String identificador = "";
-	private static Object[] fila;
-	private ArrayList<Jugador> jugadores = new ArrayList<>();
+	private JTable TablaJugadores;
+	private JTable TablaJugadoresSeleccionados;
+	//private static DefaultTableModel model;
+	//private String identificador = "";
+	//private static Object[] fila;
+	//private ArrayList<Jugador> jugadores = new ArrayList<>();
 
+	/*
 	public static void main(String[] args) {
 		try {
 			RegEquipos dialog = new RegEquipos();
@@ -48,6 +52,7 @@ public class RegEquipos extends JDialog {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 	public RegEquipos() {
 		setResizable(false);
@@ -86,65 +91,27 @@ public class RegEquipos extends JDialog {
 		scrollPane.setBounds(0, 0, 230, 350);
 		panel_JugadoresSinEquipo.add(scrollPane);
 		
-		String[] header = {"Nombre", "Número", "Poscición"};
-		model = new DefaultTableModel(null, header){
-			@Override
-			public boolean isCellEditable(int filas, int columnas) {
-				return false;
+		TablaJugadores = new JTable();
+		Object[][] JugadoresHelper =new Object[SerieNacional.getInstancia().getCantidadJugadores()][3];
+		int auxcountJ=0;
+		for(int i =0; i<SerieNacional.getInstancia().getCantidadJugadores();i++,auxcountJ++) {
+			
+			JugadoresHelper[auxcountJ][0]=SerieNacional.getInstancia().getJugadores().get(i).getNombre();
+			JugadoresHelper[auxcountJ][1]=SerieNacional.getInstancia().getJugadores().get(i).getDesempeño();
+			JugadoresHelper[auxcountJ][2]=SerieNacional.getInstancia().getJugadores().get(i).getPtsTotalCarrera();
+			
+		}		
+		TablaJugadores.setModel(new DefaultTableModel(
+				JugadoresHelper,
+			new String[] {
+				"Nombre", "Desempeño", "PtsTotal"
 			}
-		};
+		));
+		TablaJugadores.setFillsViewportHeight(true);
+		scrollPane.setViewportView(TablaJugadores);
+
 		
-		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(table.getSelectedRow()>=0){
-					//btnBorrar.setEnabled(true);
-					int index = table.getSelectedRow();
-					identificador = (String)table.getModel().getValueAt(index, 0);
-	
-				}
-			}
-		});
-		
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(model);
-		cargarTabla();
-		scrollPane.setViewportView(table);
-		
-		JPanel panel_JugadoresSeleccionados = new JPanel();
-		panel_JugadoresSeleccionados.setBorder(null);
-		panel_JugadoresSeleccionados.setBounds(564, 11, 230, 369);
-		panel.add(panel_JugadoresSeleccionados);
-		panel_JugadoresSeleccionados.setLayout(null);
-		
-		String[] header1 = {"Nombre", "Número", "Poscición"};
-		model = new DefaultTableModel(null, header1){
-			@Override
-			public boolean isCellEditable(int filas, int columnas) {
-				return false;
-			}
-		};
-		
-		table2 = new JTable();
-		table2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(table2.getSelectedRow()>=0){
-					//btnBorrar.setEnabled(true);
-					int index = table2.getSelectedRow();
-					identificador = (String)table2.getModel().getValueAt(index, 0);
-	
-				}
-			}
-		});
-		
-		table2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table2.setModel(model);
-		cargarTabla();
-		scrollPane.setViewportView(table2);
-		
-		JLabel lblLogo = new JLabel("LOGO");
+		JLabel lblLogo = new JLabel("");
 		lblLogo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblLogo.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -158,6 +125,43 @@ public class RegEquipos extends JDialog {
 		panel.add(lblJugadoresSinEquipo);
 		
 		JButton btnDerecha = new JButton(">>>");
+		btnDerecha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				if(helper.existequeso(TablaQueso.getValueAt(TablaQueso.getSelectedRow(), 1).toString())==true) {
+					System.out.println("Este queso ya fue seleccionado");
+				}else {
+					helper.getQuesos().add(complejo.BuscarQuesoBycode(TablaQueso.getValueAt(TablaQueso.getSelectedRow(), 1).toString()));
+					helper.setCantqueso(helper.getCantqueso()+1);
+					
+					labelpreciototal.setText(Double.toString(helper.preciototal()));
+					int auxcountQuesoSeleccionado=0;
+					for(int i =0; i<helper.getCantqueso();i++,auxcountQuesoSeleccionado++) {
+						if(complejo.getQuesos().get(i)instanceof Esferico) {
+							QuesoHelperSelecionado[auxcountQuesoSeleccionado][0]="Queso Esferico";
+						}
+						if(complejo.getQuesos().get(i)instanceof Cilindrico) { 
+							QuesoHelperSelecionado[auxcountQuesoSeleccionado][0]="Queso Cilindrico";
+						}
+						if(complejo.getQuesos().get(i)instanceof CilindricoHueco) { 
+							QuesoHelperSelecionado[auxcountQuesoSeleccionado][0]="Queso Cilindrico con Hueco";
+						}
+						QuesoHelperSelecionado[auxcountQuesoSeleccionado][1]=helper.getQuesos().get(i).volumen();
+						QuesoHelperSelecionado[auxcountQuesoSeleccionado][2]=helper.getQuesos().get(i).preciototal();
+						
+						
+						
+					}
+					tableQuesoSeleccionado.setModel(new DefaultTableModel(
+							QuesoHelperSelecionado,
+						new String[] {
+							"Tipo", "Volumen", "Precio"
+						}
+					));
+				}
+				*/
+			}
+		});
 		btnDerecha.setBounds(496, 121, 58, 23);
 		panel.add(btnDerecha);
 		
@@ -174,7 +178,20 @@ public class RegEquipos extends JDialog {
 		JButton btnRegistrarJugador = new JButton("Registrar jugador");
 		btnRegistrarJugador.setBounds(62, 62, 135, 23);
 		panel.add(btnRegistrarJugador);
+		
+		JPanel panel_JugadoresSeleccionados = new JPanel();
+		panel_JugadoresSeleccionados.setLayout(null);
+		panel_JugadoresSeleccionados.setBorder(null);
+		panel_JugadoresSeleccionados.setBounds(564, 11, 230, 369);
+		panel.add(panel_JugadoresSeleccionados);
+
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(0, 0, 230, 369);
+		panel_JugadoresSeleccionados.add(scrollPane_1);
 		{
+			
+			
 			JPanel Panel_Inferior = new JPanel();
 			Panel_Inferior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			Panel_Inferior.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -187,27 +204,14 @@ public class RegEquipos extends JDialog {
 			}
 			{
 				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				btnCancelar.setActionCommand("Cancel");
 				Panel_Inferior.add(btnCancelar);
 			}
 		}
-	}
-	
-	private void cargarTabla() {
-		model.setRowCount(0);
-		fila = new Object[model.getColumnCount()];
-		for (int i = 0; i < jugadores.size(); i++) {
-			fila[0] = jugadores.get(i).getNombre();
-			fila[1] = jugadores.get(i).getNumeroCamiseta();
-			fila[2] = jugadores.get(i).getDesempeño();
-			model.addRow(fila);
-		}
-		
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		table.getTableHeader().setReorderingAllowed(false);
-		TableColumnModel columnModel = table.getColumnModel();
-		columnModel.getColumn(0).setResizable(false);
-		columnModel.getColumn(1).setResizable(false);
-		columnModel.getColumn(2).setResizable(false);	
 	}
 }
