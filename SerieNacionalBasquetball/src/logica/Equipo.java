@@ -103,6 +103,18 @@ public class Equipo {
 		
 		return aux;
 	}
+	
+	public boolean existejugador(String codigo) {
+		boolean aux=false;
+		
+		for(int i =0;i<cantjugador&& aux==false;i++) {
+			if(jugadores.get(i).getCodigo().equals(codigo)) {
+				aux=true;
+			}
+		}
+		
+		return aux;
+	}
 
 
 }

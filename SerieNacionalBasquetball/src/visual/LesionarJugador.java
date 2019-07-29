@@ -10,7 +10,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
+import logica.Equipo;
 import logica.Jugador;
+import logica.Lesion;
 import logica.SerieNacional;
 
 import javax.swing.JLabel;
@@ -47,7 +49,7 @@ public class LesionarJugador extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public LesionarJugador(Jugador jugador, SerieNacional serie) {
+	public LesionarJugador(Jugador jugador, SerieNacional serie,Equipo equipo) {
 		
 		setTitle("Lesiones");
 		setBounds(100, 100, 481, 280);
@@ -105,6 +107,17 @@ public class LesionarJugador extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(equipo == null) {
+							serie.getJugadores().get(serie.indiceDeJugador(jugador.getCodigo())).getLesiones().add(new Lesion(txtCodigo.getText(),cmbxTipoDeLesion.getSelectedItem().toString(),true,(Date)spnFechaDeLesion.getValue(),Integer.parseInt(spnDiasDeRecuperacion.getValue().toString())));
+							serie.getJugadores().get(serie.indiceDeJugador(jugador.getCodigo())).setCantlesiones(serie.getJugadores().get(serie.indiceDeJugador(jugador.getCodigo())).getCantlesiones()+1);
+						}else {
+							serie.getEquipos().get(serie.indiceDeEquipo(equipo.getCodigo())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).getLesiones().add(new Lesion(txtCodigo.getText(),cmbxTipoDeLesion.getSelectedItem().toString(),true,(Date)spnFechaDeLesion.getValue(),Integer.parseInt(spnDiasDeRecuperacion.getValue().toString())));
+							serie.getEquipos().get(serie.indiceDeEquipo(equipo.getCodigo())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).setCantlesiones(serie.getEquipos().get(serie.indiceDeEquipo(equipo.getCodigo())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).getCantlesiones()+1);
+						}
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

@@ -408,7 +408,7 @@ public class RegistrarJuego extends JFrame {
 		btnSeleccionarJugadorVisita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(visita.getCantjugador()<5) {
+				if(visita.getCantjugador()<5&&tableEquipoVisita.getSelectedColumn()>-1) {
 					visita.getJugadores().add(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(Integer.parseInt(tableEquipoVisita.getValueAt(tableEquipoVisita.getSelectedRow(), 0).toString())));
 					visita.setCantjugador(visita.getCantjugador()+1);
 					Object[][] auxiliar= new Object[visita.getCantjugador()][2];
@@ -432,7 +432,7 @@ public class RegistrarJuego extends JFrame {
 		
 		btnSeleccionarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(local.getCantjugador()<5) {
+				if(local.getCantjugador()<5 && tableLocal.getSelectedColumn()>-1) {
 					local.getJugadores().add(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(Integer.parseInt(tableLocal.getValueAt(tableLocal.getSelectedRow(), 0).toString())));
 					local.setCantjugador(local.getCantjugador()+1);
 					Object[][] auxiliar= new Object[local.getCantjugador()][2];
@@ -459,6 +459,7 @@ public class RegistrarJuego extends JFrame {
 				juegonuevo.getEquipos().add(local);
 				juegonuevo.getEquipos().add(visita);
 				serie.getJuegos().add(juegonuevo);
+				serie.setCantidadJuegos(serie.getCantidadJuegos()+1);
 				dispose();
 			}
 		});

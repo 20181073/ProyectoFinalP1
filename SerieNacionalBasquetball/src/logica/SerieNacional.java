@@ -162,5 +162,16 @@ public class SerieNacional implements Serializable {
 		
 		return aux;
 	}
+	public Equipo equipodeljugador(String code) {
+		Equipo aux = null;
+		for(int i =0; i <CantidadEquipos && aux==null;i++) {
+			if(Equipos.get(i).existejugador(code)) {
+				aux=Equipos.get(i);
+			}
+		}
+		return aux;
+	}
+
+
 	
 }

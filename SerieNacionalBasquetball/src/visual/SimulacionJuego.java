@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +31,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
-import java.awt.Toolkit;
 
 public class SimulacionJuego extends JFrame {
 
@@ -37,7 +38,7 @@ public class SimulacionJuego extends JFrame {
 	private JPanel contentPane;
 	private JTable tableJugadoresLocal;
 	private JTable tableJugadoresVisita;
-/*
+/**
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,10 +53,11 @@ public class SimulacionJuego extends JFrame {
 	}
 */
 	public SimulacionJuego(SerieNacional serie,String codigoEQlocal,String codigoEQvisita,Equipo Equipolocal,Equipo EquipoVisita,Juego simulando) {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(SimulacionJuego.class.getResource("/imagenes/IconoPrincipal.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SimulacionJuego.class.getResource("/imagenes/IconoPrincipal.png")));
 		setResizable(false);
+		
 		setTitle("Simular Juego");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 748, 622);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -158,14 +160,14 @@ public class SimulacionJuego extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Jugador aux=null;
 				
-				if (tableJugadoresLocal.isColumnSelected(1)== true) {
+				if (tableJugadoresLocal.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
 					Falta ventana = new Falta(aux.getNombre(),aux,serie,codigoEQlocal);
 					ventana.setVisible(true);
 				}
-				if (tableJugadoresVisita.isColumnSelected(1)==true) {
+				if (tableJugadoresVisita.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
@@ -195,13 +197,13 @@ public class SimulacionJuego extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Jugador aux=null;
 				
-				if (tableJugadoresLocal.isColumnSelected(1)== true) {
+				if (tableJugadoresLocal.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
 					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setCantasistencias(aux.getCantasistencias()+1);
 				}
-				if (tableJugadoresVisita.isColumnSelected(1)==true) {
+				if (tableJugadoresVisita.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
@@ -219,13 +221,13 @@ public class SimulacionJuego extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Jugador aux=null;
 				
-				if (tableJugadoresLocal.isColumnSelected(1)== true) {
+				if (tableJugadoresLocal.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
 					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setCantbloqueo(aux.getCantbloqueo()+1);
 				}
-				if (tableJugadoresVisita.isColumnSelected(1)==true) {
+				if (tableJugadoresVisita.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
@@ -243,13 +245,13 @@ public class SimulacionJuego extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Jugador aux=null;
 				
-				if (tableJugadoresLocal.isColumnSelected(1)== true) {
+				if (tableJugadoresLocal.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
 					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setCantrobodebalon(aux.getCantrobodebalon()+1);
 				}
-				if (tableJugadoresVisita.isColumnSelected(1)==true) {
+				if (tableJugadoresVisita.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
@@ -285,7 +287,7 @@ public class SimulacionJuego extends JFrame {
 				
 				Jugador aux=null;
 				
-				if (tableJugadoresLocal.isColumnSelected(1)== true) {
+				if (tableJugadoresLocal.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
@@ -306,7 +308,7 @@ public class SimulacionJuego extends JFrame {
 					}
 					
 				}
-				if (tableJugadoresVisita.isColumnSelected(1)==true) {
+				if (tableJugadoresVisita.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
@@ -365,20 +367,21 @@ public class SimulacionJuego extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Jugador aux=null;
 				
-				if (tableJugadoresLocal.isColumnSelected(1)== true) {
+				if (tableJugadoresLocal.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
+					LesionarJugador ventana = new LesionarJugador(aux,serie,Equipolocal);
+					ventana.setVisible(true);
 				}
-				if (tableJugadoresVisita.isColumnSelected(1)==true) {
+				if (tableJugadoresVisita.getSelectedColumn()>-1) {
 					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
-				}
-				if(tableJugadoresVisita.isColumnSelected(1)==true || tableJugadoresLocal.isColumnSelected(1)==true) {
-					LesionarJugador ventana = new LesionarJugador(aux,serie);
+					LesionarJugador ventana = new LesionarJugador(aux,serie,EquipoVisita);
 					ventana.setVisible(true);
 				}
+	
 				tableJugadoresVisita.clearSelection();
 				tableJugadoresLocal.clearSelection();
 
@@ -395,6 +398,5 @@ public class SimulacionJuego extends JFrame {
 			}
 		});
 	}
-
 	
 }

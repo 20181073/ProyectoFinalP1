@@ -7,10 +7,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import logica.Equipo;
 import logica.Jugador;
 import logica.SerieNacional;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaDeLesiones extends JFrame {
 
@@ -37,7 +40,7 @@ public class ListaDeLesiones extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListaDeLesiones(Jugador jugador,SerieNacional serie) {
+	public ListaDeLesiones(Jugador jugador,SerieNacional serie,Equipo equipo) {
 		setTitle("Lesiones del jugador: "+jugador.getNombre());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +53,7 @@ public class ListaDeLesiones extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 685, 204);
 		contentPane.add(scrollPane);
-		Object[][] info= new Object[jugador.getCantlesiones()][5];
+		Object[][] info= new Object[jugador.getCantlesiones()][6];
 		for(int i =0; i < jugador.getCantlesiones();i++) {
 			
 			info[i][0]=jugador.getLesiones().get(i).getCodigo();
@@ -63,6 +66,12 @@ public class ListaDeLesiones extends JFrame {
 			info[i][2]=jugador.getLesiones().get(i).getTipo();
 			info[i][3]=jugador.getLesiones().get(i).getFechaLesion();
 			info[i][4]=jugador.getLesiones().get(i).getRecoveryTime();
+			if(equipo==null) {
+				info[i][5]="";
+			}else {
+				info[i][5]=equipo.getNombre();
+			}
+			
 			
 			
 		}
@@ -71,7 +80,7 @@ public class ListaDeLesiones extends JFrame {
 		table.setModel(new DefaultTableModel(
 			info,
 			new String[] {
-					"Codigo","Estado de la lesion","Tipo",  "Fecha de lesion", "Tiempo de recuperacion"
+					"Codigo","Estado de la lesion","Tipo",  "Fecha de lesion", "Tiempo de recuperacion","Equipo"
 			}
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(116);
@@ -85,6 +94,15 @@ public class ListaDeLesiones extends JFrame {
 		contentPane.add(btnVerificarRecuperacion);
 		
 		JButton btnAgregarLesion = new JButton("Agregar Lesion");
+		btnAgregarLesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedColumn()>-1) {
+					LesionarJugador ventana = new LesionarJugador(jugador,serie,equipo);
+					ventana.setVisible(true);
+					dispose();
+				}
+			}
+		});
 		btnAgregarLesion.setBounds(358, 215, 121, 23);
 		contentPane.add(btnAgregarLesion);
 	}
