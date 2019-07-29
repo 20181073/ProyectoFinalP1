@@ -52,7 +52,7 @@ public class SimulacionJuego extends JFrame {
 		});
 	}
 */
-	public SimulacionJuego(SerieNacional serie,String codigoEQlocal,String codigoEQvisita,Equipo Equipolocal,Equipo EquipoVisita,Juego simulando) {
+	public SimulacionJuego(SerieNacional serie,String codigoEQlocal,String codigoEQvisita,Equipo Equipolocal,Equipo EquipoVisita,Juego simulando,String tipodejuego) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SimulacionJuego.class.getResource("/imagenes/IconoPrincipal.png")));
 		setResizable(false);
 		
@@ -271,7 +271,11 @@ public class SimulacionJuego extends JFrame {
 				simulando.getEquipos().add(EquipoVisita);
 				simulando.setPtsEquipo1(Integer.parseInt(lblPuntosLocal.getText()));
 				simulando.setPtsEquipo2(Integer.parseInt(lblPuntosVisita.getText()));
-				serie.getJuegos().set(serie.indiceDeJuego(simulando.getCodigo()), simulando);
+				if(tipodejuego.equals("serieregular")) {
+					serie.getJuegos().set(serie.indiceDeJuego(simulando.getCodigo()), simulando);
+				}else {
+					serie.getTemporadas().get(serie.indiceDeTemporada(simulando.getFechaDelJuego().getYear()+1900)).getJuegos().set(serie.getTemporadas().get(serie.indiceDeTemporada(simulando.getFechaDelJuego().getYear()+1900)).indiceDeJuego(simulando.getCodigo()), simulando);
+				}
 				
 			}
 		});
@@ -394,7 +398,11 @@ public class SimulacionJuego extends JFrame {
 				simulando.getEquipos().add(EquipoVisita);
 				simulando.setPtsEquipo1(Integer.parseInt(lblPuntosLocal.getText()));
 				simulando.setPtsEquipo2(Integer.parseInt(lblPuntosVisita.getText()));
-				serie.getJuegos().set(serie.indiceDeJuego(simulando.getCodigo()), simulando);
+				if(tipodejuego.equals("serieregular")) {
+					serie.getJuegos().set(serie.indiceDeJuego(simulando.getCodigo()), simulando);
+				}else {
+					serie.getTemporadas().get(serie.indiceDeTemporada(simulando.getFechaDelJuego().getYear()+1900)).getJuegos().set(serie.getTemporadas().get(serie.indiceDeTemporada(simulando.getFechaDelJuego().getYear()+1900)).indiceDeJuego(simulando.getCodigo()), simulando);
+				}
 			}
 		});
 	}

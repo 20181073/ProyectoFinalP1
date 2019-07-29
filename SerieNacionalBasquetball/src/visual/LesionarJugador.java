@@ -116,6 +116,7 @@ public class LesionarJugador extends JDialog {
 							serie.getEquipos().get(serie.indiceDeEquipo(equipo.getCodigo())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).getLesiones().add(new Lesion(txtCodigo.getText(),cmbxTipoDeLesion.getSelectedItem().toString(),true,(Date)spnFechaDeLesion.getValue(),Integer.parseInt(spnDiasDeRecuperacion.getValue().toString())));
 							serie.getEquipos().get(serie.indiceDeEquipo(equipo.getCodigo())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).setCantlesiones(serie.getEquipos().get(serie.indiceDeEquipo(equipo.getCodigo())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).getCantlesiones()+1);
 						}
+						dispose();
 					}
 				});
 				okButton.setActionCommand("OK");

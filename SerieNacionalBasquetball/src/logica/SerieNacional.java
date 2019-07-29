@@ -13,6 +13,8 @@ public class SerieNacional implements Serializable {
 	private ArrayList<Jugador> jugadores;
 	private int CantidadJugadores;
 	private static SerieNacional miSerie = null;
+	private ArrayList<Temporada> temporadas;
+	private int canttemporadas;
 	
 	public SerieNacional( int cantidadEquipos,
 			int cantidadJuegos,int CantidadJugadores) {
@@ -23,6 +25,7 @@ public class SerieNacional implements Serializable {
 		CantidadJuegos = cantidadJuegos;
 		jugadores= new ArrayList<Jugador>();
 		this.CantidadJugadores=CantidadJugadores;
+		canttemporadas=0;
 		
 	}
 	
@@ -81,6 +84,22 @@ public class SerieNacional implements Serializable {
 		CantidadJugadores = cantidadJugadores;
 	}
 	
+	public ArrayList<Temporada> getTemporadas() {
+		return temporadas;
+	}
+
+	public void setTemporadas(ArrayList<Temporada> temporadas) {
+		this.temporadas = temporadas;
+	}
+
+	public int getCanttemporadas() {
+		return canttemporadas;
+	}
+
+	public void setCanttemporadas(int canttemporadas) {
+		this.canttemporadas = canttemporadas;
+	}
+
 	public Jugador buscarjugadorByCode(String codigo) {
 		Jugador aux=null;
 		
@@ -92,6 +111,7 @@ public class SerieNacional implements Serializable {
 		
 		return aux;
 	}
+	
 	
 	public Equipo buscarequipoByCode(String codigo) {
 		Equipo aux=null;
@@ -167,6 +187,29 @@ public class SerieNacional implements Serializable {
 		for(int i =0; i <CantidadEquipos && aux==null;i++) {
 			if(Equipos.get(i).existejugador(code)) {
 				aux=Equipos.get(i);
+			}
+		}
+		return aux;
+	}
+	
+	public Juego buscarTemporadaByYear(int year) {
+		Juego aux=null;
+		
+		for(int i =0;i<canttemporadas;i++) {
+			if(temporadas.get(i).getYear()==(year)) {
+				aux=Juegos.get(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public int indiceDeTemporada(int year) {
+		int aux=0;
+		
+		for(int i =0;i<canttemporadas;i++) {
+			if(temporadas.get(i).getYear()==(year)) {
+				aux=i;
 			}
 		}
 		return aux;

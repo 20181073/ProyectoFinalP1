@@ -93,7 +93,7 @@ public class ListaDeJuegos extends JFrame {
 		btnSimular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1) {
-					SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 7).toString(), table.getValueAt(table.getSelectedRow(), 5).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 7).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))));
+					SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 7).toString(), table.getValueAt(table.getSelectedRow(), 5).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 7).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))),"Juego comun");
 					ventana.setVisible(true);
 					dispose();
 				}

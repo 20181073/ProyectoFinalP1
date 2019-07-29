@@ -43,7 +43,7 @@ public class ListaDeLesiones extends JFrame {
 	public ListaDeLesiones(Jugador jugador,SerieNacional serie,Equipo equipo) {
 		setTitle("Lesiones del jugador: "+jugador.getNombre());
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 691, 275);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
