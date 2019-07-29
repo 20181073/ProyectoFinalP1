@@ -67,7 +67,11 @@ public class Temporada {
 		int codigo = 0;
 		for (int i = 0; i < cantjuegos; i++) {
 			for (int a = i + 1; a < cantjuegos; a++, codigo++) {
-				date.setTime((date.getTime()) + (((7 * (a - i - 1)) * 24) * 60 * 60 * 1000));
+				if(a-i-1!=0) {
+//					date.setTime((date.getTime()) + (((7 * (a - i - 1)) * 24) * 60 * 60 * 1000));
+//				}else {
+					date.setTime((date.getTime()) + (7 * a * 24 * 60 * 60 * 1000));
+				}
 				juegos.add(new Juego(date, 0, 0, "No Juagado", codigo));
 				juegos.get(codigo).getEquipos().add(equipos.get(i));
 				juegos.get(codigo).getEquipos().add(equipos.get(a));

@@ -147,11 +147,11 @@ public class EquiposSerieRegular extends JFrame {
 		btnConfirmarSeleccion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cantseleccion>4 && cantseleccion%2==0) {
-					if(serie.getCanttemporadas()>0) {
-						serie.getTemporadas().add(new Temporada(seleccion,cantseleccion,yearj));
-					}else {
-						serie.getTemporadas().add(new Temporada(seleccion,cantseleccion,yearj));
-					}
+					
+					serie.getTemporadas().add(new Temporada(seleccion,cantseleccion,yearj));
+					serie.setCanttemporadas(serie.getCanttemporadas()+1);
+					serie.getTemporadas().get(serie.getTemporadas().size()).RegistrarJuegos(yearj);;
+					
 					dispose();
 				}
 			}
