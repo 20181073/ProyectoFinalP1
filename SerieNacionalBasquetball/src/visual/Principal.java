@@ -18,6 +18,15 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
@@ -27,6 +36,8 @@ public class Principal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private SerieNacional LaSerie;
+	private File dirLaSerie;
 
 	/**
 	 * Launch the application.
@@ -51,6 +62,24 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		LaSerie = new SerieNacional(0, 0, 0);
+		dirLaSerie =new File("DataSerieNacional.dat");
+		try {
+			FileInputStream Fi = new FileInputStream(dirLaSerie);
+			ObjectInputStream input = new ObjectInputStream(Fi);
+			LaSerie=(SerieNacional) input.readObject();
+			input.close();
+			Fi.close();
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("El archivo no fue encontrado"+e1);
+		} catch(IOException e2) {
+			System.out.println("Error: "+e2);
+		}catch(ClassNotFoundException e3) {
+			System.out.println("Error: "+e3);
+		}
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Serie Nacional de Basquetball");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +122,6 @@ public class Principal extends JFrame {
 				catch(InterruptedException e1){
 					System.out.println("Thread Interrupted");
 				}
-				
 				Animacion.Animacion.mover_derecha(-188, 0, 2, 2, panelRegistrar);
 			}
 		});
@@ -350,5 +378,22 @@ public class Principal extends JFrame {
 		lblFechasDePrximos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblFechasDePrximos.setBounds(160, 11, 246, 28);
 		panelDeInformacion4.add(lblFechasDePrximos);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					FileOutputStream Fo = new FileOutputStream(dirLaSerie);
+					ObjectOutputStream output = new ObjectOutputStream(Fo);
+					output.writeObject(LaSerie);
+					output.close();
+					Fo.close();
+				} catch (FileNotFoundException e1) {
+					System.out.println("El archivo no fue encontrado"+e1);
+				} catch(IOException e2) {
+					System.out.println("Error: "+e2);
+				}
+			}
+		});
 	}
 }
