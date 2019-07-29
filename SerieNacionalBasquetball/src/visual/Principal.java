@@ -103,6 +103,7 @@ public class Principal extends JFrame {
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnRegistrar.setBackground(new Color(255, 165, 0));
 		
+		//Mola
 		RSButtonMetro btnGestionar = new RSButtonMetro();
 		btnGestionar.setColorTextNormal(Color.BLACK);
 		btnGestionar.addActionListener(new ActionListener() {
