@@ -57,7 +57,7 @@ public class Falta extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQseleccionado)).getJugadores().get(serie.indiceDeJugador(jugador.getCodigo())).setCantfaltas(jugador.getCantfaltas()+1);
+						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQseleccionado)).getJugadores().get(serie.getEquipos().get(serie.indiceDeEquipo(codigoEQseleccionado)).indiceDeJugador(jugador.getCodigo())).setCantfaltas(jugador.getCantfaltas()+1);
 						dispose();
 					}
 				});

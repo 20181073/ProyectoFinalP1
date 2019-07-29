@@ -61,7 +61,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
-		LaSerie = new SerieNacional(0, 0, 0);
+		LaSerie = new SerieNacional(0, 0);
 		dirLaSerie =new File("DataSerieNacional.dat");
 		try {
 			FileInputStream Fi = new FileInputStream(dirLaSerie);
@@ -238,7 +238,7 @@ public class Principal extends JFrame {
 		RSButtonMetro btnmtrJugadores = new RSButtonMetro();
 		btnmtrJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(SerieNacional.getInstancia().getJugadores().size() != 0) {
+				if(SerieNacional.getInstancia().cantidadDeJugadoresTotales()!= 0) {
 					//ListaDeJugadores listj = new ListaDeJugadores();
 					//listj.setModal(true);
 					//listj.setVisible(true);
@@ -288,7 +288,7 @@ public class Principal extends JFrame {
 		RSButtonMetro btnmtrLesiones = new RSButtonMetro();
 		btnmtrLesiones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(SerieNacional.getInstancia().getJugadores().size() != 0) {
+				if(SerieNacional.getInstancia().cantidadDeJugadoresTotales()!= 0) {
 					//ListaDeLesiones listl = new ListaDeLesiones(null,null);
 					//listl.setModal(true);
 					//listl.setVisible(true);

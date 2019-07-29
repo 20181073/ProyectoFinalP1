@@ -56,28 +56,17 @@ public class ListaDeJugadores extends JFrame {
 		
 		table = new JTable();
 		Object[][] info= new Object[serie.cantidadDeJugadoresTotales()][7];
-		for(int i =0; i < serie.getCantidadJugadores();i++) {
-			
-			info[i][0]=serie.getJugadores().get(i).getCodigo();
-			info[i][1]=serie.getJugadores().get(i).getNombre();
-			info[i][2]=serie.getJugadores().get(i).getNumeroCamiseta();
-			info[i][3]=serie.getJugadores().get(i).getCantlesiones();
-			info[i][4]="";
-			info[i][5]="";
-			info[i][6]=serie.getJugadores().get(i).getDesempeño();			
-			
-		}
-		for(int i = 0; i<serie.getCantidadEquipos();i++) {
+		for(int i = 0, aux=0; i<serie.getCantidadEquipos();i++) {
 		
-			for(int a =0; a < serie.getEquipos().get(i).getCantjugador();a++) {
+			for(int a =0; a < serie.getEquipos().get(i).getCantjugador();a++,aux++) {
 				
-				info[i+serie.getCantidadJugadores()][0]=serie.getEquipos().get(i).getJugadores().get(a).getCodigo();
-				info[i+serie.getCantidadJugadores()][1]=serie.getEquipos().get(i).getJugadores().get(a).getNombre();
-				info[i+serie.getCantidadJugadores()][2]=serie.getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
-				info[i+serie.getCantidadJugadores()][3]=serie.getEquipos().get(i).getJugadores().get(a).getCantlesiones();
-				info[i+serie.getCantidadJugadores()][4]=serie.getEquipos().get(i).getNombre();
-				info[i+serie.getCantidadJugadores()][5]=serie.getEquipos().get(i).getCodigo();
-				info[i+serie.getCantidadJugadores()][6]=serie.getEquipos().get(i).getJugadores().get(a).getDesempeño();			
+				info[aux][0]=serie.getEquipos().get(i).getJugadores().get(a).getCodigo();
+				info[aux][1]=serie.getEquipos().get(i).getJugadores().get(a).getNombre();
+				info[aux][2]=serie.getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
+				info[aux][3]=serie.getEquipos().get(i).getJugadores().get(a).getCantlesiones();
+				info[aux][4]=serie.getEquipos().get(i).getNombre();
+				info[aux][5]=serie.getEquipos().get(i).getCodigo();
+				info[aux][6]=serie.getEquipos().get(i).getJugadores().get(a).getDesempeño();			
 				
 			}
 		
@@ -98,13 +87,10 @@ public class ListaDeJugadores extends JFrame {
 		btnVerLesiones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
-					if(table.getValueAt(table.getSelectedRow(), 5).equals("")) {
-						ListaDeLesiones ventana = new ListaDeLesiones(serie.getJugadores().get(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString())),serie,null);
-						ventana.setVisible(true);
-					}else {
-						ListaDeLesiones ventana = new ListaDeLesiones(serie.getJugadores().get(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString())),serie,serie.equipodeljugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
-						ventana.setVisible(true);
-					}
+					
+					ListaDeLesiones ventana = new ListaDeLesiones(serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())).getJugadores().get(serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString())),serie,serie.equipodeljugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
+					ventana.setVisible(true);
+					
 				}
 				
 			}
@@ -116,13 +102,13 @@ public class ListaDeJugadores extends JFrame {
 		btnEliminarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
-					if(table.getValueAt(table.getSelectedRow(), 5).equals("")) {
-						serie.getJugadores().remove(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
-						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
-					}else {
-						serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())).getJugadores().remove(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
-						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
-					}
+//					if(table.getValueAt(table.getSelectedRow(), 5).equals("")) {
+//						serie.getJugadores().remove(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
+//						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
+//					}else {
+//						serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())).getJugadores().remove(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
+//						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
+//					}
 				}
 			} 
 		}); 

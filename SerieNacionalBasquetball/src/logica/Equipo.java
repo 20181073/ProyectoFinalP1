@@ -115,6 +115,8 @@ public class Equipo {
 		
 		return aux;
 	}
+	
+	
 
 
 }
