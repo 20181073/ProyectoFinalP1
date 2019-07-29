@@ -6,8 +6,11 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import visual.Principal;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -26,7 +29,7 @@ public class Login extends JFrame {
 	private JTextField txtUsuario;
 	private JPasswordField passwordField;
 
-	/*
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,7 +42,7 @@ public class Login extends JFrame {
 			}
 		});
 	}
-	*/
+	
 
 	public Login() {
 		addWindowListener(new WindowAdapter() {
@@ -114,7 +117,10 @@ public class Login extends JFrame {
 				}
 				else if(user.contentEquals("admin")  && pass.contentEquals("admin")){
 					JOptionPane.showMessageDialog(null, "Sesión iniciada con éxito.","Información",JOptionPane.INFORMATION_MESSAGE);
+					Principal ventana = new Principal();
+					ventana.setVisible(true);
 					dispose();
+
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "El usuario o contraseña es incorrecto.","Aviso",JOptionPane.WARNING_MESSAGE);
