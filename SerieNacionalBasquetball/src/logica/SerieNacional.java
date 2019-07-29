@@ -1,15 +1,18 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SerieNacional {
+public class SerieNacional implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Equipo> Equipos;
 	private int CantidadEquipos;
 	private ArrayList<Juego> Juegos;
 	private int CantidadJuegos;
 	private ArrayList<Jugador> jugadores;
 	private int CantidadJugadores;
+	private static SerieNacional miSerie = null;
 	
 	public SerieNacional( int cantidadEquipos,
 			int cantidadJuegos,int CantidadJugadores) {
@@ -21,6 +24,13 @@ public class SerieNacional {
 		jugadores= new ArrayList<Jugador>();
 		this.CantidadJugadores=CantidadJugadores;
 		
+	}
+	
+	public static SerieNacional getInstancia() {
+		if(miSerie == null) {
+			miSerie = new SerieNacional(0,0,0);
+		}
+		return miSerie;
 	}
 
 	public ArrayList<Equipo> getEquipos() {

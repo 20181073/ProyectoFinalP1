@@ -29,6 +29,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
+import java.awt.Toolkit;
 
 public class SimulacionJuego extends JFrame {
 
@@ -36,7 +37,7 @@ public class SimulacionJuego extends JFrame {
 	private JPanel contentPane;
 	private JTable tableJugadoresLocal;
 	private JTable tableJugadoresVisita;
-/**
+/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,6 +52,7 @@ public class SimulacionJuego extends JFrame {
 	}
 */
 	public SimulacionJuego(SerieNacional serie,String codigoEQlocal,String codigoEQvisita,Equipo Equipolocal,Equipo EquipoVisita,Juego simulando) {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(SimulacionJuego.class.getResource("/imagenes/IconoPrincipal.png")));
 		setResizable(false);
 		setTitle("Simular Juego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -393,5 +395,6 @@ public class SimulacionJuego extends JFrame {
 			}
 		});
 	}
+
 	
 }
