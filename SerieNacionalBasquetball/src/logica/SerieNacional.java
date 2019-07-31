@@ -1,7 +1,14 @@
 package logica;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+
 
 public class SerieNacional implements Serializable {
 
@@ -34,6 +41,10 @@ public class SerieNacional implements Serializable {
 			miSerie = new SerieNacional(0,0);
 		}
 		return miSerie;
+	}
+	
+	public static void setSerieNacional(SerieNacional miSerie) {
+		SerieNacional.miSerie = miSerie;
 	}
 
 	public ArrayList<Equipo> getEquipos() {
@@ -174,6 +185,35 @@ public class SerieNacional implements Serializable {
 		return aux;
 	}
 
-
+	public void Guardar(SerieNacional admi) {
+		File f = new File("DataSerieNacional.dat");
+		
+		try {
+			FileOutputStream datos = new FileOutputStream(f);
+			ObjectOutputStream obj = new ObjectOutputStream(datos);
+			obj.writeObject(admi);
+			obj.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public SerieNacional Cargar() {
+		
+		SerieNacional admi = null;
+		
+		try {
+			FileInputStream f = new FileInputStream("DataSerieNacional.dat");
+			ObjectInputStream obj = new ObjectInputStream(f);
+			admi = (SerieNacional) obj.readObject();
+			obj.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return admi;
+	}
 	
 }

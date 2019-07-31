@@ -1,10 +1,12 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Temporada {
+public class Temporada implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Equipo> equipos;// max 27
 	private int CantidadEquipos;
 	private ArrayList<Juego> juegos;

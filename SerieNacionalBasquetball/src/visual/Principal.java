@@ -1,7 +1,5 @@
 package visual;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,30 +16,14 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private SerieNacional LaSerie;
-	private File dirLaSerie;
 
-	/**
-	 * Launch the application.
-	 *
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -56,27 +38,13 @@ public class Principal extends JFrame {
 			}
 		});
 	}
+	*/
 
-	/**
-	 * Create the frame.
-	 */
 	public Principal() {
-		LaSerie = new SerieNacional(0, 0);
-		dirLaSerie =new File("DataSerieNacional.dat");
-		try {
-			FileInputStream Fi = new FileInputStream(dirLaSerie);
-			ObjectInputStream input = new ObjectInputStream(Fi);
-			LaSerie=(SerieNacional) input.readObject();
-			input.close();
-			Fi.close();
-			
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("El archivo no fue encontrado"+e1);
-		} catch(IOException e2) {
-			System.out.println("Error: "+e2);
-		}catch(ClassNotFoundException e3) {
-			System.out.println("Error: "+e3);
+		SerieNacional LaSerie = SerieNacional.getInstancia().Cargar();
+		
+		if(LaSerie != null) {
+			SerieNacional.setSerieNacional(LaSerie);
 		}
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/IconoPrincipal.png")));
@@ -264,9 +232,9 @@ public class Principal extends JFrame {
 		btnmtrEquipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(SerieNacional.getInstancia().getEquipos().size() != 0) {
-					//ListaDeEquipos listE = new ListaDeEquipos(0);
-					//listE.setModal(true);
-					//listE.setVisible(true);
+					ListaDeEquipos listE = new ListaDeEquipos();
+					listE.setModal(true);
+					listE.setVisible(true);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Aún no hay equipos creados.");
@@ -378,21 +346,5 @@ public class Principal extends JFrame {
 		lblFechasDePrximos.setBounds(160, 11, 246, 28);
 		panelDeInformacion4.add(lblFechasDePrximos);
 		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				try {
-					FileOutputStream Fo = new FileOutputStream(dirLaSerie);
-					ObjectOutputStream output = new ObjectOutputStream(Fo);
-					output.writeObject(LaSerie);
-					output.close();
-					Fo.close();
-				} catch (FileNotFoundException e1) {
-					System.out.println("El archivo no fue encontrado"+e1);
-				} catch(IOException e2) {
-					System.out.println("Error: "+e2);
-				}
-			}
-		});
 	}
 }

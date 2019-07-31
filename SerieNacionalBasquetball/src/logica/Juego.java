@@ -1,9 +1,12 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Juego {
+public class Juego implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int codigo;
 	private Date FechaDelJuego;
 //	private Date TiempoTranscurrido;

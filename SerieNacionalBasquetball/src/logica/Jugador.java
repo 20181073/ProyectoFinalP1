@@ -1,8 +1,11 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jugador {
+public class Jugador implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String codigo;
 	private String nombre;
 	private String desempeño;
