@@ -102,9 +102,9 @@ public class Principal extends JFrame {
 		btnRegistrar.setBackground(new Color(255, 165, 0));
 		
 		//Mola
-		RSButtonMetro btnGestionar = new RSButtonMetro();
-		btnGestionar.setColorTextNormal(Color.BLACK);
-		btnGestionar.addActionListener(new ActionListener() {
+		RSButtonMetro btnListar = new RSButtonMetro();
+		btnListar.setColorTextNormal(Color.BLACK);
+		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelRegistrar.setVisible(false);
 				panelGestion.setVisible(true);
@@ -119,17 +119,17 @@ public class Principal extends JFrame {
 				Animacion.Animacion.mover_derecha(-188, 0, 2, 2, panelGestion);
 			}
 		});
-		btnGestionar.setBounds(116, 0, 100, 50);
-		btnGestionar.setColorNormal(new Color(255, 165, 0));
-		btnGestionar.setColorPressed(new Color(204, 102, 0));
-		btnGestionar.setColorHover(new Color(204, 102, 0));
-		btnGestionar.setForeground(new Color(0, 0, 0));
-		btnGestionar.setBackground(new Color(255, 165, 0));
-		btnGestionar.setText("Gestionar");
-		btnGestionar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnListar.setBounds(116, 0, 100, 50);
+		btnListar.setColorNormal(new Color(255, 165, 0));
+		btnListar.setColorPressed(new Color(204, 102, 0));
+		btnListar.setColorHover(new Color(204, 102, 0));
+		btnListar.setForeground(new Color(0, 0, 0));
+		btnListar.setBackground(new Color(255, 165, 0));
+		btnListar.setText("Listar");
+		btnListar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel_superior.setLayout(null);
 		panel_superior.add(btnRegistrar);
-		panel_superior.add(btnGestionar);
+		panel_superior.add(btnListar);
 		
 		JLabel lblRegistrar = new JLabel("Registrar");
 		lblRegistrar.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -154,7 +154,7 @@ public class Principal extends JFrame {
 		btnmtrJugador.setForeground(Color.BLACK);
 		btnmtrJugador.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnmtrJugador.setBackground(SystemColor.controlHighlight);
-		btnmtrJugador.setBounds(0, 105, 220, 35);
+		btnmtrJugador.setBounds(0, 180, 220, 35);
 		panelRegistrar.add(btnmtrJugador);
 		
 		RSButtonMetro btnmtrEquipo = new RSButtonMetro();
@@ -174,7 +174,7 @@ public class Principal extends JFrame {
 		btnmtrEquipo.setForeground(Color.BLACK);
 		btnmtrEquipo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnmtrEquipo.setBackground(SystemColor.controlHighlight);
-		btnmtrEquipo.setBounds(0, 180, 220, 35);
+		btnmtrEquipo.setBounds(0, 105, 220, 35);
 		panelRegistrar.add(btnmtrEquipo);
 		
 		RSButtonMetro btnmtrJuego = new RSButtonMetro();
@@ -197,11 +197,11 @@ public class Principal extends JFrame {
 		btnmtrJuego.setBounds(0, 260, 220, 35);
 		panelRegistrar.add(btnmtrJuego);
 		
-		JLabel lblGestionar = new JLabel("Gestionar");
-		lblGestionar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGestionar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblGestionar.setBounds(10, 24, 200, 28);
-		panelGestion.add(lblGestionar);
+		JLabel lblListar = new JLabel("Listar");
+		lblListar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblListar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblListar.setBounds(10, 24, 200, 28);
+		panelGestion.add(lblListar);
 		
 		RSButtonMetro btnmtrJugadores = new RSButtonMetro();
 		btnmtrJugadores.addActionListener(new ActionListener() {
@@ -225,7 +225,7 @@ public class Principal extends JFrame {
 		btnmtrJugadores.setColorNormal(SystemColor.controlHighlight);
 		btnmtrJugadores.setColorHover(SystemColor.controlShadow);
 		btnmtrJugadores.setBackground(SystemColor.controlHighlight);
-		btnmtrJugadores.setBounds(0, 105, 220, 35);
+		btnmtrJugadores.setBounds(0, 180, 220, 35);
 		panelGestion.add(btnmtrJugadores);
 		
 		RSButtonMetro btnmtrEquipos = new RSButtonMetro();
@@ -250,7 +250,7 @@ public class Principal extends JFrame {
 		btnmtrEquipos.setColorNormal(SystemColor.controlHighlight);
 		btnmtrEquipos.setColorHover(SystemColor.controlShadow);
 		btnmtrEquipos.setBackground(SystemColor.controlHighlight);
-		btnmtrEquipos.setBounds(0, 180, 220, 35);
+		btnmtrEquipos.setBounds(0, 105, 220, 35);
 		panelGestion.add(btnmtrEquipos);
 		
 		RSButtonMetro btnmtrLesiones = new RSButtonMetro();
