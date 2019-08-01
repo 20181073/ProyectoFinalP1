@@ -177,6 +177,7 @@ public class ServidorSerie implements Runnable {
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						System.out.println("Error de comunicacion con el usuario: " + e);
+						done = true;
 					}
 				}
 				

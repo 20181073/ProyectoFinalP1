@@ -148,6 +148,25 @@ public class Principal extends JFrame {
 		btnmtrCalendario.setBounds(226, 0, 100, 50);
 		panel_superior.add(btnmtrCalendario);
 		
+		RSButtonMetro btnmtrCerrarSesin = new RSButtonMetro();
+		btnmtrCerrarSesin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login l = new Login();
+				l.setVisible(true);
+				dispose();
+			}
+		});
+		btnmtrCerrarSesin.setText("Cerrar Sesi\u00F3n");
+		btnmtrCerrarSesin.setForeground(Color.BLACK);
+		btnmtrCerrarSesin.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnmtrCerrarSesin.setColorTextNormal(Color.BLACK);
+		btnmtrCerrarSesin.setColorPressed(new Color(204, 102, 0));
+		btnmtrCerrarSesin.setColorNormal(new Color(255, 165, 0));
+		btnmtrCerrarSesin.setColorHover(new Color(204, 102, 0));
+		btnmtrCerrarSesin.setBackground(new Color(255, 165, 0));
+		btnmtrCerrarSesin.setBounds(350, 0, 160, 50);
+		panel_superior.add(btnmtrCerrarSesin);
+		
 		JLabel lblRegistrar = new JLabel("Registrar");
 		lblRegistrar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
