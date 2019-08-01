@@ -197,7 +197,7 @@ public class SerieNacional implements Serializable {
 	
 	public SerieNacional Cargar() {
 		
-		SerieNacional admi = null;
+		SerieNacional admi = new SerieNacional();
 		
 		try {
 			FileInputStream f = new FileInputStream("DataSerieNacional.dat");

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ServidorSerie implements Runnable {
 	
 
-	private ServerSocket servidor = null;
+	private ServerSocket servidor = null; 
 	private Socket cliente = null;
 	private File DataDeUsuarios;
 	private File DataDePassword;
