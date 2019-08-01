@@ -89,18 +89,9 @@ public class ListaDeJugadores extends JFrame {
 		btnEliminarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
-//					if(table.getValueAt(table.getSelectedRow(), 4).equals("")) {
-//						serie.getJugadores().remove(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
-//						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
-//					}else {
-					SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().
-							indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).getJugadores().
-							remove(SerieNacional.getInstancia().getEquipos().
-							get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
-							toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
-//						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
-//					}
 					
+					SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).getJugadores().remove(SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
+				
 					CargarTabla();
 				}
 			} 

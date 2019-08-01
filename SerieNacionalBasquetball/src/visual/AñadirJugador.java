@@ -42,6 +42,7 @@ public class AñadirJugador extends JDialog {
 	private JComboBox<String> cbxEquipo;
 	private JSpinner spnNumero;
 	private JButton btnRegistrar;
+	private String codigodeplayer ="0";
 	//private JLabel lblError;
 	
 	private int ubica = 1;
@@ -143,6 +144,7 @@ public class AñadirJugador extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
+			
 			btnRegistrar = new JButton("Registrar");
 			buttonPane.add(btnRegistrar);
 			
@@ -219,14 +221,14 @@ public class AñadirJugador extends JDialog {
 				
 				Equipo MiEquipo = SerieNacional.getInstancia().buscarequipoByName(equipo);
 				
-				String codigo = "";
+				String codigo = "0";
 				
 				try {
 					if(MiEquipo.getJugadores().size() > 0) {
-						codigo = Integer.toString(Integer.parseInt( MiEquipo.getJugadores().get(MiEquipo.getJugadores().size()).getCodigo() ) + 1);
+						codigo = Integer.toString(Integer.parseInt( MiEquipo.getJugadores().get(MiEquipo.getJugadores().size()-1).getCodigo() ) + 1);
 					}
-				} catch (Exception e2) {
-					codigo = "0";
+				} catch (NullPointerException e2) {
+					
 				}
 				
 				int numero = Integer.parseInt(spnNumero.getValue().toString());

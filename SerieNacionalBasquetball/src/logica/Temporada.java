@@ -137,8 +137,6 @@ public class Temporada implements Serializable {
 	}
 	
 	
-	
-	
 	public void coeficientedepuntos(Equipo eq1,Equipo eq2) {
 		
 	}
