@@ -3,9 +3,6 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-import javafx.scene.layout.ColumnConstraints;
 import logica.Equipo;
 import logica.SerieNacional;
 
@@ -24,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -40,7 +38,7 @@ public class ListaDeEquipos extends JDialog {
 	
 	//private String identificador = "";
 	
-	private JButton btnVer;
+	//private JButton btnVer;
 
 	public ListaDeEquipos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaDeEquipos.class.getResource("/imagenes/IconoPrincipal.png")));
@@ -72,20 +70,7 @@ public class ListaDeEquipos extends JDialog {
 								return false;
 						}
 					};
-					
-					/*
-					table.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							if(table.getSelectedRow()>=0){
-								btnVer.setEnabled(true);
-								//int index = table.getSelectedRow();
-								//identificador = (String)table.getModel().getValueAt(index, 1);
-							}
-						}
-					});
-					*/
-					
+			
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					table.setRowHeight(40);
 					table.setModel(model);
@@ -126,7 +111,26 @@ public class ListaDeEquipos extends JDialog {
 				}*/
 				{
 					JButton btnEliminarEquipo = new JButton("Eliminar Equipo");
+					btnEliminarEquipo.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {								
+								//SerieNacional.getInstancia().getEquipos().remove(table.getValueAt(table.getSelectedRow()));
+							}
+						}
+					});
+					btnEliminarEquipo.setEnabled(false);
 					buttonPane.add(btnEliminarEquipo);
+					
+					table.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if(table.getSelectedRow()>=0){
+								btnEliminarEquipo.setEnabled(true);
+								//int index = table.getSelectedRow();
+								//identificador = (String)table.getModel().getValueAt(index, 1);
+							}
+						}
+					});
 				}
 				{
 					JButton btnAgregarEquipo = new JButton("Agregar Equipo");
@@ -143,6 +147,7 @@ public class ListaDeEquipos extends JDialog {
 				buttonPane.add(btnSalir);
 			}
 		}
+		
 	}
 	
 	protected Equipo buscarEquipoPorNombre(String identificador2) {
@@ -180,4 +185,5 @@ public class ListaDeEquipos extends JDialog {
 		
 		
 	}
+	
 }
