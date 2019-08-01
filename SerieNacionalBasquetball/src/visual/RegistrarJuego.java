@@ -268,11 +268,15 @@ public class RegistrarJuego extends JFrame {
 		txtCodigo.setBounds(176, 36, 128, 20);
 		contentPane.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		if(serie.getJuegos().size()>0) {
-			txtCodigo.setText(Integer.toString(serie.getJuegos().get(serie.getJuegos().size()-1).getCodigo()+1));
-		}else {
+		
+		try {
+			if(serie.getJuegos().size()>0) {
+				txtCodigo.setText(Integer.toString(serie.getJuegos().get(serie.getJuegos().size()-1).getCodigo()+1));
+			}
+		}catch(NullPointerException e) {
 			txtCodigo.setText("0");
 		}
+		
 		JSpinner spnFechaDelJuego = new JSpinner();
 		spnFechaDelJuego.setModel(new SpinnerDateModel(new Date(1563508800000L), new Date(1563508800000L), new Date(1910923200000L), Calendar.DAY_OF_YEAR));
 		spnFechaDelJuego.setBounds(480, 36, 128, 20);
@@ -457,7 +461,7 @@ public class RegistrarJuego extends JFrame {
 			}
 		});
 		btnConfiramarJuego.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { 
 				Juego juegonuevo =new Juego( (Date) spnFechaDelJuego.getValue(), 0, 0, "No Jugado", Integer.parseInt(txtCodigo.getText()));
 				juegonuevo.getEquipos().add(local);
 				juegonuevo.getEquipos().add(visita);

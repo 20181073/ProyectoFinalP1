@@ -18,7 +18,15 @@ public class Temporada implements Serializable {
 		super();
 		this.equipos = equipos;
 		this.CantidadEquipos = CantidadEquipos;
-		this.cantjuegos = (CantidadEquipos - 1) * 2;
+		int aux=0;
+		for (int i = 0; i < (CantidadEquipos - 1) * 2; i++) {
+			for (int a = i + 1; a < (CantidadEquipos - 1) * 2; a++) {
+				
+				 aux++;
+				
+			}
+		}
+		cantjuegos = aux;
 		this.year = year;
 	}
 
@@ -73,12 +81,12 @@ public class Temporada implements Serializable {
 
 	public void RegistrarJuegos(int yearj) {
 
-		Date date = new Date();
-		date.setMonth(0);
-		date.setYear(yearj);
 		int codigo = 0;
-		for (int i = 0; i < cantjuegos; i++) {
-			for (int a = i + 1; a < cantjuegos; a++, codigo++) {
+		for (int i = 0; i < equipos.size(); i++) {
+			Date date = new Date();
+			date.setMonth(0); 
+			date.setYear(yearj);
+			for (int a = i + 1; a < equipos.size(); a++, codigo++) {
 				if(a-i-1!=0) {
 //					date.setTime((date.getTime()) + (((7 * (a - i - 1)) * 24) * 60 * 60 * 1000));
 //				}else {
@@ -115,6 +123,24 @@ public class Temporada implements Serializable {
 		
 		return aux;
 	}
-//	public void coeficientedepuntos
+	
+	public ArrayList<Equipo> GanadordelaTemporada(){
+		ArrayList<Equipo> aux = new ArrayList<Equipo>();
+		int [] helper = new int[cantjuegos];
+		for(int i =0; i<cantjuegos;i++) {
+			if(juegos.get(i).getPtsEquipo1()>juegos.get(i).getPtsEquipo2()){
+				
+			}
+		}
+		
+		return aux;
+	}
+	
+	
+	
+	
+	public void coeficientedepuntos(Equipo eq1,Equipo eq2) {
+		
+	}
 
 }

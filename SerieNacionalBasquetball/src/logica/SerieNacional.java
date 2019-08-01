@@ -91,13 +91,15 @@ public class SerieNacional implements Serializable {
 	
 	public Equipo buscarequipoByName(String nombre) {
 		Equipo aux=null;
-		
-		for(int i =0;i<Equipos.size();i++) {
-			if(Equipos.get(i).getNombre().equals(nombre)) {
-				aux=Equipos.get(i);
+		try {
+			for(int i =0;i<Equipos.size();i++) {
+				if(Equipos.get(i).getNombre().equals(nombre)) {
+					aux=Equipos.get(i);
+				}
 			}
+		}catch(NullPointerException e) {
+					
 		}
-		
 		return aux;
 	}
 	
@@ -105,10 +107,14 @@ public class SerieNacional implements Serializable {
 	public int indiceDeEquipo(String Nombre) {
 		int aux=-1;
 		
-		for(int i =0;i<Equipos.size();i++) {
-			if(Equipos.get(i).getNombre().equals(Nombre)) {
-				aux=i;
+		try {
+			for(int i =0;i<Equipos.size();i++) {
+				if(Equipos.get(i).getNombre().equals(Nombre)) {
+					aux=i;
+				}
 			}
+		}catch(NullPointerException e) {
+					
 		}
 		
 		return aux;
@@ -116,11 +122,14 @@ public class SerieNacional implements Serializable {
 	
 	public Juego buscarJuegoByCode(int codigo) {
 		Juego aux=null;
-		
-		for(int i =0;i<Juegos.size();i++) {
-			if(Juegos.get(i).getCodigo()==(codigo)) {
-				aux=Juegos.get(i);
+		try {
+			for(int i =0;i<Juegos.size();i++) {
+				if(Juegos.get(i).getCodigo()==(codigo)) {
+					aux=Juegos.get(i);
+				}
 			}
+		}catch(NullPointerException e) {
+			
 		}
 		
 		return aux;
@@ -128,31 +137,42 @@ public class SerieNacional implements Serializable {
 	
 	public int indiceDeJuego(int codigo) {
 		int aux=-1;
-		
-		for(int i =0;i<Juegos.size();i++) {
-			if(Juegos.get(i).getCodigo()==(codigo)) {
-				aux=i;
-			}
-		} 
-		
+		try {
+			for(int i =0;i<Juegos.size();i++) {
+				if(Juegos.get(i).getCodigo()==(codigo)) {
+					aux=i;
+				}
+			} 
+		}catch(NullPointerException e) {
+			
+		}
 		return aux;
 	}
 	
 	public int cantidadDeJugadoresTotales() {
 		int aux=0;
-		for(int i =0;i<Equipos.size();i++) {
-			aux=Equipos.get(i).getJugadores().size()+aux;
+		try {
+			for(int i =0;i<Equipos.size();i++) { 
+				aux=Equipos.get(i).getJugadores().size()+aux;
+			}
+		}catch(NullPointerException e) {
+			
 		}
+		
 		
 		return aux;
 	}
 	
 	public Equipo equipodeljugador(String code) {
 		Equipo aux = null;
-		for(int i =0; i <Equipos.size() && aux==null;i++) {
-			if(Equipos.get(i).existejugador(code)) {
-				aux=Equipos.get(i);
+		try {
+			for(int i =0; i <Equipos.size() && aux==null;i++) {
+				if(Equipos.get(i).existejugador(code)) {
+					aux=Equipos.get(i);
+				}
 			}
+		}catch(NullPointerException e) {
+			
 		}
 		return aux;
 	}
@@ -181,11 +201,14 @@ public class SerieNacional implements Serializable {
 	}
 	public boolean existeTemporada(int yearj) {
 		boolean aux=false;
-		
-		for(int i =0;i<temporadas.size()&& aux==false;i++) {
-			if(temporadas.get(i).getYear()== yearj) {
-				aux=true;
+		try {	
+			for(int i =0;i<temporadas.size()&& aux==false;i++) {
+				if(temporadas.get(i).getYear()== yearj) {
+					aux=true;
+				}
 			}
+		}catch(NullPointerException e) {
+			
 		}
 		
 		return aux;

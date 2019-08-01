@@ -87,22 +87,27 @@ public class Equipo implements Serializable{
 	
 	public int indiceDeJugador(String codigo) {
 		int aux=-1;
-		
-		for(int i =0;i<jugadores.size();i++) {
-			if(jugadores.get(i).getCodigo().equals(codigo)) {
-				aux=i;
+		try {
+			for(int i =0;i<jugadores.size();i++) {
+				if(jugadores.get(i).getCodigo().equals(codigo)) {
+					aux=i;
+				}
 			}
+		}catch(NullPointerException e) {
+			
 		}
-		
-		return aux;
+		return aux; 
 	}
 	public Jugador buscarjugadorByCode(String codigo) {
 		Jugador aux=null;
-		
-		for(int i =0;i<jugadores.size();i++) {
-			if(jugadores.get(i).getCodigo().equals(codigo)) {
-				aux=jugadores.get(i);
+		try {
+			for(int i =0;i<jugadores.size();i++) {
+				if(jugadores.get(i).getCodigo().equals(codigo)) {
+					aux=jugadores.get(i);
+				}
 			}
+		}catch(NullPointerException e) {
+					
 		}
 		
 		return aux;
@@ -110,13 +115,15 @@ public class Equipo implements Serializable{
 	
 	public boolean existejugador(String codigo) {
 		boolean aux=false;
-		
-		for(int i =0;i<jugadores.size()&& aux==false;i++) {
-			if(jugadores.get(i).getCodigo().equals(codigo)) {
-				aux=true;
+		try {
+			for(int i =0;i<jugadores.size()&& aux==false;i++) {
+				if(jugadores.get(i).getCodigo().equals(codigo)) {
+					aux=true;
+				}
 			}
+		}catch(NullPointerException e) {
+			
 		}
-		
 		return aux;
 	}
 	
