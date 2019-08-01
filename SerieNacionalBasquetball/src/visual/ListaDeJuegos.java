@@ -80,7 +80,7 @@ public class ListaDeJuegos extends JFrame {
 				"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante" , "Equipo local" 
 			}
 		));
-		table.getColumnModel().getColumn(4).setPreferredWidth(110);
+		 
 		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
 		

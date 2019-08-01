@@ -54,17 +54,16 @@ public class ListaDeJugadores extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][6];
+		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][5];
 		for(int i = 0, aux=0; i<SerieNacional.getInstancia().getEquipos().size();i++) {
 		
 			for(int a =0; a < SerieNacional.getInstancia().getEquipos().get(i).getJugadores().size();a++,aux++) {
-				
-				info[aux][0]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCodigo();
-				info[aux][1]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNombre();
-				info[aux][2]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
-				info[aux][3]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCantlesiones();
-				info[aux][4]=SerieNacional.getInstancia().getEquipos().get(i).getNombre();
-				info[aux][5]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getDesempeño();			
+				 
+				info[aux][0]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNombre();
+				info[aux][1]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
+				info[aux][2]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCantlesiones();
+				info[aux][3]=SerieNacional.getInstancia().getEquipos().get(i).getNombre();
+				info[aux][4]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getDesempeño();			
 				
 			}
 		
@@ -72,12 +71,11 @@ public class ListaDeJugadores extends JFrame {
 		table.setModel(new DefaultTableModel(
 			info,
 			new String[] {
-				"Codigo", "Nombre", "Numero de Camiseta", "Lesiones totales", "Equipo", "Posicion"
+				 "Nombre", "Numero de Camiseta", "Lesiones totales", "Equipo", "Posicion"
 			}
 		));
-		table.getColumnModel().getColumn(2).setPreferredWidth(111);
-		table.getColumnModel().getColumn(3).setPreferredWidth(100);
-		table.getColumnModel().getColumn(5).setPreferredWidth(108);
+ 
+
 		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
 		
@@ -114,7 +112,7 @@ public class ListaDeJugadores extends JFrame {
 							get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
 							toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
 //						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
-//					}
+//					} 
 				}
 			} 
 		}); 

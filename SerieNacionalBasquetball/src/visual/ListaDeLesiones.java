@@ -83,9 +83,7 @@ public class ListaDeLesiones extends JFrame {
 					"Codigo","Estado de la lesion","Tipo",  "Fecha de lesion", "Tiempo de recuperacion","Equipo"
 			}
 		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(116);
-		table.getColumnModel().getColumn(1).setPreferredWidth(133);
-		table.getColumnModel().getColumn(3).setPreferredWidth(98);
+ 
 		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
 		

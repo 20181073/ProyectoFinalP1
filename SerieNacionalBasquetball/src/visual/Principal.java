@@ -263,7 +263,7 @@ public class Principal extends JFrame {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Aún no hay jugadores creados.");
-				}
+				} 
 			}
 		});
 		btnmtrLesiones.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/014-first-aid-kit.png")));
