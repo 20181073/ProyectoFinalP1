@@ -103,7 +103,7 @@ public class SerieNacional implements Serializable {
 	
 	
 	public int indiceDeEquipo(String Nombre) {
-		int aux=0;
+		int aux=-1;
 		
 		for(int i =0;i<Equipos.size();i++) {
 			if(Equipos.get(i).getNombre().equals(Nombre)) {
@@ -127,13 +127,13 @@ public class SerieNacional implements Serializable {
 	}
 	
 	public int indiceDeJuego(int codigo) {
-		int aux=0;
+		int aux=-1;
 		
 		for(int i =0;i<Juegos.size();i++) {
 			if(Juegos.get(i).getCodigo()==(codigo)) {
 				aux=i;
 			}
-		}
+		} 
 		
 		return aux;
 	}
@@ -170,13 +170,24 @@ public class SerieNacional implements Serializable {
 	}
 	
 	public int indiceDeTemporada(int year) {
-		int aux=0;
+		int aux=-1;
 		
 		for(int i =0;i<canttemporadas;i++) {
 			if(temporadas.get(i).getYear()==(year)) {
 				aux=i;
 			}
 		}
+		return aux;
+	}
+	public boolean existeTemporada(int yearj) {
+		boolean aux=false;
+		
+		for(int i =0;i<temporadas.size()&& aux==false;i++) {
+			if(temporadas.get(i).getYear()== yearj) {
+				aux=true;
+			}
+		}
+		
 		return aux;
 	}
 

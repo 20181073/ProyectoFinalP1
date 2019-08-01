@@ -86,7 +86,7 @@ public class Equipo implements Serializable{
 	}
 	
 	public int indiceDeJugador(String codigo) {
-		int aux=0;
+		int aux=-1;
 		
 		for(int i =0;i<jugadores.size();i++) {
 			if(jugadores.get(i).getCodigo().equals(codigo)) {

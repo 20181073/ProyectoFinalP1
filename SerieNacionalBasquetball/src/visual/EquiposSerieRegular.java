@@ -148,7 +148,7 @@ public class EquiposSerieRegular extends JFrame {
 				if(cantseleccion>4 && cantseleccion%2==0) {
 					
 					serie.getTemporadas().add(new Temporada(seleccion,cantseleccion,yearj));
-					serie.setCanttemporadas(serie.getCanttemporadas()+1);
+					serie.setCanttemporadas(serie.getCanttemporadas()+1); 
 					serie.getTemporadas().get(serie.getTemporadas().size()).RegistrarJuegos(yearj);;
 					
 					dispose();

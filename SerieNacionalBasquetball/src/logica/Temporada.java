@@ -23,7 +23,7 @@ public class Temporada implements Serializable {
 	}
 
 	public String getCodigo() {
-		return codigo;
+		return codigo; 
 	}
 
 	public void setCodigo(String codigo) {
@@ -105,7 +105,7 @@ public class Temporada implements Serializable {
 	}
 	
 	public int indiceDeJuego(int codigo) {
-		int aux=0;
+		int aux=-1;
 		
 		for(int i =0;i<cantjuegos;i++) {
 			if(juegos.get(i).getCodigo()==(codigo)) {
@@ -115,5 +115,6 @@ public class Temporada implements Serializable {
 		
 		return aux;
 	}
+//	public void coeficientedepuntos
 
 }

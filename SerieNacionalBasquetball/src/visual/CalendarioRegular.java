@@ -114,7 +114,7 @@ public class CalendarioRegular extends JFrame {
 					
 //				}
 				EquiposSerieRegular ventana = new EquiposSerieRegular(Integer.parseInt(spinner.getValue().toString()),serie);
-				ventana.setVisible(true);
+				ventana.setVisible(true); 
 				dispose();
 			}
 		});
@@ -135,9 +135,11 @@ public class CalendarioRegular extends JFrame {
 		JButton btnSimularJuego = new JButton("Simular Juego");
 		btnSimularJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 5).toString(), table.getValueAt(table.getSelectedRow(), 4).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))),"serieregular");
-				ventana.setVisible(true);
-				dispose();
+				if(table.getSelectedRow()>-1) {
+					SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 5).toString(), table.getValueAt(table.getSelectedRow(), 4).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))),"serieregular");
+					ventana.setVisible(true);
+					dispose();
+				}
 			}
 		});
 		btnSimularJuego.setBounds(339, 295, 173, 23);

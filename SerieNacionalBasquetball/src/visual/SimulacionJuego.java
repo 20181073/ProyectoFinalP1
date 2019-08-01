@@ -308,7 +308,7 @@ public class SimulacionJuego extends JFrame {
 					if(rdbtnTriple.isSelected()) {
 						lblPuntosLocal.setText(Integer.toString(Integer.parseInt(lblPuntosLocal.getText())+3));
 						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+3);
-						simulando.getTipoJugada().add("Triple");
+						simulando.getTipoJugada().add("Triple"); 
 					}
 					
 				}
