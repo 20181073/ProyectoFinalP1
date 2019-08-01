@@ -43,9 +43,7 @@ public class Principal extends JFrame {
 	public Principal(String tipodeuser) {
 		SerieNacional LaSerie = SerieNacional.getInstancia().Cargar();
 		
-		if(LaSerie != null) {
-			SerieNacional.setSerieNacional(LaSerie);
-		}
+		SerieNacional.setSerieNacional(LaSerie);
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Serie Nacional de Basquetball");
@@ -130,6 +128,25 @@ public class Principal extends JFrame {
 		panel_superior.setLayout(null);
 		panel_superior.add(btnRegistrar);
 		panel_superior.add(btnListar);
+		
+		RSButtonMetro btnmtrCalendario = new RSButtonMetro();
+		btnmtrCalendario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalendarioRegular a = new CalendarioRegular(SerieNacional.getInstancia());
+				//a.setModal(true);
+				a.setVisible(true);
+			}
+		});
+		btnmtrCalendario.setText("Calendario");
+		btnmtrCalendario.setForeground(Color.BLACK);
+		btnmtrCalendario.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnmtrCalendario.setColorTextNormal(Color.BLACK);
+		btnmtrCalendario.setColorPressed(new Color(204, 102, 0));
+		btnmtrCalendario.setColorNormal(new Color(255, 165, 0));
+		btnmtrCalendario.setColorHover(new Color(204, 102, 0));
+		btnmtrCalendario.setBackground(new Color(255, 165, 0));
+		btnmtrCalendario.setBounds(226, 0, 100, 50);
+		panel_superior.add(btnmtrCalendario);
 		
 		JLabel lblRegistrar = new JLabel("Registrar");
 		lblRegistrar.setFont(new Font("Tahoma", Font.BOLD, 15));

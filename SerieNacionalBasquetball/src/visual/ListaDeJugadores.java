@@ -122,6 +122,9 @@ public class ListaDeJugadores extends JFrame {
 		JButton btnAgregarJugador = new JButton("Agregar Jugador");
 		btnAgregarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AñadirJugador a = new AñadirJugador();
+				a.setModal(true);
+				a.setVisible(true);
 			}
 		});
 		btnAgregarJugador.setBounds(481, 235, 122, 23);

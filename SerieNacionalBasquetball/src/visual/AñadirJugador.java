@@ -221,7 +221,7 @@ public class AñadirJugador extends JDialog {
 				
 				if(!nombreJugador.equalsIgnoreCase("") && !posicion.equalsIgnoreCase("<Seleccione>") && !equipo.equalsIgnoreCase("<Seleccione>") && !checkNumero(numero) && ready) {
 					Jugador aux = new Jugador(nombreJugador, peso, estatura, posicion, numero, MiEquipo );
-					SerieNacional.getInstancia().getEquipos().get(cbxEquipo.getSelectedIndex()).getJugadores().add(aux);
+					SerieNacional.getInstancia().getEquipos().get(cbxEquipo.getSelectedIndex()-1).getJugadores().add(aux);
 					SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
 					JOptionPane.showMessageDialog(null, "Registro del jugador exitoso.", "Información", JOptionPane.INFORMATION_MESSAGE);
 					//dispose();
@@ -243,7 +243,7 @@ public class AñadirJugador extends JDialog {
 			private boolean checkNumero(int numero) {
 				boolean encontrado = false;
 				
-				for (Jugador player : SerieNacional.getInstancia().getEquipos().get(cbxEquipo.getSelectedIndex()).getJugadores()) {
+				for (Jugador player : SerieNacional.getInstancia().getEquipos().get(cbxEquipo.getSelectedIndex()-1).getJugadores()) {
 					if(player.getNumeroCamiseta() == numero) {
 						encontrado = true;
 					}
