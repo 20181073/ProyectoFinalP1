@@ -54,7 +54,7 @@ public class ListaDeJugadores extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][7];
+		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][6];
 		for(int i = 0, aux=0; i<SerieNacional.getInstancia().getEquipos().size();i++) {
 		
 			for(int a =0; a < SerieNacional.getInstancia().getEquipos().get(i).getJugadores().size();a++,aux++) {
@@ -64,8 +64,7 @@ public class ListaDeJugadores extends JFrame {
 				info[aux][2]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
 				info[aux][3]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCantlesiones();
 				info[aux][4]=SerieNacional.getInstancia().getEquipos().get(i).getNombre();
-				info[aux][5]=SerieNacional.getInstancia().getEquipos().get(i).getCodigo();
-				info[aux][6]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getDesempeño();			
+				info[aux][5]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getDesempeño();			
 				
 			}
 		
@@ -73,7 +72,7 @@ public class ListaDeJugadores extends JFrame {
 		table.setModel(new DefaultTableModel(
 			info,
 			new String[] {
-				"Codigo", "Nombre", "Numero de Camiseta", "Lesiones totales", "Equipo", "Codigo del equipo", "Posicion"
+				"Codigo", "Nombre", "Numero de Camiseta", "Lesiones totales", "Equipo", "Posicion"
 			}
 		));
 		table.getColumnModel().getColumn(2).setPreferredWidth(111);
@@ -88,9 +87,9 @@ public class ListaDeJugadores extends JFrame {
 				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
 					
 					ListaDeLesiones ventana = new ListaDeLesiones(SerieNacional.getInstancia().getEquipos().
-							get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(),5).
+							get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(),4).
 								toString())).getJugadores().get(SerieNacional.getInstancia().getEquipos().
-										get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).
+										get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
 										toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString())),
 											SerieNacional.getInstancia(),SerieNacional.getInstancia().
 												equipodeljugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
@@ -107,11 +106,13 @@ public class ListaDeJugadores extends JFrame {
 		btnEliminarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
-//					if(table.getValueAt(table.getSelectedRow(), 5).equals("")) {
+//					if(table.getValueAt(table.getSelectedRow(), 4).equals("")) {
 //						serie.getJugadores().remove(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
 //						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
 //					}else {
-//						serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())).getJugadores().remove(serie.indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
+					SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).getJugadores().remove(SerieNacional.getInstancia().getEquipos().
+							get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
+							toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
 //						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
 //					}
 				}

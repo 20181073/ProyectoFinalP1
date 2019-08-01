@@ -12,22 +12,19 @@ import javax.swing.ImageIcon;
 public class Equipo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String codigo;
 	private String nombre;
 	private ArrayList<Jugador> jugadores;
-	private int cantjugador;
 	private int juegosganados;
 	private int juegosperdidos;
 	private ImageIcon logo;
 	private File ficherologo;
 
-	public Equipo(String codigo, String nombre, int cantjugador, int juegosganados,
+	public Equipo( String nombre, int juegosganados,
 			int juegosperdidos) {
 		super();
-		this.codigo = codigo;
+
 		this.nombre = nombre;
 		jugadores= new ArrayList<Jugador>();
-		this.cantjugador = cantjugador;
 		this.juegosganados = juegosganados;
 		this.juegosperdidos = juegosperdidos;
 	}
@@ -39,13 +36,6 @@ public class Equipo implements Serializable{
 		this.ficherologo = ficherologo;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -62,10 +52,6 @@ public class Equipo implements Serializable{
 	public void setJugadores(ArrayList<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
-
-	public int getCantjugador() {
-		return cantjugador;
-	}
 	
 	public ImageIcon getLogo() {
 		return logo;
@@ -73,10 +59,6 @@ public class Equipo implements Serializable{
 
 	public void setLogo(ImageIcon logo) {
 		this.logo = logo;
-	}
-
-	public void setCantjugador(int cantjugador) {
-		this.cantjugador = cantjugador;
 	}
 
 	public int getJuegosganados() {

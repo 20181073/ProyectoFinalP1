@@ -56,7 +56,7 @@ public class ListaDeJuegos extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[serie.getJuegos().size()][8];
+		Object[][] info= new Object[serie.getJuegos().size()][6];
 		for(int i =0; i < serie.getJuegos().size();i++) {
 			
 			info[i][0]=serie.getJuegos().get(i).getCodigo();
@@ -71,18 +71,13 @@ public class ListaDeJuegos extends JFrame {
 				info[i][3]=serie.getJuegos().get(i).getEquipos().get(1).getNombre();
 			}
 			info[i][4]=serie.getJuegos().get(i).getEquipos().get(1).getNombre();
-			info[i][5]=serie.getJuegos().get(i).getEquipos().get(1).getCodigo();
-			info[i][6]=serie.getJuegos().get(i).getEquipos().get(0).getNombre();
-			info[i][7]=serie.getJuegos().get(i).getEquipos().get(0).getCodigo();
-			
-			
-			
+			info[i][6]=serie.getJuegos().get(i).getEquipos().get(0).getNombre();			
 			
 		}
 		table.setModel(new DefaultTableModel(
 			info,
 			new String[] {
-				"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Codigo de la visita", "Equipo local", "Codigo del local"
+				"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante" , "Equipo local" 
 			}
 		));
 		table.getColumnModel().getColumn(4).setPreferredWidth(110);
@@ -124,9 +119,9 @@ public class ListaDeJuegos extends JFrame {
 								info[i][3]=serie.getJuegos().get(i).getEquipos().get(1).getNombre();
 							}
 							info[i][4]=serie.getJuegos().get(i).getEquipos().get(1).getNombre();
-							info[i][5]=serie.getJuegos().get(i).getEquipos().get(1).getCodigo();
-							info[i][6]=serie.getJuegos().get(i).getEquipos().get(0).getNombre();
-							info[i][7]=serie.getJuegos().get(i).getEquipos().get(0).getCodigo();
+							
+							info[i][5]=serie.getJuegos().get(i).getEquipos().get(0).getNombre();
+							
 							
 							
 							
@@ -135,16 +130,16 @@ public class ListaDeJuegos extends JFrame {
 						table.setModel(new DefaultTableModel(
 							info,
 							new String[] {
-								"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Codigo de la visita", "Equipo local", "Codigo del local"
+								"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Equipo local" 
 							}
 						));
 					}else {
 						table.setModel(new DefaultTableModel(
 								new Object[][]{
-									null,null,null,null,null,null,null,null
-								},
+									null,null,null,null,null,null
+								}, 
 								new String[] {
-									"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Codigo de la visita", "Equipo local", "Codigo del local"
+									"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Equipo local"
 								}
 						));
 						dispose();

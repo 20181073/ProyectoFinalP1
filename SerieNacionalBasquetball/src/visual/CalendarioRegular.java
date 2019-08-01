@@ -56,7 +56,7 @@ public class CalendarioRegular extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(null); 
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -78,7 +78,7 @@ public class CalendarioRegular extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[serie.getJuegos().size()][8];
+		Object[][] info= new Object[serie.getJuegos().size()][6];
 		for(int i =0; i < serie.getJuegos().size();i++) { 
 			
 			info[i][0]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getCodigo();
@@ -93,15 +93,15 @@ public class CalendarioRegular extends JFrame {
 				info[i][3]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getNombre();
 			}
 			info[i][4]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getNombre();
-			info[i][5]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getCodigo();
-			info[i][6]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getNombre();
-			info[i][7]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getCodigo();
+			
+			info[i][5]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getNombre();
+			
 			
 		}
 		table.setModel(new DefaultTableModel(
 			info,
 			new String[] {
-				"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Codigo de la visita", "Equipo local", "Codigo del local"
+				"Codigo del Juego", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Equipo local" 
 			}
 		));
 		table.setFillsViewportHeight(true);
@@ -135,7 +135,7 @@ public class CalendarioRegular extends JFrame {
 		JButton btnSimularJuego = new JButton("Simular Juego");
 		btnSimularJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 7).toString(), table.getValueAt(table.getSelectedRow(), 5).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 7).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))),"serieregular");
+				SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 5).toString(), table.getValueAt(table.getSelectedRow(), 4).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))),"serieregular");
 				ventana.setVisible(true);
 				dispose();
 			}

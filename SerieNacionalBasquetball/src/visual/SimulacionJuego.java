@@ -52,9 +52,9 @@ public class SimulacionJuego extends JFrame {
 		});
 	}
 */
-	public SimulacionJuego(SerieNacional serie,String codigoEQlocal,String codigoEQvisita,Equipo Equipolocal,Equipo EquipoVisita,Juego simulando,String tipodejuego) {
+	public SimulacionJuego(SerieNacional serie,String nombreEQlocal,String nombreEQvisita,Equipo Equipolocal,Equipo EquipoVisita,Juego simulando,String tipodejuego) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SimulacionJuego.class.getResource("/imagenes/IconoPrincipal.png")));
-		setResizable(false);
+		setResizable(false); 
 		
 		setTitle("Simular Juego");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -161,17 +161,17 @@ public class SimulacionJuego extends JFrame {
 				Jugador aux=null;
 				
 				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
-					Falta ventana = new Falta(aux.getNombre(),aux,serie,codigoEQlocal);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
+					Falta ventana = new Falta(aux.getNombre(),aux,serie,nombreEQlocal);
 					ventana.setVisible(true);
 				}
 				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
-					Falta ventana = new Falta(aux.getNombre(),aux,serie,codigoEQvisita);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
+					Falta ventana = new Falta(aux.getNombre(),aux,serie,nombreEQvisita);
 					ventana.setVisible(true);
 				}
 				tableJugadoresVisita.clearSelection();
@@ -198,16 +198,16 @@ public class SimulacionJuego extends JFrame {
 				Jugador aux=null;
 				
 				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
-					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setCantasistencias(aux.getCantasistencias()+1);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
+					serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador).setCantasistencias(aux.getCantasistencias()+1);
 				}
 				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
-					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador).setCantasistencias(aux.getCantasistencias()+1);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
+					serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador).setCantasistencias(aux.getCantasistencias()+1);
 				}
 				tableJugadoresVisita.clearSelection();
 				tableJugadoresLocal.clearSelection();
@@ -222,16 +222,16 @@ public class SimulacionJuego extends JFrame {
 				Jugador aux=null;
 				
 				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
-					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setCantbloqueo(aux.getCantbloqueo()+1);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
+					serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador).setCantbloqueo(aux.getCantbloqueo()+1);
 				}
 				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
-					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador).setCantbloqueo(aux.getCantbloqueo()+1);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
+					serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador).setCantbloqueo(aux.getCantbloqueo()+1);
 				}
 				tableJugadoresVisita.clearSelection();
 				tableJugadoresLocal.clearSelection();
@@ -246,16 +246,16 @@ public class SimulacionJuego extends JFrame {
 				Jugador aux=null;
 				
 				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
-					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setCantrobodebalon(aux.getCantrobodebalon()+1);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
+					serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador).setCantrobodebalon(aux.getCantrobodebalon()+1);
 				}
 				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
-					serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador).setCantrobodebalon(aux.getCantrobodebalon()+1);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
+					serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador).setCantrobodebalon(aux.getCantrobodebalon()+1);
 				}
 				tableJugadoresVisita.clearSelection();
 				tableJugadoresLocal.clearSelection();
@@ -292,41 +292,41 @@ public class SimulacionJuego extends JFrame {
 				Jugador aux=null;
 				
 				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
 					if(rdbtnTiroLibre.isSelected()) {
 						lblPuntosLocal.setText(Integer.toString(Integer.parseInt(lblPuntosLocal.getText())+1));
-						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+1);
+						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+1);
 						simulando.getTipoJugada().add("Tiro Libre");
 					}
 					if(rdbtnDoble.isSelected()) {
 						lblPuntosLocal.setText(Integer.toString(Integer.parseInt(lblPuntosLocal.getText())+2));
-						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+2);
+						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+2);
 						simulando.getTipoJugada().add("Doble");
 					}
 					if(rdbtnTriple.isSelected()) {
 						lblPuntosLocal.setText(Integer.toString(Integer.parseInt(lblPuntosLocal.getText())+3));
-						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+3);
+						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+3);
 						simulando.getTipoJugada().add("Triple");
 					}
 					
 				}
 				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
 					if(rdbtnTiroLibre.isSelected()) {
 						lblPuntosVisita.setText(Integer.toString(Integer.parseInt(lblPuntosVisita.getText())+1));
-						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+1);
+						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+1);
 					}
 					if(rdbtnDoble.isSelected()) {
 						lblPuntosVisita.setText(Integer.toString(Integer.parseInt(lblPuntosVisita.getText())+2));
-						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+2);
+						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+2);
 					}
 					if(rdbtnTriple.isSelected()) {
 						lblPuntosVisita.setText(Integer.toString(Integer.parseInt(lblPuntosVisita.getText())+3));
-						serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+3);
+						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+3);
 					}
 				}
 				tableJugadoresVisita.clearSelection();
@@ -372,16 +372,16 @@ public class SimulacionJuego extends JFrame {
 				Jugador aux=null;
 				
 				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
 							
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQlocal)).getJugadores().get(indexjugador);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
 					LesionarJugador ventana = new LesionarJugador(aux,serie,Equipolocal);
 					ventana.setVisible(true);
 				}
 				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByCode(codigoEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
 					
-					aux=serie.getEquipos().get(serie.indiceDeEquipo(codigoEQvisita)).getJugadores().get(indexjugador);
+					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
 					LesionarJugador ventana = new LesionarJugador(aux,serie,EquipoVisita);
 					ventana.setVisible(true);
 				}

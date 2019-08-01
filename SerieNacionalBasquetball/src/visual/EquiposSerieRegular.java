@@ -78,11 +78,11 @@ public class EquiposSerieRegular extends JFrame {
 				tableEquipos.clearSelection();
 			}
 		});
-		Object[][] infoSel = new Object[26][3];
+		Object[][] infoSel = new Object[26][2];
 		tableSeleccion.setModel(new DefaultTableModel(
 			infoSel,
 			new String[] {
-				"Codigo", "Nombre", "Jugadores"
+				 "Nombre", "Jugadores"
 			}
 		));
 		tableSeleccion.setFillsViewportHeight(true);
@@ -99,16 +99,15 @@ public class EquiposSerieRegular extends JFrame {
 				tableSeleccion.clearSelection();
 			}
 		});
-		Object[][] infoEquip = new Object[serie.getEquipos().size()][3];
+		Object[][] infoEquip = new Object[serie.getEquipos().size()][2];
 		for(int i=0; i<serie.getEquipos().size();i++) {
-			infoEquip[i][0]=serie.getEquipos().get(i).getCodigo();
-			infoEquip[i][1]=serie.getEquipos().get(i).getNombre();
-			infoEquip[i][2]=serie.getEquipos().get(i).getCantjugador();
+			infoEquip[i][0]=serie.getEquipos().get(i).getNombre();
+			infoEquip[i][1]=serie.getEquipos().get(i).getJugadores().size();
 		}
 		tableEquipos.setModel(new DefaultTableModel(
 			infoEquip,
 			new String[] {
-				"Codigo", "Nombre", "Jugadores"
+				"Nombre", "Jugadores"
 			}
 		));
 		tableEquipos.setFillsViewportHeight(true);
@@ -118,9 +117,9 @@ public class EquiposSerieRegular extends JFrame {
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cantseleccion<27 && tableEquipos.getSelectedRow()>-1) {
-					seleccion.add(serie.buscarequipoByCode(tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 0).toString()));
-					cantseleccion++;
-					((DefaultTableModel) tableSeleccion.getModel()).addRow(new Object[] {tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 0),tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 1),tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 3)});;
+					seleccion.add(serie.buscarequipoByName(tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 0).toString()));
+					cantseleccion++; 
+					((DefaultTableModel) tableSeleccion.getModel()).addRow(new Object[] {tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 0),tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 1)});;
 					((DefaultTableModel) tableEquipos.getModel()).removeRow(tableEquipos.getSelectedRow());
 				}
 				
@@ -133,10 +132,10 @@ public class EquiposSerieRegular extends JFrame {
 		btnDeseleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cantseleccion>0 && tableSeleccion.getSelectedRow()>-1) {
-					seleccion.remove(serie.buscarequipoByCode(tableSeleccion.getValueAt(tableSeleccion.getSelectedRow(), 0).toString()));
+					seleccion.remove(serie.buscarequipoByName(tableSeleccion.getValueAt(tableSeleccion.getSelectedRow(), 0).toString()));
 					cantseleccion--;
 					((DefaultTableModel) tableSeleccion.getModel()).removeRow(tableSeleccion.getSelectedRow());
-					((DefaultTableModel) tableEquipos.getModel()).addRow(new Object[] {tableSeleccion.getValueAt(tableSeleccion.getSelectedRow(), 0),tableSeleccion.getValueAt(tableSeleccion.getSelectedRow(), 1),tableSeleccion.getValueAt(tableSeleccion.getSelectedRow(), 3)});
+					((DefaultTableModel) tableEquipos.getModel()).addRow(new Object[] {tableSeleccion.getValueAt(tableSeleccion.getSelectedRow(), 0),tableSeleccion.getValueAt(tableSeleccion.getSelectedRow(), 1)});
 				}
 			}
 		});

@@ -77,17 +77,17 @@ public class SerieNacional implements Serializable {
 		this.canttemporadas = canttemporadas;
 	}
 	
-	public Equipo buscarequipoByCode(String codigo) {
-		Equipo aux=null;
-		
-		for(int i =0;i<Equipos.size();i++) {
-			if(Equipos.get(i).getCodigo().equals(codigo)) {
-				aux=Equipos.get(i);
-			}
-		}
-		
-		return aux;
-	}
+//	public Equipo buscarequipoByCode(String codigo) {
+//		Equipo aux=null;
+//		
+//		for(int i =0;i<Equipos.size();i++) {
+//			if(Equipos.get(i).getCodigo().equals(codigo)) {
+//				aux=Equipos.get(i);
+//			}
+//		}
+//		
+//		return aux;
+//	}
 	
 	public Equipo buscarequipoByName(String nombre) {
 		Equipo aux=null;
@@ -102,11 +102,11 @@ public class SerieNacional implements Serializable {
 	}
 	
 	
-	public int indiceDeEquipo(String codigo) {
+	public int indiceDeEquipo(String Nombre) {
 		int aux=0;
 		
 		for(int i =0;i<Equipos.size();i++) {
-			if(Equipos.get(i).getCodigo().equals(codigo)) {
+			if(Equipos.get(i).getNombre().equals(Nombre)) {
 				aux=i;
 			}
 		}

@@ -74,7 +74,7 @@ public class RegistrarJuego extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(null); 
 		
 		JPanel panelEquipos = new JPanel();
 		panelEquipos.setBounds(10, 73, 776, 191);
@@ -90,21 +90,21 @@ public class RegistrarJuego extends JFrame {
 		panelEquipoLocal.add(lblEquipoLocal);
 		
 		JComboBox cmbxLocal = new JComboBox();
-		Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador()][2];
-		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador();i++) {
+		Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()][2];
+		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size();i++) {
 			
-			infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCodigo();
-			infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre();		
+			infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+			infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
 			
 		}
 		cmbxLocal.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador()][2];
-				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCantjugador();i++) {
+				Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()][2];
+				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size();i++) {
 					
-					infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getCodigo();
-					infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre();		
+					infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+					infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
 					
 				}
 				tableLocal.setModel(new DefaultTableModel(
@@ -116,10 +116,10 @@ public class RegistrarJuego extends JFrame {
 				
 			}
 		});
-		Object[] helperlocal={serie.getEquipos().get(0).getCodigo()};
+		Object[] helperlocal={serie.getEquipos().get(0).getNombre()};
 		cmbxLocal.setModel(new DefaultComboBoxModel(helperlocal));
 		for (int i =1;i<serie.getEquipos().size();i++) {
-			cmbxLocal.addItem(serie.getEquipos().get(i).getCodigo());
+			cmbxLocal.addItem(serie.getEquipos().get(i).getNombre());
 		}
 		cmbxLocal.setBounds(10, 32, 150, 20);
 		panelEquipoLocal.add(cmbxLocal);
@@ -179,22 +179,22 @@ public class RegistrarJuego extends JFrame {
 		panelEquipoVisita.add(lblEquipoVisitante);
 		
 		JComboBox cmbxVisitante = new JComboBox();
-		Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getCantjugador()][2];
-		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getCantjugador();i++) {
+		Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size()][2];
+		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size();i++) {
 			
-			info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getCodigo();
-			info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getNombre();		
+			info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+			info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
 			
 		}
 		cmbxVisitante.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				
-				Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getCantjugador()][2];
-				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getCantjugador();i++) {
+				Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size()][2];
+				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size();i++) {
 					
-					info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getCodigo();
-					info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getNombre();		
+					info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+					info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
 					
 				}
 				tableEquipoVisita.setModel(new DefaultTableModel(
@@ -206,12 +206,12 @@ public class RegistrarJuego extends JFrame {
 				
 			}
 		});
-		Object[] helper= {serie.getEquipos().get(0).getCodigo()};
+		Object[] helper= {serie.getEquipos().get(0).getNombre()};
 		cmbxVisitante.setModel(new DefaultComboBoxModel(helper));
 		cmbxVisitante.setBounds(10, 32, 128, 20);
 		panelEquipoVisita.add(cmbxVisitante);
 		for (int i =1;i<serie.getEquipos().size();i++) {
-			cmbxVisitante.addItem(serie.getEquipos().get(i).getCodigo());
+			cmbxVisitante.addItem(serie.getEquipos().get(i).getNombre());
 		}
 		
 		JButton btnConfirmarVisita = new JButton("Confirmar Equipo");
@@ -326,14 +326,14 @@ public class RegistrarJuego extends JFrame {
 							verif=false;
 						}
 					}
-					for(int p=0;p<local.getCantjugador();p++) {
+					for(int p=0;p<local.getJugadores().size();p++) {
 						if(tableLocalJuego.getValueAt(i, 0).equals(tableEquipoVisitaJuego.getValueAt(p, 0))) {
 							verif=false;
 						}
 					}
 				}
 				
-				if(visita.getCodigo().equals(local.getCodigo())) {
+				if(visita.getNombre().equals(local.getNombre())) {
 					verif = false;
 				}
 				
@@ -371,14 +371,14 @@ public class RegistrarJuego extends JFrame {
 							verif=false;
 						}
 					}
-					for(int p=0;p<local.getCantjugador();p++) {
+					for(int p=0;p<local.getJugadores().size();p++) {
 						if(tableEquipoVisitaJuego.getValueAt(i, 0).equals(tableLocalJuego.getValueAt(p, 0))) {
 							verif=false;
 						}
 					}
 				}
 				
-				if(visita.getCodigo().equals(local.getCodigo())) {
+				if(visita.getNombre().equals(local.getNombre())) {
 					verif = false;
 				}
 				
@@ -413,11 +413,10 @@ public class RegistrarJuego extends JFrame {
 		btnSeleccionarJugadorVisita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(visita.getCantjugador()<5&&tableEquipoVisita.getSelectedColumn()>-1) {
+				if(visita.getJugadores().size()<5&&tableEquipoVisita.getSelectedColumn()>-1) {
 					visita.getJugadores().add(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(Integer.parseInt(tableEquipoVisita.getValueAt(tableEquipoVisita.getSelectedRow(), 0).toString())));
-					visita.setCantjugador(visita.getCantjugador()+1);
-					Object[][] auxiliar= new Object[visita.getCantjugador()][2];
-					for(int i =0; i < visita.getCantjugador();i++) {
+					Object[][] auxiliar= new Object[visita.getJugadores().size()][2];
+					for(int i =0; i < visita.getJugadores().size();i++) {
 						
 						auxiliar[i][0]=visita.getJugadores().get(i).getCodigo();
 						auxiliar[i][1]=	visita.getJugadores().get(i).getNombre();
@@ -437,11 +436,10 @@ public class RegistrarJuego extends JFrame {
 		
 		btnSeleccionarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(local.getCantjugador()<5 && tableLocal.getSelectedColumn()>-1) {
+				if(local.getJugadores().size()<5 && tableLocal.getSelectedColumn()>-1) {
 					local.getJugadores().add(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(Integer.parseInt(tableLocal.getValueAt(tableLocal.getSelectedRow(), 0).toString())));
-					local.setCantjugador(local.getCantjugador()+1);
-					Object[][] auxiliar= new Object[local.getCantjugador()][2];
-					for(int i =0; i < local.getCantjugador();i++) {
+					Object[][] auxiliar= new Object[local.getJugadores().size()][2];
+					for(int i =0; i < local.getJugadores().size();i++) {
 						
 						auxiliar[i][0]=local.getJugadores().get(i).getCodigo();
 						auxiliar[i][1]=	local.getJugadores().get(i).getNombre();
