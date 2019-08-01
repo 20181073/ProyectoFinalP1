@@ -7,6 +7,7 @@ import java.util.Date;
 public class Temporada implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private String codigo;
 	private ArrayList<Equipo> equipos;// max 27
 	private int CantidadEquipos;
 	private ArrayList<Juego> juegos;
@@ -21,6 +22,15 @@ public class Temporada implements Serializable {
 		this.year = year;
 	}
 
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	
 	public ArrayList<Equipo> getEquipos() {
 		return equipos;
 	}
@@ -105,6 +115,5 @@ public class Temporada implements Serializable {
 		
 		return aux;
 	}
-
 
 }

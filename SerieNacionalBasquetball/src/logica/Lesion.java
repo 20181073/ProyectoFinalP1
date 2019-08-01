@@ -11,6 +11,7 @@ public class Lesion implements Serializable{
 	private boolean estado;
 	private Date FechaLesion;
 	private int RecoveryTime;
+	
 	public Lesion(String codigo, String tipo, boolean estado, Date fechaLesion, int recoveryTime) {
 		super();
 		this.codigo = codigo;
