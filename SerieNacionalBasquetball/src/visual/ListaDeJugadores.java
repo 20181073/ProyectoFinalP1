@@ -58,28 +58,8 @@ public class ListaDeJugadores extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][5];
-		for(int i = 0, aux=0; i<SerieNacional.getInstancia().getEquipos().size();i++) {
-		
-			for(int a =0; a < SerieNacional.getInstancia().getEquipos().get(i).getJugadores().size();a++,aux++) {
-				 
-				info[aux][0]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNombre();
-				info[aux][1]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
-				info[aux][2]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCantlesiones();
-				info[aux][3]=SerieNacional.getInstancia().getEquipos().get(i).getNombre();
-				info[aux][4]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getDesempeño();			
-				
-			}
-		
-		}
-		table.setModel(new DefaultTableModel(
-			info,
-			new String[] {
-				 "Nombre", "Numero de Camiseta", "Lesiones totales", "Equipo", "Posicion"
-			}
-		));
-
 		table.setFillsViewportHeight(true);
+		CargarTabla();
 		scrollPane.setViewportView(table);
 		
 		JButton btnVerLesiones = new JButton("Ver lesiones");
@@ -119,7 +99,9 @@ public class ListaDeJugadores extends JFrame {
 							get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
 							toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
 //						serie.setCantidadJugadores(serie.getCantidadJugadores()-1);
-//					} 
+//					}
+					
+					CargarTabla();
 				}
 			} 
 		}); 
@@ -132,6 +114,7 @@ public class ListaDeJugadores extends JFrame {
 				AñadirJugador a = new AñadirJugador();
 				a.setModal(true);
 				a.setVisible(true);
+				CargarTabla();
 			}
 		});
 		btnAgregarJugador.setBounds(375, 235, 122, 23);
@@ -159,5 +142,28 @@ public class ListaDeJugadores extends JFrame {
 				}
 			}
 		});
+	}
+	private void CargarTabla() {
+		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][6];
+		for(int i = 0, aux=0; i<SerieNacional.getInstancia().getEquipos().size();i++) {
+		
+			for(int a =0; a < SerieNacional.getInstancia().getEquipos().get(i).getJugadores().size();a++,aux++) {
+				
+				info[aux][0]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCodigo();
+				info[aux][1]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNombre();
+				info[aux][2]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
+				info[aux][3]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCantlesiones();
+				info[aux][4]=SerieNacional.getInstancia().getEquipos().get(i).getNombre();
+				info[aux][5]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getDesempeño();			
+				
+			}
+		
+		}
+		table.setModel(new DefaultTableModel(
+			info,
+			new String[] {
+				 "Código", "Nombre", "Numero de Camiseta", "Lesiones totales", "Equipo", "Posicion"
+			}
+		));
 	}
 }

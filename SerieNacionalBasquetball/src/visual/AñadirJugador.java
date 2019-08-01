@@ -215,12 +215,24 @@ public class AñadirJugador extends JDialog {
 				String posicion = cbxPosicion.getSelectedItem().toString();
 				String equipo = cbxEquipo.getSelectedItem().toString();
 				
+				
+				
 				Equipo MiEquipo = SerieNacional.getInstancia().buscarequipoByName(equipo);
+				
+				String codigo = "";
+				
+				try {
+					if(MiEquipo.getJugadores().size() > 0) {
+						codigo = Integer.toString(Integer.parseInt( MiEquipo.getJugadores().get(MiEquipo.getJugadores().size()).getCodigo() ) + 1);
+					}
+				} catch (Exception e2) {
+					codigo = "0";
+				}
 				
 				int numero = Integer.parseInt(spnNumero.getValue().toString());
 				
 				if(!nombreJugador.equalsIgnoreCase("") && !posicion.equalsIgnoreCase("<Seleccione>") && !equipo.equalsIgnoreCase("") && ready && !checkNumero(numero)) {
-					Jugador aux = new Jugador(nombreJugador, peso, estatura, posicion, numero, MiEquipo );
+					Jugador aux = new Jugador(codigo, nombreJugador, peso, estatura, posicion, numero, MiEquipo );
 					SerieNacional.getInstancia().getEquipos().get(cbxEquipo.getSelectedIndex()).getJugadores().add(aux);
 					SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
 					JOptionPane.showMessageDialog(null, "Registro del jugador exitoso.", "Información", JOptionPane.INFORMATION_MESSAGE);
