@@ -39,8 +39,6 @@ public class Login extends JFrame {
 	private Socket SckCliente;
     private DataInputStream dis;
     private DataOutputStream dos;
-
-
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

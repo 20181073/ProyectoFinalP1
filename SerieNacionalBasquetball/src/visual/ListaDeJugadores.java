@@ -1,8 +1,5 @@
 package visual;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class ListaDeJugadores extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 
@@ -40,11 +38,12 @@ public class ListaDeJugadores extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListaDeJugadores(SerieNacional serie) {
+	public ListaDeJugadores() {
 		setResizable(false);
 		setTitle("Jugadores");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 691, 307);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,18 +54,18 @@ public class ListaDeJugadores extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[serie.cantidadDeJugadoresTotales()][7];
-		for(int i = 0, aux=0; i<serie.getCantidadEquipos();i++) {
+		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][7];
+		for(int i = 0, aux=0; i<SerieNacional.getInstancia().getCantidadEquipos();i++) {
 		
-			for(int a =0; a < serie.getEquipos().get(i).getCantjugador();a++,aux++) {
+			for(int a =0; a < SerieNacional.getInstancia().getEquipos().get(i).getCantjugador();a++,aux++) {
 				
-				info[aux][0]=serie.getEquipos().get(i).getJugadores().get(a).getCodigo();
-				info[aux][1]=serie.getEquipos().get(i).getJugadores().get(a).getNombre();
-				info[aux][2]=serie.getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
-				info[aux][3]=serie.getEquipos().get(i).getJugadores().get(a).getCantlesiones();
-				info[aux][4]=serie.getEquipos().get(i).getNombre();
-				info[aux][5]=serie.getEquipos().get(i).getCodigo();
-				info[aux][6]=serie.getEquipos().get(i).getJugadores().get(a).getDesempeño();			
+				info[aux][0]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCodigo();
+				info[aux][1]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNombre();
+				info[aux][2]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNumeroCamiseta();
+				info[aux][3]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCantlesiones();
+				info[aux][4]=SerieNacional.getInstancia().getEquipos().get(i).getNombre();
+				info[aux][5]=SerieNacional.getInstancia().getEquipos().get(i).getCodigo();
+				info[aux][6]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getDesempeño();			
 				
 			}
 		
@@ -88,7 +87,13 @@ public class ListaDeJugadores extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
 					
-					ListaDeLesiones ventana = new ListaDeLesiones(serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())).getJugadores().get(serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString())),serie,serie.equipodeljugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
+					ListaDeLesiones ventana = new ListaDeLesiones(SerieNacional.getInstancia().getEquipos().
+							get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(),5).
+								toString())).getJugadores().get(SerieNacional.getInstancia().getEquipos().
+										get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).
+										toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString())),
+											SerieNacional.getInstancia(),SerieNacional.getInstancia().
+												equipodeljugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
 					ventana.setVisible(true);
 					
 				}

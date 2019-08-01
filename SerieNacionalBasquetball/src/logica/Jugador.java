@@ -42,8 +42,13 @@ public class Jugador implements Serializable {
 		this.cantfaltas=cantfaltas;
 	}
 
-	public Jugador(String nombreJugador, float peso2, float estatura, String posicion, int numero) {
-		// TODO Auto-generated constructor stub
+	public Jugador(String nombreJugador, float peso, float estatura, String posicion, int numero, Equipo MiEquipo) {
+		this.nombre = nombreJugador;
+		this.peso=peso;
+		this.altura = estatura;
+		this.desempeño = posicion;
+		this.numeroCamiseta = numero;
+		this.MiEquipo = MiEquipo;
 	}
 
 	public String getNombre() {

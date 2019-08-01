@@ -140,7 +140,7 @@ public class Principal extends JFrame {
 		RSButtonMetro btnmtrJugador = new RSButtonMetro();
 		btnmtrJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AñadirJugador a = new AñadirJugador(0);
+				AñadirJugador a = new AñadirJugador();
 				a.setModal(true);
 				a.setVisible(true);
 			}
@@ -207,9 +207,9 @@ public class Principal extends JFrame {
 		btnmtrJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(SerieNacional.getInstancia().cantidadDeJugadoresTotales()!= 0) {
-					//ListaDeJugadores listj = new ListaDeJugadores();
+					ListaDeJugadores listj = new ListaDeJugadores();
 					//listj.setModal(true);
-					//listj.setVisible(true);
+					listj.setVisible(true);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Aún no hay jugadores creados.");

@@ -107,6 +107,18 @@ public class SerieNacional implements Serializable {
 		return aux;
 	}
 	
+	public Equipo buscarequipoByName(String nombre) {
+		Equipo aux=null;
+		
+		for(int i =0;i<CantidadEquipos;i++) {
+			if(Equipos.get(i).getNombre().equals(nombre)) {
+				aux=Equipos.get(i);
+			}
+		}
+		
+		return aux;
+	}
+	
 	
 	public int indiceDeEquipo(String codigo) {
 		int aux=0;
