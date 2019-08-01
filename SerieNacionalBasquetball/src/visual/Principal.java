@@ -206,7 +206,7 @@ public class Principal extends JFrame {
 		RSButtonMetro btnmtrJugadores = new RSButtonMetro();
 		btnmtrJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(SerieNacional.getInstancia().cantidadDeJugadoresTotales()!= 0) {
+				if(LaSerie.cantidadDeJugadoresTotales()> 0) {
 					ListaDeJugadores listj = new ListaDeJugadores();
 					//listj.setModal(true);
 					listj.setVisible(true);

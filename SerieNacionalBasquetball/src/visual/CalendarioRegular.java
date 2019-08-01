@@ -78,8 +78,8 @@ public class CalendarioRegular extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[serie.getCantidadJuegos()][8];
-		for(int i =0; i < serie.getCantidadJuegos();i++) {
+		Object[][] info= new Object[serie.getJuegos().size()][8];
+		for(int i =0; i < serie.getJuegos().size();i++) { 
 			
 			info[i][0]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getCodigo();
 		

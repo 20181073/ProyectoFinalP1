@@ -65,7 +65,6 @@ public class VisualServer extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setLocationRelativeTo(null);
 
 		JButton btnIniciarServidor = new JButton("Iniciar Servidor");
 		btnIniciarServidor.addActionListener(new ActionListener() {
@@ -145,12 +144,21 @@ public class VisualServer extends JFrame {
 				if (usuario == "" || pass.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Ha dejado campos vacíos.", "Aviso",JOptionPane.WARNING_MESSAGE);
 				} else {
-					servidor.getUsuarios().add(usuario);
-					servidor.getPasswords().add(pass);
-					servidor.getTipodeuser().add(tipo);
-					servidor.guardardatos();
-					JOptionPane.showMessageDialog(null, "Usuario registrado con exito.", "Aviso",
-							JOptionPane.WARNING_MESSAGE);
+					if(!servidor.getUsuarios().contains(usuario)) {
+						servidor.getUsuarios().add(usuario);
+						servidor.getPasswords().add(pass);
+						servidor.getTipodeuser().add(tipo);
+						servidor.guardardatos();
+						JOptionPane.showMessageDialog(null, "Usuario registrado con exito.", "Aviso",JOptionPane.WARNING_MESSAGE);
+						txtUsuario.setText("");
+						txtPassword.setText("");
+						txtPassConfirmar.setText("");
+					}else {
+						JOptionPane.showMessageDialog(null, "Usuario ya existe.", "Aviso",JOptionPane.WARNING_MESSAGE);
+						txtUsuario.setText("");
+						txtPassword.setText("");
+						txtPassConfirmar.setText("");
+					}
 				}
 			}
 		});

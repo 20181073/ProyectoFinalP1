@@ -42,7 +42,7 @@ public class RegistrarJuego extends JFrame {
 	private JTable tableEquipoVisitaJuego;
 	private int paneles=-1;//-1 local & 1Visita
 	private boolean confirmarlocal=false;
-	private boolean confirmarvisita=false;
+	private boolean confirmarvisita=false; 
 
 	/**
 	 * Launch the application.
@@ -118,7 +118,7 @@ public class RegistrarJuego extends JFrame {
 		});
 		Object[] helperlocal={serie.getEquipos().get(0).getCodigo()};
 		cmbxLocal.setModel(new DefaultComboBoxModel(helperlocal));
-		for (int i =1;i<serie.getCantidadEquipos();i++) {
+		for (int i =1;i<serie.getEquipos().size();i++) {
 			cmbxLocal.addItem(serie.getEquipos().get(i).getCodigo());
 		}
 		cmbxLocal.setBounds(10, 32, 150, 20);
@@ -210,7 +210,7 @@ public class RegistrarJuego extends JFrame {
 		cmbxVisitante.setModel(new DefaultComboBoxModel(helper));
 		cmbxVisitante.setBounds(10, 32, 128, 20);
 		panelEquipoVisita.add(cmbxVisitante);
-		for (int i =1;i<serie.getCantidadEquipos();i++) {
+		for (int i =1;i<serie.getEquipos().size();i++) {
 			cmbxVisitante.addItem(serie.getEquipos().get(i).getCodigo());
 		}
 		
@@ -268,8 +268,11 @@ public class RegistrarJuego extends JFrame {
 		txtCodigo.setBounds(176, 36, 128, 20);
 		contentPane.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		txtCodigo.setText(Integer.toString(serie.getJuegos().get(serie.getCantidadJuegos()-1).getCodigo()+1));
-		
+		if(serie.getJuegos().size()>0) {
+			txtCodigo.setText(Integer.toString(serie.getJuegos().get(serie.getJuegos().size()-1).getCodigo()+1));
+		}else {
+			txtCodigo.setText("0");
+		}
 		JSpinner spnFechaDelJuego = new JSpinner();
 		spnFechaDelJuego.setModel(new SpinnerDateModel(new Date(1563508800000L), new Date(1563508800000L), new Date(1910923200000L), Calendar.DAY_OF_YEAR));
 		spnFechaDelJuego.setBounds(480, 36, 128, 20);
@@ -461,7 +464,6 @@ public class RegistrarJuego extends JFrame {
 				juegonuevo.getEquipos().add(local);
 				juegonuevo.getEquipos().add(visita);
 				serie.getJuegos().add(juegonuevo);
-				serie.setCantidadJuegos(serie.getCantidadJuegos()+1);
 				dispose();
 			}
 		});

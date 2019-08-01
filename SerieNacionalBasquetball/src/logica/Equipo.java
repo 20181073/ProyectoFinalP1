@@ -106,7 +106,7 @@ public class Equipo implements Serializable{
 	public int indiceDeJugador(String codigo) {
 		int aux=0;
 		
-		for(int i =0;i<cantjugador;i++) {
+		for(int i =0;i<jugadores.size();i++) {
 			if(jugadores.get(i).getCodigo().equals(codigo)) {
 				aux=i;
 			}
@@ -117,7 +117,7 @@ public class Equipo implements Serializable{
 	public Jugador buscarjugadorByCode(String codigo) {
 		Jugador aux=null;
 		
-		for(int i =0;i<cantjugador;i++) {
+		for(int i =0;i<jugadores.size();i++) {
 			if(jugadores.get(i).getCodigo().equals(codigo)) {
 				aux=jugadores.get(i);
 			}
@@ -129,7 +129,7 @@ public class Equipo implements Serializable{
 	public boolean existejugador(String codigo) {
 		boolean aux=false;
 		
-		for(int i =0;i<cantjugador&& aux==false;i++) {
+		for(int i =0;i<jugadores.size()&& aux==false;i++) {
 			if(jugadores.get(i).getCodigo().equals(codigo)) {
 				aux=true;
 			}
@@ -158,7 +158,7 @@ public class Equipo implements Serializable{
 		}
 		System.out.println("\tEl archivo ha sido copiado con éxito....\n");
 		logo = new ImageIcon(archivoSalida.toString());
-	}
+	} 
 
 
 }

@@ -56,8 +56,8 @@ public class ListaDeJuegos extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[serie.getCantidadJuegos()][8];
-		for(int i =0; i < serie.getCantidadJuegos();i++) {
+		Object[][] info= new Object[serie.getJuegos().size()][8];
+		for(int i =0; i < serie.getJuegos().size();i++) {
 			
 			info[i][0]=serie.getJuegos().get(i).getCodigo();
 		
@@ -108,9 +108,9 @@ public class ListaDeJuegos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1) {
 					serie.getJuegos().remove(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())));
-					serie.setCantidadJuegos(serie.getCantidadJuegos()-1);
-					if(serie.getCantidadJuegos()>0) {
-						for(int i =0; i < serie.getCantidadJuegos();i++) {
+					
+					if(serie.getJuegos().size()>0) {
+						for(int i =0; i < serie.getJuegos().size();i++) {
 							
 							info[i][0]=serie.getJuegos().get(i).getCodigo();
 						

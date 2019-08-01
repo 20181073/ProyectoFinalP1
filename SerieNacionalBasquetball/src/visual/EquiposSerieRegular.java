@@ -71,7 +71,7 @@ public class EquiposSerieRegular extends JFrame {
 		scrollPaneSeleccion.setBounds(385, 42, 220, 270);
 		contentPane.add(scrollPaneSeleccion);
 		
-		tableSeleccion = new JTable();
+		tableSeleccion = new JTable(); 
 		tableSeleccion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,8 +99,8 @@ public class EquiposSerieRegular extends JFrame {
 				tableSeleccion.clearSelection();
 			}
 		});
-		Object[][] infoEquip = new Object[serie.getCantidadEquipos()][3];
-		for(int i=0; i<serie.getCantidadEquipos();i++) {
+		Object[][] infoEquip = new Object[serie.getEquipos().size()][3];
+		for(int i=0; i<serie.getEquipos().size();i++) {
 			infoEquip[i][0]=serie.getEquipos().get(i).getCodigo();
 			infoEquip[i][1]=serie.getEquipos().get(i).getNombre();
 			infoEquip[i][2]=serie.getEquipos().get(i).getCantjugador();

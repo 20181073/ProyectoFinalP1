@@ -55,9 +55,9 @@ public class ListaDeJugadores extends JFrame {
 		
 		table = new JTable();
 		Object[][] info= new Object[SerieNacional.getInstancia().cantidadDeJugadoresTotales()][7];
-		for(int i = 0, aux=0; i<SerieNacional.getInstancia().getCantidadEquipos();i++) {
+		for(int i = 0, aux=0; i<SerieNacional.getInstancia().getEquipos().size();i++) {
 		
-			for(int a =0; a < SerieNacional.getInstancia().getEquipos().get(i).getCantjugador();a++,aux++) {
+			for(int a =0; a < SerieNacional.getInstancia().getEquipos().get(i).getJugadores().size();a++,aux++) {
 				
 				info[aux][0]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getCodigo();
 				info[aux][1]=SerieNacional.getInstancia().getEquipos().get(i).getJugadores().get(a).getNombre();
@@ -99,7 +99,7 @@ public class ListaDeJugadores extends JFrame {
 				}
 				
 			}
-		});
+		}); 
 		btnVerLesiones.setBounds(280, 235, 122, 23);
 		contentPane.add(btnVerLesiones);
 		
