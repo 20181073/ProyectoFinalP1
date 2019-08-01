@@ -124,7 +124,7 @@ public class AñadirJugador extends JDialog {
 		panel.add(lblEquipo);
 		
 		cbxEquipo = new JComboBox<String>();
-		cbxEquipo.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>"}));
+		//cbxEquipo.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>"}));
 		//String[] cbxEqui = {"<Seleccione>"};
 		cbxEquipo.setBounds(76, 126, 158, 20);
 		panel.add(cbxEquipo);
@@ -215,12 +215,24 @@ public class AñadirJugador extends JDialog {
 				String posicion = cbxPosicion.getSelectedItem().toString();
 				String equipo = cbxEquipo.getSelectedItem().toString();
 				
+				
+				
 				Equipo MiEquipo = SerieNacional.getInstancia().buscarequipoByName(equipo);
+				
+				String codigo = "";
+				
+				try {
+					if(MiEquipo.getJugadores().size() > 0) {
+						codigo = Integer.toString(Integer.parseInt( MiEquipo.getJugadores().get(MiEquipo.getJugadores().size()).getCodigo() ) + 1);
+					}
+				} catch (Exception e2) {
+					codigo = "0";
+				}
 				
 				int numero = Integer.parseInt(spnNumero.getValue().toString());
 				
-				if(!nombreJugador.equalsIgnoreCase("") && !posicion.equalsIgnoreCase("<Seleccione>") && !equipo.equalsIgnoreCase("<Seleccione>") && !checkNumero(numero) && ready) {
-					Jugador aux = new Jugador(nombreJugador, peso, estatura, posicion, numero, MiEquipo );
+				if(!nombreJugador.equalsIgnoreCase("") && !posicion.equalsIgnoreCase("<Seleccione>") && !equipo.equalsIgnoreCase("") && ready && !checkNumero(numero)) {
+					Jugador aux = new Jugador(codigo, nombreJugador, peso, estatura, posicion, numero, MiEquipo );
 					SerieNacional.getInstancia().getEquipos().get(cbxEquipo.getSelectedIndex()).getJugadores().add(aux);
 					SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
 					JOptionPane.showMessageDialog(null, "Registro del jugador exitoso.", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -259,7 +271,7 @@ public class AñadirJugador extends JDialog {
 		for (int i = 0; i < SerieNacional.getInstancia().getEquipos().size(); i++) {
 			cbxEquipo.addItem(new String(SerieNacional.getInstancia().getEquipos().get(i).getNombre()));
 		}
-		cbxEquipo.insertItemAt(new String("<Seleccione>"), 0);
+		//cbxEquipo.insertItemAt(new String("<Seleccione>"), 0);
 		cbxEquipo.setSelectedIndex(0);
 		
 	}

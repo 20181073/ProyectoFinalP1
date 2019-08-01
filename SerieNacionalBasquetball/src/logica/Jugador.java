@@ -42,7 +42,8 @@ public class Jugador implements Serializable {
 		this.cantfaltas=cantfaltas;
 	}
 
-	public Jugador(String nombreJugador, float peso, float estatura, String posicion, int numero, Equipo MiEquipo) {
+	public Jugador(String codigo ,String nombreJugador, float peso, float estatura, String posicion, int numero, Equipo MiEquipo) {
+		this.codigo = codigo;
 		this.nombre = nombreJugador;
 		this.peso=peso;
 		this.altura = estatura;
