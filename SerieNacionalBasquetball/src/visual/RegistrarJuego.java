@@ -2,6 +2,7 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -63,6 +64,7 @@ public class RegistrarJuego extends JFrame {
 	 * Create the frame.
 	 */
 	public RegistrarJuego(SerieNacional serie) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/IconoPrincipal.png")));
 		Equipo local;
 		Equipo visita;
 		setResizable(false);

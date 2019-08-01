@@ -2,6 +2,7 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,9 +43,11 @@ public class CambiarFecha extends JFrame {
 	 * Create the frame.
 	 */
 	public CambiarFecha(int yearj,SerieNacional serie,Juego juego) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/IconoPrincipal.png")));
+		setResizable(false);
 		setTitle("Cambiar fecha de juego");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 413, 267);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,7 +78,7 @@ public class CambiarFecha extends JFrame {
 				dispose();
 			}
 		});
-		btnCambiar.setBounds(155, 173, 89, 23);
+		btnCambiar.setBounds(159, 173, 89, 23);
 		contentPane.add(btnCambiar);
 		
 		JLabel lblEquipo = new JLabel("Equipo1");
