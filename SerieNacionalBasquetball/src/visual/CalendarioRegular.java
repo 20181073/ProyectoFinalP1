@@ -123,6 +123,8 @@ public class CalendarioRegular extends JFrame {
 		JButton btnCambiarFechaDe = new JButton("Cambiar Fecha de juego");
 		btnCambiarFechaDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CambiarFecha ventana = new CambiarFecha(Integer.parseInt(spinner.getValue().toString()),serie,serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))));
+				ventana.setVisible(true);
 			}
 		});
 		btnCambiarFechaDe.setBounds(83, 295, 173, 23);
