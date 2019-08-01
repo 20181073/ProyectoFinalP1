@@ -40,7 +40,7 @@ public class Principal extends JFrame {
 	}
 	*/
 
-	public Principal() {
+	public Principal(String tipodeuser) {
 		SerieNacional LaSerie = SerieNacional.getInstancia().Cargar();
 		
 		if(LaSerie != null) {

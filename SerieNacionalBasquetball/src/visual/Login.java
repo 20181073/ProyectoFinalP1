@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -20,6 +21,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.Socket;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -28,6 +34,12 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField passwordField;
+	private String HOST="127.0.0.1";
+	private int PUERTO = 5110;
+	private Socket SckCliente;
+    private DataInputStream dis;
+    private DataOutputStream dos;
+
 
 	
 	public static void main(String[] args) {
@@ -45,6 +57,20 @@ public class Login extends JFrame {
 	
 
 	public Login() {
+		
+		try {
+			
+			SckCliente =new Socket(HOST,PUERTO);
+			System.out.println("Conectado al servidor");
+			dos= new DataOutputStream(SckCliente.getOutputStream());
+			dis = new DataInputStream(SckCliente.getInputStream());
+		
+		}catch(IOException e1) {
+			System.out.println("Error: "+e1);
+			dispose();
+		} 
+		
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -108,29 +134,41 @@ public class Login extends JFrame {
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String user, pass;
+				String user, pass,confirmacion;
 				user = txtUsuario.getText();
 				pass = String.valueOf(passwordField.getPassword());
 				
 				if(user.isEmpty() || pass.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Ha dejado campos vacíos.","Aviso",JOptionPane.WARNING_MESSAGE);
 				}
-				else if(user.contentEquals("admin")  && pass.contentEquals("admin")){
-					JOptionPane.showMessageDialog(null, "Sesión iniciada con éxito.","Información",JOptionPane.INFORMATION_MESSAGE);
-					Principal ventana = new Principal();
-					ventana.setVisible(true);
-					dispose();
-
-				}
 				else {
-					JOptionPane.showMessageDialog(null, "El usuario o contraseña es incorrecto.","Aviso",JOptionPane.WARNING_MESSAGE);
-					JOptionPane.showMessageDialog(null, "User: "+user+"Pass: "+pass,"Aviso",JOptionPane.WARNING_MESSAGE);
+					try {
+						dos.writeUTF(user);
+						dos.writeUTF(pass);
+						confirmacion=dis.readUTF();
+						if (confirmacion.equals("Permiso Consedido")) {
+							System.out.println(":"+confirmacion+":");
+							Principal ventana = new Principal(dis.readUTF());
+							ventana.setVisible(true);
+							dis.close();
+							dos.close();
+							dispose();
+						}else {
+							JOptionPane.showMessageDialog(null, "Usuario o contraseña incorreta.","Aviso",JOptionPane.WARNING_MESSAGE);
+						}
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						System.out.println("Error de comunicacion con el servidor :"+e1);
+						e1.printStackTrace();
+					}
+					
 				}
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEntrar.setBounds(126, 353, 89, 23);
 		panel.add(btnEntrar);
+	
 	}
 
 }
