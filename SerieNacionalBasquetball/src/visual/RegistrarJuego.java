@@ -90,32 +90,7 @@ public class RegistrarJuego extends JFrame {
 		panelEquipoLocal.add(lblEquipoLocal);
 		
 		JComboBox cmbxLocal = new JComboBox();
-		Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()][2];
-		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size();i++) {
-			
-			infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
-			infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
-			
-		}
-		cmbxLocal.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()][2];
-				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size();i++) {
-					
-					infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
-					infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
-					
-				}
-				tableLocal.setModel(new DefaultTableModel(
-						infolocal,
-						new String[] {
-							"Codigo", "Nombre"
-						}
-				));
-				
-			}
-		});
+		
 		Object[] helperlocal={serie.getEquipos().get(0).getNombre()};
 		cmbxLocal.setModel(new DefaultComboBoxModel(helperlocal));
 		for (int i =1;i<serie.getEquipos().size();i++) {
@@ -129,6 +104,13 @@ public class RegistrarJuego extends JFrame {
 		panelEquipoLocal.add(scrollpanelTablaLocal);
 		
 		tableLocal = new JTable();
+		Object[][] infolocal= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()][2];
+		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size();i++) {
+			
+			infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+			infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
+			
+		}
 		tableLocal.setModel(new DefaultTableModel(
 			infolocal,
 			new String[] {
@@ -179,24 +161,20 @@ public class RegistrarJuego extends JFrame {
 		panelEquipoVisita.add(lblEquipoVisitante);
 		
 		JComboBox cmbxVisitante = new JComboBox();
-		Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size()][2];
-		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size();i++) {
-			
-			info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
-			info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
-			
-		}
+		
 		cmbxVisitante.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				
-				Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size()][2];
-				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size();i++) {
-					
-					info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
-					info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
-					
-				}
+				
+					Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size()][2];
+					for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size();i++) {
+						
+						info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+						info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
+						
+					}
+				
 				tableEquipoVisita.setModel(new DefaultTableModel(
 						info,
 						new String[] {
@@ -223,6 +201,13 @@ public class RegistrarJuego extends JFrame {
 		panelEquipoVisita.add(scrollPaneEquipoVisita);
 		
 		tableEquipoVisita = new JTable();
+		Object[][] info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size()][2];
+		for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size();i++) {
+			
+			info[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+			info[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
+			
+		}
 		tableEquipoVisita.setModel(new DefaultTableModel(
 			info,
 			new String[] {
@@ -469,6 +454,26 @@ public class RegistrarJuego extends JFrame {
 				dispose();
 			}
 		});
+		cmbxLocal.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				infolocal = new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()][2];
+				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size();i++) {
+					
+					infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
+					infolocal[i][1]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getNombre();		
+					
+				}
+				tableLocal.setModel(new DefaultTableModel(
+						infolocal,
+						new String[] {
+							"Codigo", "Nombre"
+						}
+				));
+				
+			}
+		});
 		
 	}
+	
 }

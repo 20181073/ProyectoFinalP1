@@ -1,6 +1,7 @@
 package visual;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
@@ -90,8 +91,13 @@ public class ListaDeJugadores extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
 					
-					SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).getJugadores().remove(SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).toString()));
-				
+					SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
+							toString())).getJugadores().remove(SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().
+							indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).
+							toString()));
+					SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
+					JOptionPane.showMessageDialog(null, "Eliminación de jugador exitoso", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					
 					CargarTabla();
 				}
 			} 

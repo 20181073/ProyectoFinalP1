@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -113,8 +114,11 @@ public class ListaDeEquipos extends JDialog {
 					JButton btnEliminarEquipo = new JButton("Eliminar Equipo");
 					btnEliminarEquipo.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {								
-								//SerieNacional.getInstancia().getEquipos().remove(table.getValueAt(table.getSelectedRow()));
+							if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {	
+								SerieNacional.getInstancia().getEquipos().remove(table.getSelectedRow());
+								SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
+								JOptionPane.showMessageDialog(null, "Eliminación de equipo exitoso", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+								cargarTabla();
 							}
 						}
 					});

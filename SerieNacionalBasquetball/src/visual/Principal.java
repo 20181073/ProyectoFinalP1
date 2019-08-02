@@ -100,9 +100,9 @@ public class Principal extends JFrame {
 		btnRegistrar.setBackground(new Color(255, 165, 0));
 		
 		//Mola
-		RSButtonMetro btnListar = new RSButtonMetro();
-		btnListar.setColorTextNormal(Color.BLACK);
-		btnListar.addActionListener(new ActionListener() {
+		RSButtonMetro btnGestionar = new RSButtonMetro();
+		btnGestionar.setColorTextNormal(Color.BLACK);
+		btnGestionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelRegistrar.setVisible(false);
 				panelGestion.setVisible(true);
@@ -117,17 +117,17 @@ public class Principal extends JFrame {
 				Animacion.Animacion.mover_derecha(-188, 0, 2, 2, panelGestion);
 			}
 		});
-		btnListar.setBounds(116, 0, 100, 50);
-		btnListar.setColorNormal(new Color(255, 165, 0));
-		btnListar.setColorPressed(new Color(204, 102, 0));
-		btnListar.setColorHover(new Color(204, 102, 0));
-		btnListar.setForeground(new Color(0, 0, 0));
-		btnListar.setBackground(new Color(255, 165, 0));
-		btnListar.setText("Listar");
-		btnListar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnGestionar.setBounds(116, 0, 100, 50);
+		btnGestionar.setColorNormal(new Color(255, 165, 0));
+		btnGestionar.setColorPressed(new Color(204, 102, 0));
+		btnGestionar.setColorHover(new Color(204, 102, 0));
+		btnGestionar.setForeground(new Color(0, 0, 0));
+		btnGestionar.setBackground(new Color(255, 165, 0));
+		btnGestionar.setText("Gestionar");
+		btnGestionar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel_superior.setLayout(null);
 		panel_superior.add(btnRegistrar);
-		panel_superior.add(btnListar);
+		panel_superior.add(btnGestionar);
 		
 		RSButtonMetro btnmtrCalendario = new RSButtonMetro();
 		btnmtrCalendario.addActionListener(new ActionListener() {
@@ -145,7 +145,7 @@ public class Principal extends JFrame {
 		btnmtrCalendario.setColorNormal(new Color(255, 165, 0));
 		btnmtrCalendario.setColorHover(new Color(204, 102, 0));
 		btnmtrCalendario.setBackground(new Color(255, 165, 0));
-		btnmtrCalendario.setBounds(226, 0, 100, 50);
+		btnmtrCalendario.setBounds(240, 0, 100, 50);
 		panel_superior.add(btnmtrCalendario);
 		
 		RSButtonMetro btnmtrCerrarSesin = new RSButtonMetro();
@@ -216,9 +216,9 @@ public class Principal extends JFrame {
 		RSButtonMetro btnmtrJuego = new RSButtonMetro();
 		btnmtrJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//SimulacionJuego simu = new SimulacionJuego(null,null,null,null,null,null);
+				RegistrarJuego simu = new RegistrarJuego(SerieNacional.getInstancia());
 				//simu.setModal(true);
-				//simu.setVisible(true);
+				simu.setVisible(true);
 			}
 		});
 		btnmtrJuego.setColorPressed(Color.GRAY);
@@ -233,11 +233,11 @@ public class Principal extends JFrame {
 		btnmtrJuego.setBounds(0, 260, 220, 35);
 		panelRegistrar.add(btnmtrJuego);
 		
-		JLabel lblListar = new JLabel("Listar");
-		lblListar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblListar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblListar.setBounds(10, 24, 200, 28);
-		panelGestion.add(lblListar);
+		JLabel lblGestionar = new JLabel("Gestionar");
+		lblGestionar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestionar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblGestionar.setBounds(10, 24, 200, 28);
+		panelGestion.add(lblGestionar);
 		
 		RSButtonMetro btnmtrJugadores = new RSButtonMetro();
 		btnmtrJugadores.addActionListener(new ActionListener() {
