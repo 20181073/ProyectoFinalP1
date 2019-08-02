@@ -25,7 +25,7 @@ public class Temporada implements Serializable {
 				 aux++;
 			}
 		}
-		cantjuegos = aux;
+		cantjuegos = aux*2;
 		this.year = year;
 		juegos=new ArrayList<Juego>() ;
 	}
@@ -91,6 +91,22 @@ public class Temporada implements Serializable {
 //					date.setTime((date.getTime()) + (((7 * (a - i - 1)) * 24) * 60 * 60 * 1000));
 //				}else {
 					date.setTime((date.getTime()) + (7 * a * 24 * 60 * 60 * 1000));
+				}
+				juegos.add(new Juego(date, 0, 0, "No Juagado", codigo));
+				juegos.get(codigo).getEquipos().add(equipos.get(i));
+				juegos.get(codigo).getEquipos().add(equipos.get(a));
+			}
+		}
+		for (int i = 0; i < equipos.size(); i++) {
+			Date date = new Date();
+			date.setMonth(0); 
+			date.setYear(yearj);
+			date.setTime((date.getTime())+ (7  * 24 * 60 * 60 * 1000*2*(equipos.size())-1));
+			for (int a = i + 1; a < equipos.size(); a++, codigo++) {
+				if(a-i-1!=0) {
+//					date.setTime((date.getTime()) + (((7 * (a - i - 1)) * 24) * 60 * 60 * 1000));
+//				}else {
+					date.setTime((date.getTime())  + (7 * a * 24 * 60 * 60 * 1000) );
 				}
 				juegos.add(new Juego(date, 0, 0, "No Juagado", codigo));
 				juegos.get(codigo).getEquipos().add(equipos.get(i));

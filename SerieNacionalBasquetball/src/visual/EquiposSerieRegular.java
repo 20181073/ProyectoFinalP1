@@ -68,7 +68,7 @@ public class EquiposSerieRegular extends JFrame {
 		contentPane.add(lblSeleccionParaLa);
 		
 		JScrollPane scrollPaneSeleccion = new JScrollPane();
-		scrollPaneSeleccion.setBounds(385, -25, 220, 270);
+		scrollPaneSeleccion.setBounds(385, 42, 220, 270);
 		contentPane.add(scrollPaneSeleccion);
 		
 		tableSeleccion = new JTable(); 
@@ -78,9 +78,9 @@ public class EquiposSerieRegular extends JFrame {
 				tableEquipos.clearSelection();
 			}
 		});
-		Object[][] infoSel = new Object[26][2];
+//		Object[][] infoSel = new Object[26][2];
 		tableSeleccion.setModel(new DefaultTableModel(
-			infoSel,
+			new Object[][] {},
 			new String[] {
 				 "Nombre", "Jugadores"
 			}

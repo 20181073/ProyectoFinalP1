@@ -67,8 +67,8 @@ public class RegistrarJuego extends JFrame {
 	 */
 	public RegistrarJuego(SerieNacional serie) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagenes/IconoPrincipal.png")));
-		Equipo local;
-		Equipo visita;
+		Equipo local=new Equipo("",0,0);
+		Equipo visita=new Equipo("",0,0);
 		setResizable(false);
 		setTitle("Registrar Juego");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -232,7 +232,7 @@ public class RegistrarJuego extends JFrame {
 		txtCodigo.setBounds(176, 36, 128, 20);
 		contentPane.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		
+		txtCodigo.setText("0");
 		try {
 			if(serie.getJuegos().size()>0) {
 				txtCodigo.setText(Integer.toString(serie.getJuegos().get(serie.getJuegos().size()-1).getCodigo()+1));
@@ -278,10 +278,17 @@ public class RegistrarJuego extends JFrame {
 		btnCambiarEquipo.setBounds(10, 24, 128, 23);
 		contentPane.add(btnCambiarEquipo);
 		
-		local=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString()));
-		local.setJugadores(new ArrayList<Jugador>());
-		visita=serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString()));
-		visita.setJugadores(new ArrayList<Jugador>());
+		local.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getFicherologo());
+		local.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getLogo());
+		local.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre());
+		local.setJuegosganados((serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosganados()));
+		local.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosperdidos());
+		visita.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getFicherologo());
+		visita.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getLogo());
+		visita.setJuegosganados(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosganados());
+		visita.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosperdidos());
+		visita.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getNombre());
+		
 		
 		btnConfirmarEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -294,11 +301,11 @@ public class RegistrarJuego extends JFrame {
 							verif=false;
 						}
 					}
-					for(int p=0;p<local.getJugadores().size();p++) {
-						if(tableLocalJuego.getValueAt(i, 0).equals(tableEquipoVisitaJuego.getValueAt(p, 0))) {
-							verif=false;
-						}
-					}
+//					for(int p=0;p<local.getJugadores().size();p++) {
+//						if(tableLocalJuego.getValueAt(i, 0).equals(tableEquipoVisitaJuego.getValueAt(p, 0))) {
+//							verif=false;
+//						}
+//					}
 				}
 				
 				if(visita.getNombre().equals(local.getNombre())) {
@@ -339,11 +346,11 @@ public class RegistrarJuego extends JFrame {
 							verif=false;
 						}
 					}
-					for(int p=0;p<local.getJugadores().size();p++) {
-						if(tableEquipoVisitaJuego.getValueAt(i, 0).equals(tableLocalJuego.getValueAt(p, 0))) {
-							verif=false;
-						}
-					}
+//					for(int p=0;p<local.getJugadores().size();p++) {
+//						if(tableEquipoVisitaJuego.getValueAt(i, 0).equals(tableLocalJuego.getValueAt(p, 0))) {
+//							verif=false;
+//						}
+//					}
 				}
 				
 				if(visita.getNombre().equals(local.getNombre())) {
@@ -382,6 +389,17 @@ public class RegistrarJuego extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(visita.getJugadores().size()<5&&tableEquipoVisita.getSelectedColumn()>-1) {
+					local.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getFicherologo());
+					local.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getLogo());
+					local.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre());
+					local.setJuegosganados((serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosganados()));
+					local.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosperdidos());
+					visita.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getFicherologo());
+					visita.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getLogo());
+					visita.setJuegosganados(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosganados());
+					visita.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosperdidos());
+					visita.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getNombre());
+					
 					visita.getJugadores().add(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().get(tableEquipoVisita.getSelectedRow()));
 					Object[][] auxiliar= new Object[visita.getJugadores().size()][2];
 					for(int i =0; i < visita.getJugadores().size();i++) {
@@ -397,6 +415,7 @@ public class RegistrarJuego extends JFrame {
 						}
 					));
 					
+					
 				}
 				
 			}
@@ -405,6 +424,17 @@ public class RegistrarJuego extends JFrame {
 		btnSeleccionarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(local.getJugadores().size()<5 && tableLocal.getSelectedColumn()>-1) {
+					local.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getFicherologo());
+					local.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getLogo());
+					local.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre());
+					local.setJuegosganados((serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosganados()));
+					local.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosperdidos());
+					visita.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getFicherologo());
+					visita.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getLogo());
+					visita.setJuegosganados(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosganados());
+					visita.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosperdidos());
+					visita.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getNombre());
+					
 					local.getJugadores().add(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString()))
 							.getJugadores().get(tableLocal.getSelectedRow()));
 					Object[][] auxiliar= new Object[local.getJugadores().size()][2];
@@ -437,8 +467,19 @@ public class RegistrarJuego extends JFrame {
 		cmbxLocal.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
+				local.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getFicherologo());
+				local.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getLogo());
+				local.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre());
+				local.setJuegosganados((serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosganados()));
+				local.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosperdidos());
+				visita.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getFicherologo());
+				visita.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getLogo());
+				visita.setJuegosganados(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosganados());
+				visita.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosperdidos());
+				visita.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getNombre());
+				
 				infolocal = new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()][2];
-				System.out.println(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size()+" "+serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString()));
+				
 				for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().size();i++) {
 					
 					infolocal[i][0]=serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJugadores().get(i).getCodigo();
@@ -459,7 +500,17 @@ public class RegistrarJuego extends JFrame {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				
-					System.out.println(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size());
+				local.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getFicherologo());
+				local.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getLogo());
+				local.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getNombre());
+				local.setJuegosganados((serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosganados()));
+				local.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxLocal.getSelectedItem().toString())).getJuegosperdidos());
+				visita.setFicherologo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getFicherologo());
+				visita.setLogo(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getLogo());
+				visita.setJuegosganados(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosganados());
+				visita.setJuegosperdidos(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJuegosperdidos());
+				visita.setNombre(serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getNombre());
+					
 					info= new Object[serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size()][2];
 					for(int i =0; i < serie.getEquipos().get(serie.indiceDeEquipo(cmbxVisitante.getSelectedItem().toString())).getJugadores().size();i++) {
 						

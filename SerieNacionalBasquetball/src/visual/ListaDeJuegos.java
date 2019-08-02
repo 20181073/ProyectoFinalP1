@@ -74,7 +74,7 @@ public class ListaDeJuegos extends JFrame {
 				info[i][3]=serie.getJuegos().get(i).getEquipos().get(1).getNombre();
 			}
 			info[i][4]=serie.getJuegos().get(i).getEquipos().get(1).getNombre();
-			info[i][6]=serie.getJuegos().get(i).getEquipos().get(0).getNombre();			
+			info[i][5]=serie.getJuegos().get(i).getEquipos().get(0).getNombre();			
 			
 		}
 		table.setModel(new DefaultTableModel(
@@ -90,8 +90,8 @@ public class ListaDeJuegos extends JFrame {
 		JButton btnSimular = new JButton("Simular");
 		btnSimular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(table.getSelectedColumn()>-1) {
-					SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 7).toString(), table.getValueAt(table.getSelectedRow(), 5).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 7).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))),"Juego comun");
+				if(table.getSelectedColumn()>-1&& table.getValueAt(table.getSelectedRow(), 3).toString().equals("No Jugado")) {
+					SimulacionJuego ventana=new SimulacionJuego(  serie,  table.getValueAt(table.getSelectedRow(), 5).toString(), table.getValueAt(table.getSelectedRow(), 4).toString(),  serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 5).toString())), serie.getEquipos().get(serie.indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())), serie.getJuegos().get(serie.indiceDeJuego(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))),"Juego comun");
 					ventana.setVisible(true);
 					dispose();
 				}

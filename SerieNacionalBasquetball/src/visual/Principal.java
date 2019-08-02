@@ -309,9 +309,9 @@ public class Principal extends JFrame {
 		RSButtonMetro btnmtrJuegos = new RSButtonMetro();
 		btnmtrJuegos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ListaDeJuegos listjuegos = new ListaDeJuegos(null, "", "", null, null, null);
+				ListaDeJuegos listjuegos = new ListaDeJuegos(SerieNacional.getInstancia());
 				//listjuegos.setModal(true);
-				//listjuegos.setVisible(true);
+				listjuegos.setVisible(true);
 			}
 		});
 		btnmtrJuegos.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/67083.png")));

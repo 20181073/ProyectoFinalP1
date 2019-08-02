@@ -75,12 +75,12 @@ public class SimulacionJuego extends JFrame {
 		lblVisita.setBounds(454, 14, 74, 37);
 		contentPane.add(lblVisita);
 		
-		JLabel lblPuntosLocal = new JLabel("00");
+		JLabel lblPuntosLocal = new JLabel("0");
 		lblPuntosLocal.setFont(new Font("Lao UI", Font.BOLD, 76));
 		lblPuntosLocal.setBounds(185, 176, 88, 72);
 		contentPane.add(lblPuntosLocal);
 		
-		JLabel lblPuntosVisita = new JLabel("00");
+		JLabel lblPuntosVisita = new JLabel("0");
 		lblPuntosVisita.setFont(new Font("Lao UI", Font.BOLD, 76));
 		lblPuntosVisita.setBounds(458, 176, 88, 72);
 		contentPane.add(lblPuntosVisita);
@@ -162,14 +162,14 @@ public class SimulacionJuego extends JFrame {
 				Jugador aux=null;
 				
 				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
+					int indexjugador=tableJugadoresLocal.getSelectedRow();
 							
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
 					Falta ventana = new Falta(aux.getNombre(),aux,serie,nombreEQlocal);
 					ventana.setVisible(true);
 				}
 				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+					int indexjugador=tableJugadoresVisita.getSelectedRow();
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
 					Falta ventana = new Falta(aux.getNombre(),aux,serie,nombreEQvisita);
@@ -286,15 +286,13 @@ public class SimulacionJuego extends JFrame {
 		
 		btnHacerJugada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rdbtnTiroLibre.setSelected(false);
-				rdbtnDoble.setSelected(false);
-				rdbtnTriple.setSelected(false);
+				
 				
 				Jugador aux=null;
 				
-				if (tableJugadoresLocal.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByName(nombreEQlocal).indiceDeJugador(tableJugadoresLocal.getValueAt(tableJugadoresLocal.getSelectedRow(), tableJugadoresLocal.getSelectedColumn()).toString());
-							
+				if (tableJugadoresLocal.getSelectedRow()>-1) {
+					int indexjugador=tableJugadoresLocal.getSelectedRow();
+					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQlocal)).getJugadores().get(indexjugador);
 					if(rdbtnTiroLibre.isSelected()) {
 						lblPuntosLocal.setText(Integer.toString(Integer.parseInt(lblPuntosLocal.getText())+1));
@@ -313,8 +311,8 @@ public class SimulacionJuego extends JFrame {
 					}
 					
 				}
-				if (tableJugadoresVisita.getSelectedColumn()>-1) {
-					int indexjugador=serie.buscarequipoByName(nombreEQvisita).indiceDeJugador(tableJugadoresVisita.getValueAt(tableJugadoresVisita.getSelectedRow(), tableJugadoresVisita.getSelectedColumn()).toString());
+				if (tableJugadoresVisita.getSelectedRow()>-1) {
+					int indexjugador=tableJugadoresVisita.getSelectedRow();
 					
 					aux=serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador);
 					if(rdbtnTiroLibre.isSelected()) {
@@ -330,6 +328,9 @@ public class SimulacionJuego extends JFrame {
 						serie.getEquipos().get(serie.indiceDeEquipo(nombreEQvisita)).getJugadores().get(indexjugador).setPtsTotalCarrera(aux.getPtsTotalCarrera()+3);
 					}
 				}
+				rdbtnTiroLibre.setSelected(false);
+				rdbtnDoble.setSelected(false);
+				rdbtnTriple.setSelected(false);
 				tableJugadoresVisita.clearSelection();
 				tableJugadoresLocal.clearSelection();
 
@@ -400,9 +401,9 @@ public class SimulacionJuego extends JFrame {
 				simulando.setPtsEquipo1(Integer.parseInt(lblPuntosLocal.getText()));
 				simulando.setPtsEquipo2(Integer.parseInt(lblPuntosVisita.getText()));
 				if(tipodejuego.equals("serieregular")) {
-					serie.getJuegos().set(serie.indiceDeJuego(simulando.getCodigo()), simulando);
-				}else {
 					serie.getTemporadas().get(serie.indiceDeTemporada(simulando.getFechaDelJuego().getYear()+1900)).getJuegos().set(serie.getTemporadas().get(serie.indiceDeTemporada(simulando.getFechaDelJuego().getYear()+1900)).indiceDeJuego(simulando.getCodigo()), simulando);
+				}else {
+					serie.getJuegos().set(serie.indiceDeJuego(simulando.getCodigo()), simulando);
 				}
 			}
 		});
