@@ -53,6 +53,7 @@ public class LesionarJugador extends JDialog {
 		
 		setTitle("Lesiones");
 		setBounds(100, 100, 481, 280);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

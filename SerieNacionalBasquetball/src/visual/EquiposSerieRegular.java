@@ -54,6 +54,7 @@ public class EquiposSerieRegular extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		seleccion = new ArrayList<Equipo>();
 		setBounds(100, 100, 631, 361);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

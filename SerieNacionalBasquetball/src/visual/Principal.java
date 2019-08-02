@@ -289,31 +289,6 @@ public class Principal extends JFrame {
 		btnmtrEquipos.setBounds(0, 105, 220, 35);
 		panelGestion.add(btnmtrEquipos);
 		
-		RSButtonMetro btnmtrLesiones = new RSButtonMetro();
-		btnmtrLesiones.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(SerieNacional.getInstancia().cantidadDeJugadoresTotales()!= 0) {
-					//ListaDeLesiones listl = new ListaDeLesiones(null,null);
-					//listl.setModal(true);
-					//listl.setVisible(true);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Aún no hay jugadores creados.");
-				} 
-			}
-		});
-		btnmtrLesiones.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/014-first-aid-kit.png")));
-		btnmtrLesiones.setText("Lesiones");
-		btnmtrLesiones.setForeground(Color.BLACK);
-		btnmtrLesiones.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnmtrLesiones.setColorTextNormal(Color.BLACK);
-		btnmtrLesiones.setColorPressed(Color.GRAY);
-		btnmtrLesiones.setColorNormal(SystemColor.controlHighlight);
-		btnmtrLesiones.setColorHover(SystemColor.controlShadow);
-		btnmtrLesiones.setBackground(SystemColor.controlHighlight);
-		btnmtrLesiones.setBounds(0, 260, 220, 35);
-		panelGestion.add(btnmtrLesiones);
-		
 		RSButtonMetro btnmtrJuegos = new RSButtonMetro();
 		btnmtrJuegos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -331,7 +306,7 @@ public class Principal extends JFrame {
 		btnmtrJuegos.setColorNormal(SystemColor.controlHighlight);
 		btnmtrJuegos.setColorHover(SystemColor.controlShadow);
 		btnmtrJuegos.setBackground(SystemColor.controlHighlight);
-		btnmtrJuegos.setBounds(0, 345, 220, 35);
+		btnmtrJuegos.setBounds(0, 260, 220, 35);
 		panelGestion.add(btnmtrJuegos);
 		
 		JPanel panelDeInformacion1 = new JPanel();

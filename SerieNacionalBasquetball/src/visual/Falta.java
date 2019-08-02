@@ -39,6 +39,7 @@ public class Falta extends JDialog {
 	public Falta(String nombre,Jugador jugador, SerieNacional serie,String codigoEQseleccionado) {
 		setTitle("Confirmar Falta");
 		setBounds(100, 100, 524, 187);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

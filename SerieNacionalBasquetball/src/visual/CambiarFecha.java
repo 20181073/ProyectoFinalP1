@@ -48,6 +48,7 @@ public class CambiarFecha extends JFrame {
 		setTitle("Cambiar fecha de juego");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 413, 267);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

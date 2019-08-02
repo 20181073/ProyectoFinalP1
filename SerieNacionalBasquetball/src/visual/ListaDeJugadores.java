@@ -102,7 +102,7 @@ public class ListaDeJugadores extends JFrame {
 				}
 			} 
 		}); 
-		btnEliminarJugador.setBounds(43, 235, 122, 23); 
+		btnEliminarJugador.setBounds(33, 235, 132, 23); 
 		contentPane.add(btnEliminarJugador);
 		
 		JButton btnAgregarJugador = new JButton("Agregar Jugador");
@@ -114,7 +114,7 @@ public class ListaDeJugadores extends JFrame {
 				CargarTabla();
 			}
 		});
-		btnAgregarJugador.setBounds(375, 235, 122, 23);
+		btnAgregarJugador.setBounds(376, 235, 132, 23);
 		contentPane.add(btnAgregarJugador);
 		
 		JButton btnSalir = new JButton("Salir");
