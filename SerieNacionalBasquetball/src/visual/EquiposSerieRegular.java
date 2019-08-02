@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class EquiposSerieRegular extends JFrame {
 
@@ -50,6 +51,7 @@ public class EquiposSerieRegular extends JFrame {
 	 * Create the frame.
 	 */
 	public EquiposSerieRegular(int yearj,SerieNacional serie ) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EquiposSerieRegular.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Generar Temporada"+yearj);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		seleccion = new ArrayList<Equipo>();

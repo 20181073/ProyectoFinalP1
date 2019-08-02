@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
+import java.awt.Toolkit;
 
 public class LesionarJugador extends JDialog {
 
@@ -50,6 +51,7 @@ public class LesionarJugador extends JDialog {
 	 * Create the dialog.
 	 */
 	public LesionarJugador(Jugador jugador, SerieNacional serie,Equipo equipo) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LesionarJugador.class.getResource("/imagenes/IconoPrincipal.png")));
 		
 		setTitle("Lesiones");
 		setBounds(100, 100, 481, 280);

@@ -17,6 +17,7 @@ import logica.SerieNacional;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ListaDeJuegos extends JFrame {
 
@@ -43,6 +44,7 @@ public class ListaDeJuegos extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeJuegos(SerieNacional serie) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaDeJuegos.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Juegos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 691, 300);

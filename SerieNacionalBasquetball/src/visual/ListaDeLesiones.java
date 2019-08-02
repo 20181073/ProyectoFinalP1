@@ -14,6 +14,7 @@ import logica.SerieNacional;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ListaDeLesiones extends JFrame {
 
@@ -41,6 +42,7 @@ public class ListaDeLesiones extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeLesiones(Jugador jugador,SerieNacional serie,Equipo equipo) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaDeLesiones.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Lesiones del jugador: "+jugador.getNombre());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

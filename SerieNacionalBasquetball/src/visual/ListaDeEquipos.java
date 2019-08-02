@@ -114,11 +114,16 @@ public class ListaDeEquipos extends JDialog {
 					JButton btnEliminarEquipo = new JButton("Eliminar Equipo");
 					btnEliminarEquipo.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {	
-								SerieNacional.getInstancia().getEquipos().remove(table.getSelectedRow());
-								SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
-								JOptionPane.showMessageDialog(null, "Eliminación de equipo exitoso", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-								cargarTabla();
+							
+							int opc = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar?", "Aviso", JOptionPane.YES_NO_OPTION);
+							
+							if( opc == 0) {
+								if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {	
+									SerieNacional.getInstancia().getEquipos().remove(table.getSelectedRow());
+									SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
+									JOptionPane.showMessageDialog(null, "Eliminación de equipo exitoso", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+									cargarTabla();
+								}
 							}
 						}
 					});

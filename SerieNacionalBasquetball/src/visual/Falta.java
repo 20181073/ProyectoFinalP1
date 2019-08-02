@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Falta extends JDialog {
 
@@ -37,6 +38,7 @@ public class Falta extends JDialog {
 	 * Create the dialog.
 	 */
 	public Falta(String nombre,Jugador jugador, SerieNacional serie,String codigoEQseleccionado) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Falta.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Confirmar Falta");
 		setBounds(100, 100, 524, 187);
 		setLocationRelativeTo(null);

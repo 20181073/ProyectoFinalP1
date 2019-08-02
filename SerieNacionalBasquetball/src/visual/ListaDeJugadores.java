@@ -89,16 +89,21 @@ public class ListaDeJugadores extends JFrame {
 		btnEliminarJugador.setEnabled(false);
 		btnEliminarJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
-					
-					SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
-							toString())).getJugadores().remove(SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().
-							indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).
-							toString()));
-					SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
-					JOptionPane.showMessageDialog(null, "Eliminación de jugador exitoso", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-					
-					CargarTabla();
+				
+				int opc = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar?", "Aviso", JOptionPane.YES_NO_OPTION);
+
+				if( opc == 0 ) {
+					if(table.getSelectedColumn()>-1 && table.getValueAt(table.getSelectedRow(), 0).equals("")==false) {
+						
+						SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).
+								toString())).getJugadores().remove(SerieNacional.getInstancia().getEquipos().get(SerieNacional.getInstancia().
+								indiceDeEquipo(table.getValueAt(table.getSelectedRow(), 4).toString())).indiceDeJugador(table.getValueAt(table.getSelectedRow(), 0).
+								toString()));
+						SerieNacional.getInstancia().Guardar(SerieNacional.getInstancia());
+						JOptionPane.showMessageDialog(null, "Eliminación de jugador exitoso", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						
+						CargarTabla();
+					}
 				}
 			} 
 		}); 
