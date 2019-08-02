@@ -17,6 +17,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Principal extends JFrame {
 
@@ -148,6 +150,21 @@ public class Principal extends JFrame {
 		btnmtrCalendario.setBounds(240, 0, 100, 50);
 		panel_superior.add(btnmtrCalendario);
 		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				if( tipodeuser.equalsIgnoreCase("Anotador")  ) {
+					
+					panelRegistrar.setVisible(false);
+					btnRegistrar.setVisible(false);
+					btnmtrCalendario.setVisible(false);
+					btnGestionar.setVisible(false);
+				}
+				//System.out.println(tipodeuser);
+				
+			}
+		});
+		
 		RSButtonMetro btnmtrCerrarSesin = new RSButtonMetro();
 		btnmtrCerrarSesin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -243,7 +260,7 @@ public class Principal extends JFrame {
 		btnmtrJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(LaSerie.cantidadDeJugadoresTotales()> 0) {
-					ListaDeJugadores listj = new ListaDeJugadores();
+					ListaDeJugadores listj = new ListaDeJugadores(tipodeuser);
 					//listj.setModal(true);
 					listj.setVisible(true);
 				}
@@ -268,7 +285,7 @@ public class Principal extends JFrame {
 		btnmtrEquipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(SerieNacional.getInstancia().getEquipos().size() != 0) {
-					ListaDeEquipos listE = new ListaDeEquipos();
+					ListaDeEquipos listE = new ListaDeEquipos(tipodeuser);
 					listE.setModal(true);
 					listE.setVisible(true);
 				}

@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -42,7 +44,7 @@ public class ListaDeJugadores extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListaDeJugadores() {
+	public ListaDeJugadores(String tipodeuser) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaDeJugadores.class.getResource("/imagenes/IconoPrincipal.png")));
 		setResizable(false);
 		setTitle("Jugadores");
@@ -130,6 +132,17 @@ public class ListaDeJugadores extends JFrame {
 		});
 		btnSalir.setBounds(540, 235, 122, 23);
 		contentPane.add(btnSalir);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				if( tipodeuser.equalsIgnoreCase("Anotador") ) {
+					btnAgregarJugador.setVisible(false);
+					btnEliminarJugador.setVisible(false);
+					btnVerLesiones.setVisible(false);
+				}
+			}
+		});
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override

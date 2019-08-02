@@ -28,6 +28,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ListaDeEquipos extends JDialog {
 
@@ -41,7 +43,8 @@ public class ListaDeEquipos extends JDialog {
 	
 	//private JButton btnVer;
 
-	public ListaDeEquipos() {
+	public ListaDeEquipos(String tipodeuser) {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaDeEquipos.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Lista de equipos");
 		setResizable(false);
@@ -94,22 +97,7 @@ public class ListaDeEquipos extends JDialog {
 						dispose();
 					}
 				});
-				/*{
-					btnVer = new JButton("Ver");
-					btnVer.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							if(!identificador.equalsIgnoreCase("")){
-								//VerEquipo ver = new VerEquipo(buscarEquipoPorNombre(identificador));
-								ver.setModal(true);
-								ver.setVisible(true);
-							}
-							
-							cargarTabla();
-						}
-					});
-					btnVer.setEnabled(false);
-					buttonPane.add(btnVer);
-				}*/
+	
 				{
 					JButton btnEliminarEquipo = new JButton("Eliminar Equipo");
 					btnEliminarEquipo.addActionListener(new ActionListener() {
@@ -140,8 +128,7 @@ public class ListaDeEquipos extends JDialog {
 							}
 						}
 					});
-				}
-				{
+				
 					JButton btnAgregarEquipo = new JButton("Agregar Equipo");
 					btnAgregarEquipo.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -152,9 +139,20 @@ public class ListaDeEquipos extends JDialog {
 						}
 					});
 					buttonPane.add(btnAgregarEquipo);
+					
+					addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowOpened(WindowEvent e) {
+							if( tipodeuser.equalsIgnoreCase("Anotador") ) {
+								btnAgregarEquipo.setVisible(false);
+								btnEliminarEquipo.setVisible(false);
+							}
+						}
+					});
 				}
 				buttonPane.add(btnSalir);
 			}
+			
 		}
 		
 	}
