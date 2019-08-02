@@ -23,12 +23,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class CalendarioRegular extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
+	private Object[][] info;
 	/**
 	 * Launch the application.
 	 *
@@ -53,7 +55,6 @@ public class CalendarioRegular extends JFrame {
 		setTitle("Calendario para la serie regular");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 631, 425);
-		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -79,7 +80,7 @@ public class CalendarioRegular extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
-		Object[][] info= new Object[serie.getJuegos().size()][6];
+		info= new Object[serie.getJuegos().size()][6];
 		for(int i =0; i < serie.getJuegos().size();i++) { 
 			
 			info[i][0]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getCodigo();
@@ -145,5 +146,41 @@ public class CalendarioRegular extends JFrame {
 		});
 		btnSimularJuego.setBounds(339, 295, 173, 23);
 		panel.add(btnSimularJuego);
+
+		spinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(serie.existeTemporada(Integer.parseInt(spinner.getValue().toString()))==false) {
+					btnGenerarCalendarioPara.setEnabled(true);
+				}else {
+					btnGenerarCalendarioPara.setEnabled(false);
+					info= new Object[serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().size()][6];
+					for(int i =0; i < serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().size();i++) { 
+						
+						info[i][0]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getCodigo();
+					
+						info[i][1]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEstado();
+						
+						info[i][2]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getFechaDelJuego();
+						if(serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo1()>serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo2()) {
+							info[i][3]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getNombre();
+						}
+						if(serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo1()<serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getPtsEquipo2()) {
+							info[i][3]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getNombre();
+						}
+						info[i][4]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(1).getNombre();
+						
+						info[i][5]=serie.getTemporadas().get(serie.indiceDeTemporada(Integer.parseInt(spinner.getValue().toString()))).getJuegos().get(i).getEquipos().get(0).getNombre();
+						
+						
+					}
+					table.setModel(new DefaultTableModel(
+						info,
+						new String[] {
+							"Codigo del Juego ", "Estado", "Fecha", "Ganador", "Equipo Visitante", "Equipo local" 
+						}
+					));
+				}
+			}
+		});
 	}
 }

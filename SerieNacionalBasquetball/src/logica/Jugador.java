@@ -50,6 +50,13 @@ public class Jugador implements Serializable {
 		this.desempeño = posicion;
 		this.numeroCamiseta = numero;
 		this.MiEquipo = MiEquipo;
+		Lesiones = new ArrayList<Lesion>();
+		PtsTotalCarrera=0;
+		cantasistencias=0;
+		cantbloqueo=0;
+		cantrobodebalon=0;
+		peso=0;
+		cantfaltas=0;
 	}
 
 	public String getNombre() {

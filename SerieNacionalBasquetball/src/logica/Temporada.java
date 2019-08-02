@@ -16,18 +16,18 @@ public class Temporada implements Serializable {
 
 	public Temporada( ArrayList<Equipo> equipos, int CantidadEquipos, int year) {
 		super();
+		this.equipos =new ArrayList<Equipo>();
 		this.equipos = equipos;
 		this.CantidadEquipos = CantidadEquipos;
 		int aux=0;
 		for (int i = 0; i < (CantidadEquipos - 1) * 2; i++) {
 			for (int a = i + 1; a < (CantidadEquipos - 1) * 2; a++) {
-				
 				 aux++;
-				
 			}
 		}
 		cantjuegos = aux;
 		this.year = year;
+		juegos=new ArrayList<Juego>() ;
 	}
 
 	public String getCodigo() {
@@ -126,19 +126,87 @@ public class Temporada implements Serializable {
 	
 	public ArrayList<Equipo> GanadordelaTemporada(){
 		ArrayList<Equipo> aux = new ArrayList<Equipo>();
-		int [] helper = new int[cantjuegos];
+		int [] helper = new int[CantidadEquipos];
+		int valormax=0;
+		
 		for(int i =0; i<cantjuegos;i++) {
 			if(juegos.get(i).getPtsEquipo1()>juegos.get(i).getPtsEquipo2()){
-				
+				helper[indiceDeEquipo(juegos.get(i).getEquipos().get(0).getNombre())]+=2;
+			}
+			if(juegos.get(i).getPtsEquipo1()<juegos.get(i).getPtsEquipo2()){
+				helper[indiceDeEquipo(juegos.get(i).getEquipos().get(1).getNombre())]+=1;
 			}
 		}
+		for(int i=0;i<CantidadEquipos;i++) {
+			if(helper[i]==valormax ) {
+				aux.add(equipos.get(i));
+			}
+			if(helper[i]>valormax ) {
+				valormax =helper[i];
+				aux.clear();
+				aux.add(equipos.get(i));
+			}
+			
+		}
 		
+		int[] desision= new int[aux.size()];
+		for(int i =0; i < aux.size();i++) {
+			desision[i]=0;
+		}
+		
+		if(aux.size()>1) {
+			for(int i=0;i<aux.size();i++) {
+				for(int a=i+1;a<aux.size();i++) {
+					if(coeficientedepuntos(aux.get(i),aux.get(a))>0) {
+						desision[i]++;
+					}
+					if(coeficientedepuntos(aux.get(i),aux.get(a))<0) {
+						desision[a]++;
+					}
+				}
+			}
+		}
+		ArrayList<Equipo> clon =aux;
+		int valorverif=0;
+		for(int i=0;i<aux.size();i++) {
+			if(desision[i]==valorverif) {
+				clon.add(aux.get(i));
+			}
+			if(desision[i]>valorverif) {
+				valorverif=desision[i];
+				clon.clear();
+				clon.add(aux.get(i));
+			}
+			
+		}
+		
+		return clon;
+	}
+	
+	
+	public int coeficientedepuntos(Equipo eq1,Equipo eq2) {
+		int aux=0;
+		for(int i=0;i<cantjuegos;i++){
+			if(  (juegos.get(i).getEquipos().get(0)== eq1 || juegos.get(i).getEquipos().get(0)== eq2) && (juegos.get(i).getEquipos().get(1)== eq1 || juegos.get(i).getEquipos().get(1)== eq2)) {
+				aux+=juegos.get(i).getPtsEquipo1()-juegos.get(i).getPtsEquipo2();
+			}
+		}
 		return aux;
 	}
 	
-	
-	public void coeficientedepuntos(Equipo eq1,Equipo eq2) {
+	public int indiceDeEquipo(String Nombre) {
+		int aux=-1;
 		
-	}
-
+		try {
+			for(int i =0;i<equipos.size();i++) {
+				if(equipos.get(i).getNombre().equals(Nombre)) {
+					aux=i;
+				}
+			}
+		}catch(NullPointerException e) {
+					
+		}
+		
+		return aux;
+	}	
 }

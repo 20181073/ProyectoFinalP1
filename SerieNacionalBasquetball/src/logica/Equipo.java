@@ -34,6 +34,8 @@ public class Equipo implements Serializable{
 		this.nombre = nombre;
 		jugadores= new ArrayList<Jugador>();
 		this.ficherologo = ficherologo;
+		juegosganados=0;
+		juegosperdidos=0;
 	}
 
 

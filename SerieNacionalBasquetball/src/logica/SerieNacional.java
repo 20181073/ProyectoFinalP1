@@ -30,6 +30,7 @@ public class SerieNacional implements Serializable {
 		Juegos = new ArrayList<Juego>();
 //		jugadores= new ArrayList<Jugador>();
 //		this.CantidadJugadores=CantidadJugadores;
+		temporadas= new ArrayList<Temporada>();
 		canttemporadas=0;
 		
 	}

@@ -26,12 +26,11 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
-import java.awt.Toolkit;
 
 public class LesionarJugador extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel contentPanel = new JPanel(); 
 	private JTextField txtCodigo;
 
 	/**
@@ -51,11 +50,9 @@ public class LesionarJugador extends JDialog {
 	 * Create the dialog.
 	 */
 	public LesionarJugador(Jugador jugador, SerieNacional serie,Equipo equipo) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LesionarJugador.class.getResource("/imagenes/IconoPrincipal.png")));
 		
 		setTitle("Lesiones");
 		setBounds(100, 100, 481, 280);
-		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -90,8 +87,12 @@ public class LesionarJugador extends JDialog {
 		panel.add(lblCodigo);
 		
 		txtCodigo = new JTextField();
+		txtCodigo.setText("0");
 		txtCodigo.setEnabled(false);
 		txtCodigo.setBounds(25, 36, 119, 20);
+		if(jugador.getCantlesiones()>0) {
+			txtCodigo.setText(Integer.toString(Integer.parseInt(jugador.getLesiones().get(jugador.getLesiones().size()).getCodigo())+1));
+		}
 		panel.add(txtCodigo);
 		txtCodigo.setColumns(10); 
 		
@@ -113,7 +114,13 @@ public class LesionarJugador extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						serie.getEquipos().get(serie.indiceDeEquipo(equipo.getNombre())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).getLesiones().add(new Lesion(txtCodigo.getText(),cmbxTipoDeLesion.getSelectedItem().toString(),true,(Date)spnFechaDeLesion.getValue(),Integer.parseInt(spnDiasDeRecuperacion.getValue().toString())));
+						serie.getEquipos().get(serie.indiceDeEquipo(equipo.getNombre()))
+						.getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo()))
+						.getLesiones().add(new Lesion(txtCodigo.getText(),
+								cmbxTipoDeLesion.getSelectedItem().toString(),
+								true,
+								(Date)spnFechaDeLesion.getValue(),
+								Integer.parseInt(spnDiasDeRecuperacion.getValue().toString())));
 						serie.getEquipos().get(serie.indiceDeEquipo(equipo.getNombre())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).setCantlesiones(serie.getEquipos().get(serie.indiceDeEquipo(equipo.getNombre())).getJugadores().get(equipo.indiceDeJugador(jugador.getCodigo())).getCantlesiones()+1);
 						
 						dispose();

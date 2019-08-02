@@ -21,7 +21,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Toolkit;
 
 public class EquiposSerieRegular extends JFrame {
 
@@ -29,7 +28,7 @@ public class EquiposSerieRegular extends JFrame {
 	private JTable tableEquipos;
 	private JTable tableSeleccion;
 	private ArrayList<Equipo> seleccion;
-	private int cantseleccion;
+	private int cantseleccion=0;
 		
 	/**
 	 * Launch the application.
@@ -51,12 +50,10 @@ public class EquiposSerieRegular extends JFrame {
 	 * Create the frame.
 	 */
 	public EquiposSerieRegular(int yearj,SerieNacional serie ) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(EquiposSerieRegular.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Generar Temporada"+yearj);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		seleccion = new ArrayList<Equipo>();
 		setBounds(100, 100, 631, 361);
-		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,7 +68,7 @@ public class EquiposSerieRegular extends JFrame {
 		contentPane.add(lblSeleccionParaLa);
 		
 		JScrollPane scrollPaneSeleccion = new JScrollPane();
-		scrollPaneSeleccion.setBounds(385, 42, 220, 270);
+		scrollPaneSeleccion.setBounds(385, -25, 220, 270);
 		contentPane.add(scrollPaneSeleccion);
 		
 		tableSeleccion = new JTable(); 
@@ -88,6 +85,7 @@ public class EquiposSerieRegular extends JFrame {
 				 "Nombre", "Jugadores"
 			}
 		));
+//		((DefaultTableModel) tableSeleccion.getModel())
 		tableSeleccion.setFillsViewportHeight(true);
 		scrollPaneSeleccion.setViewportView(tableSeleccion);
 		
@@ -117,7 +115,7 @@ public class EquiposSerieRegular extends JFrame {
 		scrollPaneEquipos.setViewportView(tableEquipos);
 		
 		JButton btnSeleccionar = new JButton(">>");
-		btnSeleccionar.addActionListener(new ActionListener() {
+		btnSeleccionar.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				if(cantseleccion<27 && tableEquipos.getSelectedRow()>-1) {
 					seleccion.add(serie.buscarequipoByName(tableEquipos.getValueAt(tableEquipos.getSelectedRow(), 0).toString()));
@@ -148,13 +146,17 @@ public class EquiposSerieRegular extends JFrame {
 		JButton btnConfirmarSeleccion = new JButton("Confirmar Seleccion");
 		btnConfirmarSeleccion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(cantseleccion>4 && cantseleccion%2==0) {
+				if(cantseleccion>=4 && cantseleccion%2==0) {
 					
-					serie.getTemporadas().add(new Temporada(seleccion,cantseleccion,yearj));
+					serie.getTemporadas().add(new Temporada(seleccion,
+							cantseleccion,
+							yearj));
 					serie.setCanttemporadas(serie.getCanttemporadas()+1); 
-					serie.getTemporadas().get(serie.getTemporadas().size()).RegistrarJuegos(yearj);;
+					serie.getTemporadas().get(serie.getTemporadas().size()-1).RegistrarJuegos(yearj);;
 					
 					dispose();
+				}else {
+					
 				}
 			}
 		});

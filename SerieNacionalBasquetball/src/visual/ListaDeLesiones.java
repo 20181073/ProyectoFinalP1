@@ -14,7 +14,6 @@ import logica.SerieNacional;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
 
 public class ListaDeLesiones extends JFrame {
 
@@ -42,12 +41,10 @@ public class ListaDeLesiones extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeLesiones(Jugador jugador,SerieNacional serie,Equipo equipo) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaDeLesiones.class.getResource("/imagenes/IconoPrincipal.png")));
 		setTitle("Lesiones del jugador: "+jugador.getNombre());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 691, 275);
-		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -96,12 +93,12 @@ public class ListaDeLesiones extends JFrame {
 		
 		JButton btnAgregarLesion = new JButton("Agregar Lesion");
 		btnAgregarLesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(table.getSelectedColumn()>-1) {
-					LesionarJugador ventana = new LesionarJugador(jugador,serie,equipo);
-					ventana.setVisible(true);
-					dispose();
-				}
+			public void actionPerformed(ActionEvent e) { 
+//				if(table.getSelectedColumn()>-1) {
+				LesionarJugador ventana = new LesionarJugador(jugador,serie,equipo);
+				ventana.setVisible(true);
+				dispose();
+//				}
 			}
 		});
 		btnAgregarLesion.setBounds(358, 215, 121, 23);
